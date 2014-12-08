@@ -32,8 +32,8 @@ CREATE TABLE `admin` (
   `auth` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `uk_username` (`username`),
-  KEY `fk_admin_hosptial_idx` (`hospital_id`),
-  CONSTRAINT `fk_admin_hosptial` FOREIGN KEY (`hospital_id`) REFERENCES `hosptial` (`h_id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  KEY `fk_admin_hospital_idx` (`hospital_id`),
+  CONSTRAINT `fk_admin_hospital` FOREIGN KEY (`hospital_id`) REFERENCES `hospital` (`h_id`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `fk_admin_user` FOREIGN KEY (`id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -45,29 +45,6 @@ CREATE TABLE `admin` (
 LOCK TABLES `admin` WRITE;
 /*!40000 ALTER TABLE `admin` DISABLE KEYS */;
 /*!40000 ALTER TABLE `admin` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `class`
---
-
-DROP TABLE IF EXISTS `class`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `class` (
-  `c_id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(50) NOT NULL,
-  PRIMARY KEY (`c_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `class`
---
-
-LOCK TABLES `class` WRITE;
-/*!40000 ALTER TABLE `class` DISABLE KEYS */;
-/*!40000 ALTER TABLE `class` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -86,9 +63,9 @@ CREATE TABLE `department` (
   `tel` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`d_id`),
   KEY `fk_department_class_idx` (`class_id`),
-  KEY `fk_department_hosptial_idx` (`hospital_id`),
-  CONSTRAINT `fk_department_hosptial` FOREIGN KEY (`hospital_id`) REFERENCES `hosptial` (`h_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `fk_department_class` FOREIGN KEY (`class_id`) REFERENCES `class` (`c_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  KEY `fk_department_hospital_idx` (`hospital_id`),
+  CONSTRAINT `fk_department_hospital` FOREIGN KEY (`hospital_id`) REFERENCES `hospital` (`h_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `fk_department_class` FOREIGN KEY (`class_id`) REFERENCES `depclass` (`c_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -99,6 +76,29 @@ CREATE TABLE `department` (
 LOCK TABLES `department` WRITE;
 /*!40000 ALTER TABLE `department` DISABLE KEYS */;
 /*!40000 ALTER TABLE `department` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `depclass`
+--
+
+DROP TABLE IF EXISTS `depclass`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `depclass` (
+  `c_id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(50) NOT NULL,
+  PRIMARY KEY (`c_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `depclass`
+--
+
+LOCK TABLES `depclass` WRITE;
+/*!40000 ALTER TABLE `depclass` DISABLE KEYS */;
+/*!40000 ALTER TABLE `depclass` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -135,13 +135,13 @@ LOCK TABLES `doctor` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `hosptial`
+-- Table structure for table `hospital`
 --
 
-DROP TABLE IF EXISTS `hosptial`;
+DROP TABLE IF EXISTS `hospital`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `hosptial` (
+CREATE TABLE `hospital` (
   `h_id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL,
   `rank` char(20) NOT NULL,
@@ -153,12 +153,12 @@ CREATE TABLE `hosptial` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `hosptial`
+-- Dumping data for table `hospital`
 --
 
-LOCK TABLES `hosptial` WRITE;
-/*!40000 ALTER TABLE `hosptial` DISABLE KEYS */;
-/*!40000 ALTER TABLE `hosptial` ENABLE KEYS */;
+LOCK TABLES `hospital` WRITE;
+/*!40000 ALTER TABLE `hospital` DISABLE KEYS */;
+/*!40000 ALTER TABLE `hospital` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -200,11 +200,11 @@ DROP TABLE IF EXISTS `order`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `order` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `o_id` int(11) NOT NULL AUTO_INCREMENT,
   `owner_id` int(11) NOT NULL,
   `visit_id` int(11) NOT NULL,
   `status` int(11) NOT NULL DEFAULT '2',
-  PRIMARY KEY (`id`),
+  PRIMARY KEY (`o_id`),
   KEY `fk_order_visit_idx` (`visit_id`),
   KEY `fk_rorder_registuser_idx` (`owner_id`),
   CONSTRAINT `fk_order_visit` FOREIGN KEY (`visit_id`) REFERENCES `visit` (`v_id`) ON DELETE CASCADE ON UPDATE CASCADE,
@@ -283,7 +283,8 @@ DROP TABLE IF EXISTS `visit`;
 CREATE TABLE `visit` (
   `v_id` int(11) NOT NULL AUTO_INCREMENT,
   `doctor_id` int(11) NOT NULL,
-  `visit_date` datetime NOT NULL,
+  `start_date` datetime NOT NULL,
+  `end_date` datetime NOT NULL,
   `peonum` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`v_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -307,4 +308,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-12-08 19:45:30
+-- Dump completed on 2014-12-08 22:25:59

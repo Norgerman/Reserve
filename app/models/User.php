@@ -1,28 +1,29 @@
 <?php
 
-use Illuminate\Auth\UserTrait;
-use Illuminate\Auth\UserInterface;
-use Illuminate\Auth\Reminders\RemindableTrait;
-use Illuminate\Auth\Reminders\RemindableInterface;
+    class User
+        extends Eloquent
+    {
 
-class User extends Eloquent{
+        /**
+         * The database table used by the model.
+         *
+         * @var string
+         */
 
-	/**
-	 * The database table used by the model.
-	 *
-	 * @var string
-	 */
+        public $timestamps = false;
 
-    public $timestamps = false;
+        protected $table = 'user';
 
-	protected $table = 'user';
+        protected $primaryKey = "id";
 
+        public function sentMessages()
+        {
+            return $this->hasMany("Message", "id", "sender_id");
+        }
 
-    protected $primaryKey = "id";
-	/**
-	 * The attributes excluded from the model's JSON form.
-	 *
-	 * @var array
-	 */
+        public function receivedMessages()
+        {
+            return $this->hasMany("Message", "id", "receiver_id");
+        }
 
-}
+    }
