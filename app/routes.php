@@ -15,3 +15,5 @@
     {
         return View::make('index.index');
     });
+
+    Route::get("/welcom/{a}/{b?}", array("uses" => "HomeController@showWelcome"));
