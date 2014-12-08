@@ -27,6 +27,7 @@ li.menublock
     text-align: center;
     font-size: 2em;
     float: left;
+    cursor: pointer;
     ;
 }
 li.menublock:after
