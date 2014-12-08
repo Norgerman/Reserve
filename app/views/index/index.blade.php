@@ -5,5 +5,7 @@
 @stop
 
 @section('body')
+    @include('index.nav')
+    @include('index.logo')
     @include('index.menu')
 @stop
