@@ -7,4 +7,5 @@ composer.lock
 .env.php
 .DS_Store
 .idea
+artisan
 Thumbs.db
