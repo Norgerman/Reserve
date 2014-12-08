@@ -14,4 +14,14 @@
         protected $table = 'order';
 
         protected $primaryKey = "o_id";
+
+        public function visit()
+        {
+            return $this->belongsTo("visit", "v_id", "visit_id");
+        }
+
+        public function registeruser()
+        {
+            return $this->belongsTo("Registeruser", "owner_id", "id");
+        }
     }

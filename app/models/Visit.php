@@ -14,4 +14,9 @@
         protected $table = 'visit';
 
         protected $primaryKey = "v_id";
+
+        public function orders()
+        {
+            return $this->hasMany("Order", "v_id", "visit_id");
+        }
     }
