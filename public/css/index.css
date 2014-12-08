@@ -1,20 +1,18 @@
-
+body{
+    font-family: "微软雅黑";
+}
 div.menu
 {
     width:100%;
-
-}
-
-div.submenu
-{
-    width:80%;
+    text-align: center;
     background-color: #31b0d5;
+    padding: 0px 5%;
 }
+
 
 ul#menulist
 {
     list-style: none;
-
 }
 
 li.menublock:hover
@@ -23,17 +21,18 @@ li.menublock:hover
 }
 li.menublock
 {
-    width: 20%;
+    padding: 10px 5px;
+    width: 150px;
     text-align: center;
-    font-size: 2em;
+    font-size: 1.4em;
     float: left;
     cursor: pointer;
-    ;
+    transition: background 750ms;
 }
-li.menublock:after
-{
-
-    margin-left:10px;
-    margin-right:10px;
-
+.btn-help{
+    padding: 7px 5px;
+    float: right;
+    cursor: pointer;
 }
+
+
