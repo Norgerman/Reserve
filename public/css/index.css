@@ -1,6 +1,9 @@
 body{
     font-family: "微软雅黑";
 }
+a:focus{
+    outline: none !important;
+}
 /*============================logo区================================*/
 .logo-div{
     padding: 30px 10%;

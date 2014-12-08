@@ -1,6 +1,40 @@
 <div class="nav-bar col-sm-12">
     <span>您好，欢迎来到挂号网！</span>
-    <a class="btn btn-link btn-login">登陆</a>
+    <a class="btn btn-link btn-login" data-toggle="modal" href="#login-modal">登陆</a>
     <divider></divider>
     <a class="btn btn-link btn-register">注册</a>
+</div>
+
+<div id="login-modal" class="modal fade">
+    <div class="modal-dialog" >
+        <div class="modal-content" >
+            <div class="modal-header">
+                <span style="font-size: large; font-weight: bolder">登陆</span>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" role="form">
+                  <div class="form-group">
+                    <label for="username" class="col-sm-2 control-label">用户名</label>
+                    <div class="col-sm-8 input-group">
+                      <input type="text" class="form-control" id="username" placeholder="用户名">
+                      <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="password" class="col-sm-2 control-label">密码</label>
+                    <div class="col-sm-8 input-group">
+                      <input type="password" class="form-control" id="password" placeholder="密码">
+                      <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-8" style="padding: 0;">
+                      <button type="submit" class="btn btn-default" style="word-spacing: 10px;">登陆 <span class="glyphicon glyphicon-hand-right"></span></button>
+                    </div>
+                  </div>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>
