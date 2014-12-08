@@ -12,6 +12,7 @@ class User extends Eloquent{
 	 *
 	 * @var string
 	 */
+
     public $timestamps = false;
 
 	protected $table = 'user';
@@ -23,6 +24,5 @@ class User extends Eloquent{
 	 *
 	 * @var array
 	 */
-	protected $hidden = array('password', 'remember_token');
 
 }
