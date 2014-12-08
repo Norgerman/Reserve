@@ -17,7 +17,7 @@
 
         public function visit()
         {
-            return $this->belongsTo("Visit", "v_id", "visit_id");
+            return $this->belongsTo("Visit", "visit_id", "v_id");
         }
 
         public function registeruser()
