@@ -18,12 +18,12 @@
 
         public function sentMessages()
         {
-            return $this->hasMany("Message", "id", "sender_id");
+            return $this->hasMany("Message", "sender_id", "id");
         }
 
         public function receivedMessages()
         {
-            return $this->hasMany("Message", "id", "receiver_id");
+            return $this->hasMany("Message", "receiver_id", "id");
         }
 
     }

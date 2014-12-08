@@ -17,6 +17,6 @@
 
         public function departments()
         {
-            return $this->hasMany("Department", "h_id", "hospital_id");
+            return $this->hasMany("Department", "hospital_id", "h_id");
         }
     }

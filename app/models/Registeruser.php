@@ -19,6 +19,6 @@
 
         public function orders()
         {
-            return $this->hasMany("Order", "id", "owner_id");
+            return $this->hasMany("Order", "owner_id", "id");
         }
     }

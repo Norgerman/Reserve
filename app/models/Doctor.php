@@ -24,6 +24,6 @@
 
         public function visits()
         {
-            return $this->hasMany("Visit", "id", "doctor_id");
+            return $this->hasMany("Visit", "doctor_id", "id");
         }
     }
