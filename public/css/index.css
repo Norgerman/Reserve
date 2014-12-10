@@ -1,9 +1,92 @@
 body{
     font-family: "微软雅黑";
+    /*background-color: #8CC8EC;*/
 }
 a:focus{
     outline: none !important;
 }
+.main-content{
+    padding: 30px 10%;
+}
+/*=============================图片轮播================================*/
+.slider{
+    overflow: hidden;
+    max-height: 240px;
+    max-width: 360px;
+    border: 20px solid #0084ff;
+    border-radius: 15px;
+}
+.slider ul {
+    list-style: none;
+
+}
+
+.slider-box{
+    padding-top: 2px;
+}
+/*=============================快速预约===============================*/
+.qs-box{
+    background-color: #ffffff;
+    /*margin-top: 20px;*/
+    border: 1px solid #0094ff;
+    border-radius: 5px;
+    padding: 0 0 5px 0;
+    box-shadow: 0px 0px 2px 2px #cccccc;
+}
+.qs-title{
+    padding-top: 8px;
+}
+.qs-title::after{
+    content: "-";
+    color: transparent;
+    width: 98%;
+    left: 1%;
+    border-bottom: 1px solid #0094ff;
+    position: absolute;
+    top: 10px;
+
+}
+.qs-box ul{
+    list-style: none;
+    margin: 0;
+}
+
+.qs-box ul li{
+    word-spacing: 10px;
+}
+
+.qs-title ul li{
+    float: left;
+    min-width: 100px;
+}
+qsname{
+    float: left;
+    position: relative;
+    top: -13px;
+    left: -25px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    font-size: large;
+    padding: 5px;
+    color: #eeeeee;
+    background: -ms-linear-gradient(top, #70DDFA, #017DC5);
+    background: -webkit-gradient(linear, left top, left bottom, from(#70DDFA), to(#017DC5)) ;
+    background: -moz-linear-gradient(top,  #70DDFA,  #017DC5) ;
+}
+
+.qs-info{
+    padding: 10px 20px;
+    border-radius: 10px;
+
+    font-size: x-large;
+    background: -ms-linear-gradient(top, #E9F6FD, #F5FAFE);
+    background: -webkit-gradient(linear, left top, left bottom, from(#E9F6FD), to(#F5FAFE)) ;
+    background: -moz-linear-gradient(top,  #E9F6FD,  #F5FAFE) ;
+}
+.qs-info ul{
+    padding: 0;
+}
+
 /*============================logo区================================*/
 .logo-div{
     padding: 30px 10%;
