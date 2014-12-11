@@ -9,6 +9,16 @@
             @foreach ($arr as $menuname)
                 <li class="menublock">{{$menuname}}</li>
             @endforeach
+            <li class="search-box">
+                <form class="clearfix">
+                    <div class="input-area">
+                        <input type="text" class="search-text" placeholder="搜索">
+                        <button class="search-btn">
+                            <span class="glyphicon glyphicon-search"></span>
+                        </button>
+                    </div>
+                </form>
+            </li>
         </ul>
     </div>
 </div>
