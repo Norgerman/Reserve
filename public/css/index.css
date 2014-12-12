@@ -18,18 +18,41 @@ a:focus{
 .main-content{
     padding: 30px 10%;
 }
+button,.btn{
+    border: none !important;
+    border-radius: 0 !important;
+}
+/*=============================用户区域=================================*/
+.hr{
+    border: 1px solid #eeeeee;
+    margin-top: 7px;
+    margin-bottom: 15px;
+}
+.user-title{
+    word-spacing: 10px;
+}
+.user-body{
+    text-align: center;
+}
+.user-register,.doctor-register{
+    margin: 10px auto;
+    width: 78%;
+}
+.user-login{
+    margin: 5px auto;
+}
 /*=============================快速预约=================================*/
 .qs-form label{
     min-width: 40px;
 }
-.qs{
+.qs,.user{
+    padding: 10px;
     border: 1px solid #cccccc;
-    background-color: rgba(255,255,255,0.75);
+    background-color: rgba(145,145,145,0.15);
 }
 .qs-title{
     font-size: large;
     color: #428698;
-    padding: 5px;
     margin-bottom: 20px;
 }
 .qs select{

@@ -19,6 +19,7 @@
     @include('index.menu')
     <div class="col-sm-12 main-content clearfix">
         @include('index.quickreserve')
-        {{--@include('index.slider')--}}
+        @include('index.slider')
+        @include('index.user')
     </div>
 @stop
