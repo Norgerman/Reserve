@@ -11,7 +11,7 @@
             <div class="modal-header">
                 <span style="font-size: large; font-weight: bolder">登陆</span>
             </div>
-            <div class="modal-body">
+            <div class="modal-body" style="padding-bottom: 10px">
                 <form class="form-horizontal" role="form">
                   <div class="form-group">
                     <label for="username" class="col-sm-2 control-label">用户名</label>

@@ -34,8 +34,8 @@
             </div>
         </div>
         <div class="form-group">
-            <div class="col-sm-4 col-sm-offset-3">
-                <input type="button" value="我要预约" class="btn btn-primary">
+            <div class="col-sm-9 col-sm-offset-3">
+                <input type="button" value="我要预约" class="btn btn-default col-sm-12">
             </div>
         </div>
     </form>

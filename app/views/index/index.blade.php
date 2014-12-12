@@ -1,12 +1,16 @@
 @extends('layout.index')
 @section('css')
     @parent
+    {{HTML::style('lib/bootflat/css/bootflat.css')}}
     {{HTML::style('css/index.css')}}
 @stop
 
 @section('js')
     @parent
     {{HTML::script('js/index.js')}}
+    {{HTML::script('lib/bootflat/js/icheck.min.js')}}
+    {{HTML::script('lib/bootflat/js/jquery.fs.selecter.min.js')}}
+    {{HTML::script('lib/bootflat/js/jquery.fs.stepper.min.js')}}
 @stop
 
 @section('body')

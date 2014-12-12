@@ -2,6 +2,16 @@ body{
     font-family: "微软雅黑";
     background-color: #e4eee8;
 }
+
+::selection{
+    color: #ffffff;
+    background-color: #428698;
+}
+::-moz-selection{
+    color: #ffffff;
+    background-color: #428698;
+}
+
 a:focus{
     outline: none !important;
 }
@@ -9,14 +19,21 @@ a:focus{
     padding: 30px 10%;
 }
 /*=============================快速预约=================================*/
+.qs-form label{
+    min-width: 40px;
+}
 .qs{
-    border: 1px solid #333333;
+    border: 1px solid #cccccc;
+    background-color: rgba(255,255,255,0.75);
 }
 .qs-title{
     font-size: large;
-    color: #0084ff;
+    color: #428698;
     padding: 5px;
     margin-bottom: 20px;
+}
+.qs select{
+    border-radius: 0;
 }
 /*=============================图片轮播================================*/
 .slider{
