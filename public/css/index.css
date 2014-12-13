@@ -1,29 +1,98 @@
 body{
     font-family: "微软雅黑";
+    background-color: #e4eee8;
 }
+
+::selection{
+    color: #ffffff;
+    background-color: #428698;
+}
+::-moz-selection{
+    color: #ffffff;
+    background-color: #428698;
+}
+
 a:focus{
     outline: none !important;
 }
-/*============================logo区================================*/
-.logo-div{
+.main-content{
     padding: 30px 10%;
 }
-.logo{
-    font-size: x-large;
+button,.btn{
+    border: none !important;
+    border-radius: 0 !important;
 }
-.logo span , .logo a , .logo img{
-    padding: 0;
+/*=============================查询区域=================================*/
+.hospital-query-body{
+    margin-bottom: 20px;
 }
-.search-box form{
-    margin: 0;
+/*=============================用户区域=================================*/
+.hr{
+    border: 1px solid #eeeeee;
+    margin-top: 7px !important;
+    margin-bottom: 15px !important;
 }
+.user-title{
+    word-spacing: 10px;
+}
+.user-body{
+    text-align: center;
+}
+.user-register,.doctor-register{
+    margin: 10px auto;
+    width: 78%;
+}
+.user-login{
+    margin: 5px auto;
+}
+/*=============================快速预约=================================*/
+.qs-form label{
+    min-width: 40px;
+}
+.qs,.user,.query-box,.note{
+    padding: 10px;
+    border: 1px solid #cccccc;
+    background-color: rgba(0,0,0,0.1);
+}
+.qs-title{
+    font-size: large;
+    color: #428698;
+    margin-bottom: 20px;
+}
+.qs select{
+    border-radius: 0;
+}
+/*=============================图片轮播================================*/
+.slider{
+    overflow: hidden;
+    max-height: 240px;
+    max-width: 360px;
+    border: 20px solid #0084ff;
+    border-radius: 15px;
+}
+.slider ul {
+    list-style: none;
+
+}
+
+.slider-box{
+    padding-top: 2px;
+}
+
+
+/*============================logo区================================*/
+.logo-div{
+    padding: 0px 10%;
+    background-color: #e4eee8;
+}
+
 /*============================导航条================================*/
 .nav-bar{
-    background-color: #F5F5F5;
+    background-color: #d7dadb;
     padding: 5px 10%;
 }
 .btn-link{
-    padding: 0px 0px;
+    padding: 0;
 }
 
 divider::after{
@@ -36,20 +105,21 @@ div.menu
 {
     width:100%;
     text-align: center;
-    background-color: #377BEE;
-    padding: 0px 5%;
+    background-color: #428698;
     color: #FFFFFF;
+    padding: 0;
 }
 
 ul#menulist
 {
     list-style: none;
+    margin: 0;
+    padding: 0 10%;
 }
 
 li.menublock:hover
 {
-    background-color: #F5F5F5;
-    color: #035B9E;
+    background-color: #20596c;
 }
 li.menublock
 {
@@ -57,13 +127,120 @@ li.menublock
     text-align: center;
     float: left;
     cursor: pointer;
-    transition: background 750ms;
+    transition: background 1000ms;
+    font-size: large;
+    min-width: 10%;
 }
-.btn-help{
-    padding: 3px 45px;
-    float: right;
-    cursor: pointer;
+.search-box{
+    /*position: relative;*/
 }
+
+.search-box form{
+    position: absolute;
+    left: 70%;
+    top:7px;
+}
+.search-box input,.search-btn{
+    height: 32px;
+    float: left;
+    border: none;
+    outline: none;
+}
+.search-text{
+    text-indent: 5px;
+    background-color: #cccccc;
+    opacity: 0.8;
+    color: #333333;
+    width: 120px;
+    transition: width 500ms;
+    /*border: 1px solid #eeeeee;*/
+}
+.search-box:hover .search-text,.search-text:focus{
+    width: 200px;
+}
+/*.search-text::-moz-placeholder,.search-text::-webkit-input-placeholder,.search-text:-ms-input-placeholder{*/
+    /*color: #;*/
+/*}*/
+.search-btn{
+    background-color: #31b0d5;
+    min-width: 50px;
+}
+
 /*============================================================*/
 
 
+
+
+
+
+
+
+
+
+/*.btn-help{*/
+    /*padding: 3px 45px;*/
+    /*float: right;*/
+    /*cursor: pointer;*/
+/*}*/
+
+/*=============================快速预约===============================*/
+/*.qs-box{*/
+/*background-color: #ffffff;*/
+/*margin-top: 20px;*/
+/*border: 1px solid #0094ff;*/
+/*border-radius: 5px;*/
+/*padding: 0 0 5px 0;*/
+/*box-shadow: 0px 0px 2px 2px #cccccc;*/
+/*}*/
+/*.qs-title{*/
+/*padding-top: 8px;*/
+/*}*/
+/*.qs-title::after{*/
+/*content: "-";*/
+/*color: transparent;*/
+/*width: 98%;*/
+/*left: 1%;*/
+/*border-bottom: 1px solid #0094ff;*/
+/*position: absolute;*/
+/*top: 10px;*/
+
+/*}*/
+/*.qs-box ul{*/
+/*list-style: none;*/
+/*margin: 0;*/
+/*}*/
+
+/*.qs-box ul li{*/
+/*word-spacing: 10px;*/
+/*}*/
+
+/*.qs-title ul li{*/
+/*float: left;*/
+/*min-width: 100px;*/
+/*}*/
+/*qsname{*/
+/*float: left;*/
+/*position: relative;*/
+/*top: -13px;*/
+/*left: -25px;*/
+/*border-top-left-radius: 5px;*/
+/*border-top-right-radius: 5px;*/
+/*font-size: large;*/
+/*padding: 5px;*/
+/*color: #eeeeee;*/
+/*background: -ms-linear-gradient(top, #70DDFA, #017DC5);*/
+/*background: -webkit-gradient(linear, left top, left bottom, from(#70DDFA), to(#017DC5)) ;*/
+/*background: -moz-linear-gradient(top,  #70DDFA,  #017DC5) ;*/
+/*}*/
+
+/*.qs-info{*/
+/*padding: 10px 20px;*/
+/*border-radius: 10px;*/
+/*font-size: x-large;*/
+/*background: -ms-linear-gradient(top, #E9F6FD, #F5FAFE);*/
+/*background: -webkit-gradient(linear, left top, left bottom, from(#E9F6FD), to(#F5FAFE)) ;*/
+/*background: -moz-linear-gradient(top,  #E9F6FD,  #F5FAFE) ;*/
+/*}*/
+/*.qs-info ul{*/
+/*padding: 0;*/
+/*}*/

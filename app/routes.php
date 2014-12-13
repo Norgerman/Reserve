@@ -13,7 +13,11 @@
 
     Route::get('/', function ()
     {
-        return View::make('index.index');
+        return View::make('index.index',["login" => "false"]);
     });
 
-    Route::get("/welcom/{a}/{b?}", array("uses" => "HomeController@showWelcome"));
+    Route::get("/welcome/{a}/{b?}", array("uses" => "HomeController@showWelcome"));
+
+    Route::get("/slider",function(){
+        return View::make('index.slider');
+    });
