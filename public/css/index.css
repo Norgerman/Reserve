@@ -22,11 +22,15 @@ button,.btn{
     border: none !important;
     border-radius: 0 !important;
 }
+/*=============================查询区域=================================*/
+.hospital-query-body{
+    margin-bottom: 20px;
+}
 /*=============================用户区域=================================*/
 .hr{
     border: 1px solid #eeeeee;
-    margin-top: 7px;
-    margin-bottom: 15px;
+    margin-top: 7px !important;
+    margin-bottom: 15px !important;
 }
 .user-title{
     word-spacing: 10px;
@@ -45,10 +49,10 @@ button,.btn{
 .qs-form label{
     min-width: 40px;
 }
-.qs,.user{
+.qs,.user,.query-box,.note{
     padding: 10px;
     border: 1px solid #cccccc;
-    background-color: rgba(145,145,145,0.15);
+    background-color: rgba(0,0,0,0.1);
 }
 .qs-title{
     font-size: large;

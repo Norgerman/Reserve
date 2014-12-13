@@ -22,4 +22,7 @@
         @include('index.slider')
         @include('index.user')
     </div>
+    <div class="col-sm-12 main-content">
+        @include('index.query')
+    </div>
 @stop
