@@ -1,6 +1,7 @@
 @extends('layout.index')
 @section('css')
     @parent
+    {{HTML::style('css/common.css')}}
     {{HTML::style('css/index.css')}}
 @stop
 

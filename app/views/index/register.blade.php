@@ -1,6 +1,7 @@
 @extends('layout.index')
 @section('css')
     @parent
+    {{HTML::style('css/common.css')}}
     {{HTML::style('css/register.css')}}
 @stop
 
@@ -10,11 +11,9 @@
 @stop
 
 @section('body')
-    @include('index.nav')
-    @include('index.logo')
     @include('index.menu')
-    <div class="col-sm-12 main-content clearfix">
-
+    <div class="col-sm-12">
+        <div class="form-div">
+        </div>
     </div>
-
 @stop
