@@ -9,3 +9,6 @@ button:active,
   border-radius: 0 !important;
   /*outline: none !important;*/
 }
+input {
+  border-radius: 0 !important;
+}
