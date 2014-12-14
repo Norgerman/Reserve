@@ -16,6 +16,10 @@
         return View::make('index.index', array("login" => "false"));
     });
 
+    Route::get('/register',function(){
+        return View::make('index.register');
+    });
+
     Route::get("/welcome/{a}/{b?}", array("uses" => "HomeController@showWelcome"));
 
     Route::get("/slider",function(){
