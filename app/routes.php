@@ -11,6 +11,12 @@
     |
     */
 
+    Route::controller("/index", "IndexController");
+
+    Route::controller("/reg", "RegisterController");
+
+    Route::controller("/query", "QueryController");
+
     Route::get('/', function ()
     {
         return View::make('index.index', array("login" => "false"));
