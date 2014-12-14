@@ -11,6 +11,8 @@
     |
     */
 
+    Route::controller("/index", "IndexController");
+
     Route::get('/', function ()
     {
         return View::make('index.index', array("login" => "false"));
@@ -22,5 +24,3 @@
     {
         return View::make('index.slider');
     });
-
-    Route::get("/index", array("uses" => "IndexController@index"));
