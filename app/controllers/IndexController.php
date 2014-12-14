@@ -16,26 +16,34 @@
 
         public function postLogin()
         {
-            $idnum = Input::get("idnum");
-            $pwd = Input::get("pwd");
-            $user = Registeruser::where("idnum", "=", $idnum)
-                                ->first();
-
-            if ($user == null)
-            {
-                $result = "NOTFOUND";
-            }
+            $username = Input::get("username");
+            $password = Input::get("password");
+            if($password==""||$username=="")
+                $result = "MESSAGE NOT COMPLETE";
             else
             {
-                if ($pwd === $user->password)
+                $user = Registeruser::where("username", "=", $username)
+                    ->first();
+
+                if ($user == null)
                 {
-                    $result = "TRUE";
+                    $result = "USER NOT FOUND";
                 }
                 else
                 {
-                    $result = "WRONGPASSWORD";
+                    $pwd = hash("sha256",$password);
+                    if ($password === $user->password)
+                    {
+                        Session::put("$username","$username");
+                        $result = "SIGN IN SUCCESS";
+                    }
+                    else
+                    {
+                        $result = "WRONG PASSWORD";
+                    }
                 }
             }
+
 
             return Response::make($result);
         }
