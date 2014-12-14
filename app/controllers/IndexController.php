@@ -11,7 +11,7 @@
     {
         public function getIndex($login = "false", $register_user = null)
         {
-            return View::make("index.index", array("login" => $login, "register_user"=>$register_user));
+            return View::make("index.index", array("login" => $login, "register_user" => $register_user));
         }
 
         public function postLogin()
