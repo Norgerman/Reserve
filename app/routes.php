@@ -22,6 +22,9 @@
 
     Route::get("/welcome/{a}/{b?}", array("uses" => "HomeController@showWelcome"));
 
-    Route::get("/slider",function(){
+    Route::get("/slider", function ()
+    {
         return View::make('index.slider');
     });
+
+    Route::get("/index", array("uses" => "IndexController@index"));
