@@ -64,8 +64,8 @@ CREATE TABLE `department` (
   PRIMARY KEY (`d_id`),
   KEY `fk_department_class_idx` (`class_id`),
   KEY `fk_department_hospital_idx` (`hospital_id`),
-  CONSTRAINT `fk_department_hospital` FOREIGN KEY (`hospital_id`) REFERENCES `hospital` (`h_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `fk_department_class` FOREIGN KEY (`class_id`) REFERENCES `depclass` (`c_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `fk_department_class` FOREIGN KEY (`class_id`) REFERENCES `depclass` (`c_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_department_hospital` FOREIGN KEY (`hospital_id`) REFERENCES `hospital` (`h_id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -207,8 +207,8 @@ CREATE TABLE `order` (
   PRIMARY KEY (`o_id`),
   KEY `fk_order_visit_idx` (`visit_id`),
   KEY `fk_rorder_registuser_idx` (`owner_id`),
-  CONSTRAINT `fk_order_visit` FOREIGN KEY (`visit_id`) REFERENCES `visit` (`v_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `fk_order_registeruser` FOREIGN KEY (`owner_id`) REFERENCES `registeruser` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+  CONSTRAINT `fk_order_registeruser` FOREIGN KEY (`owner_id`) REFERENCES `registeruser` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `fk_order_visit` FOREIGN KEY (`visit_id`) REFERENCES `visit` (`v_id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -230,6 +230,8 @@ DROP TABLE IF EXISTS `registeruser`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `registeruser` (
   `id` int(11) NOT NULL,
+  `username` varchar(45) NOT NULL,
+  `name` varchar(45) NOT NULL,
   `idnum` char(18) NOT NULL,
   `password` bit(64) NOT NULL,
   `credit` int(11) NOT NULL,
@@ -237,6 +239,7 @@ CREATE TABLE `registeruser` (
   `auth` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `uk_idnum` (`idnum`),
+  UNIQUE KEY `username_UNIQUE` (`username`),
   CONSTRAINT `fk_registuser_user` FOREIGN KEY (`id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -308,4 +311,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-12-08 22:25:59
+-- Dump completed on 2014-12-14 19:47:01
