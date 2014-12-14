@@ -233,7 +233,7 @@ CREATE TABLE `registeruser` (
   `username` varchar(45) NOT NULL,
   `name` varchar(45) NOT NULL,
   `idnum` char(18) NOT NULL,
-  `password` bit(64) NOT NULL,
+  `password` CHAR(64) NOT NULL,
   `credit` int(11) NOT NULL,
   `tel` varchar(45) DEFAULT NULL,
   `auth` int(11) NOT NULL,

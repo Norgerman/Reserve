@@ -15,7 +15,7 @@
 
     Route::controller("/reg", "RegisterController");
 
-    Route::controller("/query", "QueryController");
+//    Route::controller("/query", "QueryController");
 
     Route::get('/', function ()
     {
