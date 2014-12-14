@@ -6,6 +6,9 @@
  * Time: 20:04
  */
 
+//getIndex:首页，（信息中包括h_id医院的h_id，name医院的名字）：没写
+//postDoctordep:响应ajax，字段Idnum是医院h_Id,返回所有科室的d_Id和名字
+//postDoctorreg:响应注册的信息，并且跳转到index页面，返回的array中inf代表时是否注册成功："ok":成功，"username existed"：重名,"unknown error"：未知的错误
 
 
 
@@ -14,15 +17,28 @@ extends BaseController
 {
     public function getIndex()
     {
+        //返回的医院信息
+        $hospital = Hospital::all(array("h_id","name"));
         //返回的array中inf代表时是否注册成功："ok":成功，"username existed"：重名,"unknown error"：未知的错误
-        return "医生注册";
+        return $hospital;
 
     }
 
 
-    public function getDoctorreg()
-    {
-        return "医生注册";
+    //获取某一个医院的所有科室
+    public function postDoctordep(){
+        if (Request::ajax())
+        {
+            //获取数据库中的数据
+            $idnum=input::get("Idnum");
+            //获取医院的科室
+            $res = Department::where("h_id", "=", $idnum)->all(array("d_id","name"));
+            //返回
+            return $res;
+
+        }
+
+        return "error";
     }
 
     public function postDoctorreg(){
