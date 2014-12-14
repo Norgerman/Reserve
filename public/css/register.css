@@ -1,0 +1,11 @@
+/**
+ * Created by vvliebe on 2014/12/14.
+ */
+.form-group > div {
+  padding: 0;
+}
+.register-div {
+  margin-top: 100px;
+  border: 1px solid #000000;
+  padding-top: 20px;
+}

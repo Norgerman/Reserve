@@ -9,3 +9,5 @@ composer.lock
 .idea
 Thumbs.db
 /public/src
+
+app/views/index/quickreserve.blade.bak.php
