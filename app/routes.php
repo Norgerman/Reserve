@@ -13,7 +13,7 @@
 
     Route::get('/', function ()
     {
-        return View::make('index.index',["login" => "false"]);
+        return View::make('index.index', array("login" => "false"));
     });
 
     Route::get("/welcome/{a}/{b?}", array("uses" => "HomeController@showWelcome"));
