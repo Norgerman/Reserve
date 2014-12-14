@@ -13,6 +13,8 @@
 
     Route::controller("/index", "IndexController");
 
+    Route::controller("/reg", "RegisterController");
+
     Route::get('/', function ()
     {
         return View::make('index.index', array("login" => "false"));
