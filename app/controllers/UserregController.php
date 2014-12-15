@@ -46,10 +46,10 @@
                         Session::set("id", $register_user->id);
                         Session::set("type", "user");
                         Session::set("auth", $register_user->auth);
+                        Session::set("username", $username);
                         DB::commit();
 
-                        return Redirect::Action("IndexController@getIndex", array("login" => "true",
-                                                                                  "user" => $register_user));
+                        return Redirect::Action("IndexController@getIndex");
                     }
                     else
                     {
