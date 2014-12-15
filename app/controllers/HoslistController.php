@@ -30,7 +30,7 @@ class HoslistController extends BaseController {
     private function Hos($pagenum)
     {
         $start_num = $pagenum*25-25;
-        $hoslist = Hospital::skip($start_num)->take(25)->select(array("h_id","name","rank","address","tel"));
+        $hoslist = Hospital::skip($start_num)->take(25);
         $hosarray = $hoslist->toArray();
         $hoscount = $hosarray->count();
 
