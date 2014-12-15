@@ -1,0 +1,20 @@
+/**
+ * Created by vvliebe on 2014/12/14.
+ */
+body {
+  background-color: #eeeeee;
+}
+.form-group > div {
+  padding: 0;
+}
+.register-div {
+  margin-top: 40px;
+  border: 1px solid #000000;
+  padding-top: 5px;
+}
+.register-title {
+  padding: 15px 0;
+}
+.not-current-user{
+    display: none;
+}

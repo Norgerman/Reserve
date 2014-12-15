@@ -1,0 +1,14 @@
+/**
+ * Created by vvliebe on 2014/12/14.
+ */
+button,
+.btn,
+button:active,
+.btn:active {
+  border: none !important;
+  border-radius: 0 !important;
+  /*outline: none !important;*/
+}
+input {
+  border-radius: 0 !important;
+}

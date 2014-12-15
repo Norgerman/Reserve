@@ -7,6 +7,7 @@
         @show
         @section('css')
             {{HTML::style('lib/bootstrap/css/bootstrap.css')}}
+            {{HTML::style('css/flat.css')}}
         @show
         @section('js')
             {{HTML::script('lib/jquery.js')}}
