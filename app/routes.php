@@ -17,7 +17,7 @@
 
     Route::controller("/usrreg", "UserregController");
 
-    Route::controller("/doctorreg", "DoctorregController");
+    //Route::controller("/doctorreg", "DoctorregController");
 
 
     //Route::controller("/query", "QueryController");

@@ -16,9 +16,11 @@
 
         public function postDocsignin()
         {
+
             $username = trim(Input::get("username"));
             $name = trim(Input::get("name"));
             $orginpwd = trim(Input::get("password"));
+            $department_id = trim(Input::get("department_id"));
             $pwd = hash("sha256", $orginpwd);
             $tel = trim(Input::get("tel"));
             $user = new User();
@@ -32,6 +34,10 @@
                     $doctor->username = $username;
                     $doctor->id = $user->id;
                     $doctor->name = $name;
+                    $doctor->password = $pwd;
+                    $doctor->tel = $tel;
+                    $doctor->auth = 1;
+                    $doctor->department_id = $department_id;
                 }
                 else
                 {

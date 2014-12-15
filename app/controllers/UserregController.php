@@ -24,9 +24,9 @@
             $tel = trim(Input::get("tel"));
             $auth = 1;
             $name = trim(Input::get("name"));
-
             $user = new User();
             $user->type = 1;
+
             try
             {
                 DB::begintransaction();
