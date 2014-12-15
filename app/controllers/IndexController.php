@@ -9,9 +9,18 @@
     class IndexController
         extends BaseController
     {
-        public function getIndex($login = "false", $user = null)
+        public function getIndex()
         {
-            return View::make("index.index", array("login" => $login, "register_user" => $user));
+            $type = Session::get("type");
+            $login = "false";
+            $username = null;
+            if ($type)
+            {
+                $username = Session::get("username");
+                $login = "true";
+            }
+
+            return View::make("index.index", array("login" => $login, "username" => $username));
         }
 
         public function postLogin()
@@ -40,6 +49,7 @@
                         Session::set("id", $user->id);
                         Session::set("type", "user");
                         Session::set("auth", $user->auth);
+                        Session::set("username", $username);
                         $result["status"] = "succeed";
                         $result["username"] = $username;
                     }

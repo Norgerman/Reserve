@@ -41,6 +41,7 @@
                     if ($doctor->save())
                     {
                         //TODO
+                        DB::commit();
                     }
                     else
                     {
