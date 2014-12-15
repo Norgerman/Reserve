@@ -17,7 +17,12 @@
 
     Route::controller("/usrreg", "UserregController");
 
-    Route::controller("/query", "QueryController");
+    Route::controller("/doctorreg", "DoctorregController");
+
+
+    //Route::controller("/query", "QueryController");
+
+
 
     Route::get('/', array("uses" => "IndexController@getIndex"));
 
