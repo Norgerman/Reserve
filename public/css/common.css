@@ -40,12 +40,12 @@ li.menublock:hover
 }
 li.menublock
 {
-    padding: 10px 5px;
+    padding: 12px 5px;
     text-align: center;
     float: left;
     cursor: pointer;
     transition: background 800ms;
-    font-size: large;
+    font-size: medium;
     min-width: 10%;
 }
 .search-box{
