@@ -23,7 +23,7 @@ div.menu
     width:100%;
     text-align: center;
     background-color: #428698;
-    color: #FFFFFF;
+
     padding: 0;
 }
 
@@ -47,6 +47,7 @@ li.menublock
     transition: background 800ms;
     font-size: medium;
     min-width: 10%;
+    color: #FFFFFF;
 }
 .search-box{
     /*position: relative;*/
@@ -69,11 +70,12 @@ li.menublock
     opacity: 0.8;
     color: #333333;
     width: 120px;
-    transition: width 500ms;
+    transition: width 500ms , background-color 500ms;
     /*border: 1px solid #eeeeee;*/
 }
 .search-box:hover .search-text,.search-text:focus{
     width: 200px;
+    background-color: #ffffff;
 }
 /*.search-text::-moz-placeholder,.search-text::-webkit-input-placeholder,.search-text:-ms-input-placeholder{*/
 /*color: #;*/

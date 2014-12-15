@@ -1,5 +1,5 @@
  <?php
- $arr = array("首页","医院","科室","在线咨询","个人信息")
+ $arr = array(array("首页","/"),array("医院",""),array("科室",""),array("在线咨询",""),array("个人信息",""));
 
  ?>
 
@@ -7,7 +7,7 @@
     <div class="clearfix">
         <ul id="menulist" class="clearfix">
             @foreach ($arr as $menuname)
-                <li class="menublock">{{$menuname}}</li>
+                <a href="{{$menuname[1]}}"><li class="menublock">{{$menuname[0]}}</li></a>
             @endforeach
             <li class="search-box">
                 <form class="clearfix">
