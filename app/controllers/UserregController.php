@@ -47,7 +47,7 @@
                         DB::commit();
 
                         return Redirect::Action("IndexController@getIndex", array("login" => "true",
-                                                                                  "register_user" => $register_user));
+                                                                                  "user" => $register_user));
                     }
                     else
                     {

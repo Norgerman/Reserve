@@ -31,6 +31,7 @@
                     $doctor = new Doctor();
                     $doctor->username = $username;
                     $doctor->id = $user->id;
+                    $doctor->name = $name;
                 }
                 else
                 {
@@ -40,6 +41,8 @@
             catch (PDOException $e)
             {
                 DB::rollback();
+
+                return Redirect::Action("DocregController@getIndex", array("type" => "doctor", "error" => "true"));
             }
         }
     }
