@@ -45,7 +45,7 @@
                     {
                         Session::set("id", $register_user->id);
                         Session::set("type", "user");
-                        Session::set("auth", $register_user->$user->auth);
+                        Session::set("auth", $register_user->auth);
                         DB::commit();
 
                         return Redirect::Action("IndexController@getIndex", array("login" => "true",
