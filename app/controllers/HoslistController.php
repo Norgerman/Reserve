@@ -38,7 +38,8 @@
         {
             $start_num = $pagenum * 25 - 25;
             $hoslist = Hospital::skip($start_num)
-                               ->take(25);
+                               ->take(25)
+                               ->get();
             $hosarray = $hoslist->toArray();
             $hoscount = count($hosarray);
 

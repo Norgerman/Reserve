@@ -37,7 +37,8 @@
         {
             $start_num = $pagenum * 25 - 25;
             $deplist = Department::skip($start_num)
-                                 ->take(25);
+                                 ->take(25)
+                                 ->get();
             $deparray = array();
             foreach ($deplist as $index => $dep)
             {
