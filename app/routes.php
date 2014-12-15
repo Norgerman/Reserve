@@ -19,6 +19,8 @@
 
     Route::controller("/query", "QueryController");
 
+    Route::controller("/hoslist", "HoslistController");
+    Route::controller("/deplist","DeplistController");
     Route::get('/', array("uses" => "IndexController@getIndex"));
 
     Route::get('/register',function(){
