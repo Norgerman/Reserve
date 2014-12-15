@@ -23,7 +23,7 @@
     });
 
     Route::get('/register',function(){
-        return View::make('index.register');
+        return View::make('index.register',array("type" => "user"));
     });
 
     Route::get("/welcome/{a}/{b?}", array("uses" => "HomeController@showWelcome"));

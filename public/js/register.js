@@ -4,5 +4,7 @@
 $(function () {
     $(".btn-group>.btn").click(function(){
         $(this).addClass("active").parent().siblings().children().removeClass("active");
+        $(".different").toggleClass("not-current-user");
     });
+
 })

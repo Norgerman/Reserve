@@ -15,3 +15,6 @@ body {
 .register-title {
   padding: 15px 0;
 }
+.not-current-user{
+    display: none;
+}
