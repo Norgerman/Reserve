@@ -37,7 +37,7 @@
                     $pwd = hash("sha256", $password);
                     if ($pwd === $user->password)
                     {
-                        Session::set("id", $username);
+                        Session::set("id", $user->id);
                         Session::set("type", "user");
                         Session::set("auth", $user->auth);
                         $result["status"] = "succeed";
