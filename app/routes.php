@@ -15,12 +15,11 @@
 
     Route::controller("/reg", "RegisterController");
 
-//    Route::controller("/query", "QueryController");
+    Route::controller("/usrreg", "UserregController");
 
-    Route::get('/', function ()
-    {
-        return View::make('index.index', array("login" => "false"));
-    });
+    Route::controller("/query", "QueryController");
+
+    Route::get('/', array("uses" => "IndexController@getIndex"));
 
     Route::get("/welcome/{a}/{b?}", array("uses" => "HomeController@showWelcome"));
 

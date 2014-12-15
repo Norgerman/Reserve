@@ -18,28 +18,30 @@
         {
             $username = Input::get("username");
             $password = Input::get("password");
-            if($password==""||$username=="")
+            if ($password == "" || $username == "")
+            {
                 $result = "MESSAGE NOT COMPLETE";
+            }
             else
             {
                 $user = Registeruser::where("username", "=", $username)
-                    ->first();
+                                    ->first();
 
                 if ($user == null)
                 {
-                    $result = "USER NOT FOUND";
+                    $result = "username";
                 }
                 else
                 {
-                    $pwd = hash("sha256",$password);
-                    if ($password === $user->password)
+                    $pwd = hash("sha256", $password);
+                    if ($pwd === $user->password)
                     {
-                        Session::put("$username","$username");
-                        $result = "SIGN IN SUCCESS";
+                        Session::put("id", $username);
+                        $result = "succeed";
                     }
                     else
                     {
-                        $result = "WRONG PASSWORD";
+                        $result = "password";
                     }
                 }
             }

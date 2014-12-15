@@ -15,9 +15,9 @@
 
         public function postUsersignin()
         {
-            $username = Input::get("username");
-            $idnum = Input::get("idnum");
-            $origin_pwd = Input::get("password");
+            $username = trim(Input::get("username"));
+            $idnum = trim(Input::get("idnum"));
+            $origin_pwd = trim(Input::get("password"));
             $pwd = hash("sha256", $origin_pwd);
             $credit = 5;
             $tel = Input::get("tel");
@@ -51,8 +51,6 @@
             {
                 return Redirect::Action("UserregController@getIndex", array("type" => "user", "error" => "true"));
             }
-
-
         }
     }
 
