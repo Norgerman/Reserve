@@ -38,6 +38,14 @@
                     $doctor->tel = $tel;
                     $doctor->auth = 1;
                     $doctor->department_id = $department_id;
+                    if ($doctor->save())
+                    {
+                        //TODO
+                    }
+                    else
+                    {
+                        throw new PDOException();
+                    }
                 }
                 else
                 {
