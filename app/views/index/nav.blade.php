@@ -12,18 +12,18 @@
                 <span style="font-size: large; font-weight: bolder">登陆</span>
             </div>
             <div class="modal-body" style="padding-bottom: 10px">
-                <form class="form-horizontal" role="form">
+                <form class="form-horizontal" method="post" action="/index/login" role="form">
                   <div class="form-group">
                     <label for="username" class="col-sm-2 control-label">用户名</label>
                     <div class="col-sm-8 input-group">
-                      <input type="text" class="form-control" id="username" placeholder="用户名">
+                      <input type="text" class="form-control" name="username" id="username" placeholder="用户名">
                       <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
                     </div>
                   </div>
                   <div class="form-group">
                     <label for="password" class="col-sm-2 control-label">密码</label>
                     <div class="col-sm-8 input-group">
-                      <input type="password" class="form-control" id="password" placeholder="密码">
+                      <input type="password" name="password" class="form-control" id="password" placeholder="密码">
                       <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
                     </div>
                   </div>

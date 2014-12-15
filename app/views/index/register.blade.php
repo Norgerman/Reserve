@@ -27,13 +27,13 @@
             <div class="form-group">
                            <label for="username" class="col-sm-2 control-label">用户名</label>
                            <div class="col-sm-10">
-                               <input type="text" class="form-control" id="username" placeholder="请输入用户名">
+                               <input type="text" name="username" class="form-control" id="username" placeholder="请输入用户名">
                            </div>
                          </div>
             <div class="form-group">
                              <label for="password" class="col-sm-2 control-label">密码</label>
                              <div class="col-sm-10">
-                                 <input type="password" class="form-control" id="password" placeholder="请输入密码">
+                                 <input type="password" name="password" class="form-control" id="password" placeholder="请输入密码">
                              </div>
                          </div>
             <div class="form-group">
@@ -45,27 +45,27 @@
             <div class="form-group">
                              <label for="tel" class="col-sm-2 control-label">手机</label>
                              <div class="col-sm-10">
-                                 <input type="tel" class="form-control" id="tel" placeholder="请输入身份证号码">
+                                 <input type="tel" name="tel" class="form-control" id="tel" placeholder="请输入身份证号码">
                              </div>
                           </div>
 
             <div class="form-group different @if($type=="doctor") not-current-user @endif ">
                 <label for="name" class="col-sm-2 control-label">真实姓名</label>
                 <div class="col-sm-10">
-                   <input type="text" class="form-control" id="name" placeholder="请输入真实姓名">
+                   <input type="text" name="name" class="form-control" id="name" placeholder="请输入真实姓名">
                 </div>
               </div>
             <div class="form-group different @if($type=="doctor") not-current-user @endif ">
                  <label for="idnum" class="col-sm-2 control-label">身份证</label>
                  <div class="col-sm-10">
-                     <input type="text" class="form-control" id="idnum" placeholder="请输入身份证号码">
+                     <input type="text" name="idnum" class="form-control" id="idnum" placeholder="请输入身份证号码">
                  </div>
              </div>
 
             <div class="form-group different @if($type=="user") not-current-user @endif ">
                     <label for="department_id" class="col-sm-2 control-label">部门ID</label>
                     <div class="col-sm-10">
-                       <input type="text" class="form-control" id="department_id" placeholder="请输入部门ID">
+                       <input type="text" name="department_id" class="form-control" id="department_id" placeholder="请输入部门ID">
                     </div>
                 </div>
 
