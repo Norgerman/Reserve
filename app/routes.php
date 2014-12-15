@@ -17,7 +17,6 @@
 
     Route::controller("/usrreg", "UserregController");
 
-    Route::controller("/doctorreg", "DoctorregController");
 
 
     //Route::controller("/query", "QueryController");
@@ -38,3 +37,5 @@
     });
 
     Route::get("/index", array("uses" => "IndexController@index"));
+
+     Route::get("/detailedhos", array("uses" => "DetailedhospitalController@getIndex"));
