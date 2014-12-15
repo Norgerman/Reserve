@@ -17,10 +17,10 @@ class DetailedhospitalController
        function getDetailedhospital()
        {
            //获得医院的id
-           //$h_id = trim(Input::get("h_id"));
+           $h_id = trim(Input::get("h_id"));
 
            //test
-           $h_id=1;
+           //$h_id=1;
 
            //查询医院的信息
            $information = hospital::find($h_id);
