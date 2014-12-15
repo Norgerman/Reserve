@@ -7,6 +7,7 @@
      * Time: 19:27
      */
     class UserregController
+        extends BaseController
     {
         public function getIndex($type = "user", $error = "false")
         {
@@ -20,35 +21,48 @@
             $origin_pwd = trim(Input::get("password"));
             $pwd = hash("sha256", $origin_pwd);
             $credit = 5;
-            $tel = Input::get("tel");
+            $tel = trim(Input::get("tel"));
             $auth = 1;
-            $name = Input::get("name");
+            $name = trim(Input::get("name"));
 
             $user = new User();
             $user->type = 1;
-            if ($user->save())
+            try
             {
-                $register_user = new Registeruser();
-                $register_user->id = $user->id;
-                $register_user->username = $username;
-                $register_user->name = $name;
-                $register_user->idnum = $idnum;
-                $register_user->password = $pwd;
-                $register_user->credit = $credit;
-                $register_user->tel = $tel;
-                $register_user->auth = $auth;
-                if ($register_user->save())
+                DB::begintransaction();
+                if ($user->save())
                 {
-                    return Redirect::Action("IndexController@getIndex", array("login" => "true",
-                                                                              "register_user" => $register_user));
+                    $register_user = new Registeruser();
+                    $register_user->id = $user->id;
+                    $register_user->username = $username;
+                    $register_user->name = $name;
+                    $register_user->idnum = $idnum;
+                    $register_user->password = $pwd;
+                    $register_user->credit = $credit;
+                    $register_user->tel = $tel;
+                    $register_user->auth = $auth;
+                    if ($register_user->save())
+                    {
+                        Session::get("id", $register_user->id);
+                        DB::commit();
+
+                        return Redirect::Action("IndexController@getIndex", array("login" => "true",
+                                                                                  "register_user" => $register_user));
+                    }
+                    else
+                    {
+                        throw new PDOException();
+                    }
                 }
                 else
                 {
-                    return Redirect::Action("UserregController@getIndex", array("type" => "user", "error" => "true"));
+                    throw new PDOException();
                 }
             }
-            else
+            catch (PDOException $e)
             {
+                DB::rollback();
+
                 return Redirect::Action("UserregController@getIndex", array("type" => "user", "error" => "true"));
             }
         }
