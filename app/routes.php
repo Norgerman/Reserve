@@ -20,7 +20,7 @@
     Route::get('/', array("uses" => "IndexController@getIndex"));
 
     Route::get('/register',function(){
-        return View::make('index.register',array("type" => "user"));
+        return View::make('index.register',array("type" => "doctor"));
     });
 
     Route::get("/welcome/{a}/{b?}", array("uses" => "HomeController@showWelcome"));

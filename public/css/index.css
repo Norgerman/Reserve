@@ -30,6 +30,9 @@ a:focus{
     margin-top: 7px !important;
     margin-bottom: 15px !important;
 }
+.hide{
+    display: none;
+}
 .user-title{
     word-spacing: 10px;
 }

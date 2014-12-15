@@ -12,7 +12,7 @@
                 <span style="font-size: large; font-weight: bolder">登陆</span>
             </div>
             <div class="modal-body" style="padding-bottom: 10px">
-                <form class="form-horizontal" method="post" action="/index/login" role="form">
+                <form class="form-horizontal" method="post" role="form">
                   <div class="form-group">
                     <label for="username" class="col-sm-2 control-label">用户名</label>
                     <div class="col-sm-8 input-group">
@@ -30,7 +30,7 @@
 
                   <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-8" style="padding: 0;">
-                      <button type="submit" class="btn btn-default" style="word-spacing: 10px;">登陆 <span class="glyphicon glyphicon-hand-right"></span></button>
+                      <button type="submit" class="login-btn btn btn-default" style="word-spacing: 10px;">登陆 <span class="glyphicon glyphicon-hand-right"></span></button>
                     </div>
                   </div>
                 </form>
