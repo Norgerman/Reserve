@@ -16,14 +16,14 @@
         <div class="col-sm-10 col-sm-offset-1 register-title">
             <div class="btn-group btn-group-justified">
                 <div class="btn-group">
-                    <button type="button" class="btn btn-default active">用户</button>
+                    <button type="button" target="user" class="btn btn-default active">用户</button>
                 </div>
                 <div class="btn-group">
-                    <button type="button" class="btn btn-default">医生</button>
+                    <button type="button" target="doctor" class="btn btn-default">医生</button>
                 </div>
             </div>
         </div>
-        <form role="form" class="form-horizontal col-sm-10 col-sm-offset-1">
+        <form role="form" method="post" action="@if($type=="user") /usrreg/usersignin @elseif($type=="doctor") /docreg/docsignin @endif" class="reg-form form-horizontal col-sm-10 col-sm-offset-1">
             <div class="form-group">
                            <label for="username" class="col-sm-2 control-label">用户名</label>
                            <div class="col-sm-10">
