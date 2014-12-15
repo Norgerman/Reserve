@@ -1,3 +1,29 @@
+body{
+    font-family: "微软雅黑";
+    background-color: #e4eee8;
+}
+
+.hr{
+    border: 1px solid #ffffff;
+    margin-top: 7px !important;
+    margin-bottom: 15px !important;
+}
+.hide{
+    display: none;
+}
+
+::selection{
+    color: #ffffff;
+    background-color: #428698;
+}
+::-moz-selection{
+    color: #ffffff;
+    background-color: #428698;
+}
+
+a:focus{
+    outline: none !important;
+}
 /*============================logo区================================*/
 .logo-div{
     padding: 0px 10%;

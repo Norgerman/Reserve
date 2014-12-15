@@ -1,38 +1,12 @@
-body{
-    font-family: "微软雅黑";
-    background-color: #e4eee8;
-}
 
-::selection{
-    color: #ffffff;
-    background-color: #428698;
-}
-::-moz-selection{
-    color: #ffffff;
-    background-color: #428698;
-}
-
-a:focus{
-    outline: none !important;
-}
 .main-content{
     padding: 30px 10%;
 }
 
 
-/*=============================查询区域=================================*/
-.hospital-query-body{
-    margin-bottom: 20px;
-}
+
 /*=============================用户区域=================================*/
-.hr{
-    border: 1px solid #eeeeee;
-    margin-top: 7px !important;
-    margin-bottom: 15px !important;
-}
-.hide{
-    display: none;
-}
+
 .user-title{
     word-spacing: 10px;
 }
