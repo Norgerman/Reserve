@@ -13,11 +13,14 @@
 
     Route::controller("/index", "IndexController");
 
-//    Route::controller("/reg", "RegisterController");
+    //Route::controller("/reg", "RegisterController");
 
     Route::controller("/usrreg", "UserregController");
 
-    Route::controller("/query", "QueryController");
+
+    //Route::controller("/query", "QueryController");
+
+
 
     Route::get('/', array("uses" => "IndexController@getIndex"));
 
@@ -32,4 +35,4 @@
         return View::make('index.slider');
     });
 
-    Route::get("/index", array("uses" => "IndexController@index"));
+

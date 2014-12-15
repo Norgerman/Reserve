@@ -24,9 +24,9 @@
             $tel = trim(Input::get("tel"));
             $auth = 1;
             $name = trim(Input::get("name"));
-
             $user = new User();
             $user->type = 1;
+
             try
             {
                 DB::begintransaction();
@@ -47,7 +47,7 @@
                         DB::commit();
 
                         return Redirect::Action("IndexController@getIndex", array("login" => "true",
-                                                                                  "register_user" => $register_user));
+                                                                                  "user" => $register_user));
                     }
                     else
                     {

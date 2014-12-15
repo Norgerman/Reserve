@@ -9,9 +9,9 @@
     class IndexController
         extends BaseController
     {
-        public function getIndex($login = "false", $register_user = null)
+        public function getIndex($login = "false", $user = null, $type="")
         {
-            return View::make("index.index", array("login" => $login, "register_user" => $register_user));
+            return View::make("index.index", array("login" => $login, "register_user" => $user));
         }
 
         public function postLogin()
