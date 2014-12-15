@@ -14,7 +14,7 @@ class DetailedhospitalController
            return "医院详细信息";
        }
 
-       function getDetailedhospital()
+       function postDetailedhospital()
        {
            //获得医院的id
            $h_id = trim(Input::get("h_id"));
