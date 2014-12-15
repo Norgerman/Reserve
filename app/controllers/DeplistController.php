@@ -29,7 +29,6 @@
             }
 
             return View::make("index.deplist", array("pagecount" => $pagecount,
-                                                     "pagenum" => 1,
                                                      "depinfo" => $this->getDeplist(1)));
 
         }
@@ -49,11 +48,12 @@
                 $deparray[$index] = $dp;
             }
 
-            $depcount = $deparray->count();
+            $depcount = count($deparray);
 
             $res = array();
             $res["count"] = $depcount;
             $res["list"] = $deparray;
+            $res["pagenum"] = $pagenum;
 
             return $res;
         }

@@ -30,7 +30,6 @@
             }
 
             return View::make("index.hoslist", array("pagecount" => $pagecount,
-                                                     "pagenum" => 1,
                                                      "hosinfo" => $this->getHoslist(1)));
 
         }
@@ -41,11 +40,12 @@
             $hoslist = Hospital::skip($start_num)
                                ->take(25);
             $hosarray = $hoslist->toArray();
-            $hoscount = $hosarray->count();
+            $hoscount = count($hosarray);
 
             $res = array();
             $res["count"] = $hoscount;
             $res["list"] = $hosarray;
+            $res["pagenum"] = $pagenum;
 
             return $res;
         }
