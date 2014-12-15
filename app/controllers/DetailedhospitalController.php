@@ -21,7 +21,7 @@ class DetailedhospitalController
            //test $h_id=1;
 
            //查询医院的信息
-           $information = hospital . find($h_id);
+           $information = hospital::find($h_id);
 
            //try
            //TODO
