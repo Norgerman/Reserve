@@ -12,15 +12,10 @@
     */
 
     Route::controller("/index", "IndexController");
-
-    //Route::controller("/reg", "RegisterController");
-
     Route::controller("/usrreg", "UserregController");
-
-
     //Route::controller("/query", "QueryController");
-
-
+    Route::controller("/hoslist", "HoslistController");
+    Route::controller("/deplist","DeplistController");
 
     Route::get('/', array("uses" => "IndexController@getIndex"));
 
