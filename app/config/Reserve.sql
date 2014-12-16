@@ -48,6 +48,33 @@ LOCK TABLES `admin` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `answer`
+--
+
+DROP TABLE IF EXISTS `answer`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `answer` (
+  `a_id` int(11) NOT NULL AUTO_INCREMENT,
+  `content` varchar(400) NOT NULL,
+  `owner_id` int(11) NOT NULL,
+  `answer_time` datetime NOT NULL,
+  PRIMARY KEY (`a_id`),
+  KEY `owner_id` (`owner_id`),
+  CONSTRAINT `fk_answer_user` FOREIGN KEY (`owner_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `answer`
+--
+
+LOCK TABLES `answer` WRITE;
+/*!40000 ALTER TABLE `answer` DISABLE KEYS */;
+/*!40000 ALTER TABLE `answer` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `department`
 --
 
@@ -149,7 +176,7 @@ CREATE TABLE `hospital` (
   `description` text,
   `tel` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`h_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -158,38 +185,8 @@ CREATE TABLE `hospital` (
 
 LOCK TABLES `hospital` WRITE;
 /*!40000 ALTER TABLE `hospital` DISABLE KEYS */;
+INSERT INTO `hospital` VALUES (1,'2','3','北京市','5','6'),(2,'4','5','上海市','7','8');
 /*!40000 ALTER TABLE `hospital` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `message`
---
-
-DROP TABLE IF EXISTS `message`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `message` (
-  `m_id` int(11) NOT NULL AUTO_INCREMENT,
-  `sender_id` int(11) NOT NULL,
-  `receiver_id` int(11) NOT NULL,
-  `content` text NOT NULL,
-  `sendtime` datetime NOT NULL,
-  `readed` tinyint(1) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`m_id`),
-  KEY `fk_message_sender_idx` (`sender_id`),
-  KEY `fk_message_receiver_idx` (`receiver_id`),
-  CONSTRAINT `fk_message_receiver` FOREIGN KEY (`receiver_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `fk_message_sender` FOREIGN KEY (`sender_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `message`
---
-
-LOCK TABLES `message` WRITE;
-/*!40000 ALTER TABLE `message` DISABLE KEYS */;
-/*!40000 ALTER TABLE `message` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -222,6 +219,38 @@ LOCK TABLES `order` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `question`
+--
+
+DROP TABLE IF EXISTS `question`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `question` (
+  `q_id` int(11) NOT NULL AUTO_INCREMENT,
+  `content` varchar(800) NOT NULL,
+  `owner_id` int(11) NOT NULL,
+  `send_time` datetime NOT NULL,
+  `solved` tinyint(1) NOT NULL DEFAULT '0',
+  `solve_time` datetime NOT NULL,
+  `answer_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`q_id`),
+  UNIQUE KEY `answer_id` (`answer_id`),
+  KEY `owner_id` (`owner_id`),
+  CONSTRAINT `fk_question_answer` FOREIGN KEY (`answer_id`) REFERENCES `answer` (`a_id`) ON DELETE SET NULL ON UPDATE SET NULL,
+  CONSTRAINT `fk_question_user` FOREIGN KEY (`owner_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `question`
+--
+
+LOCK TABLES `question` WRITE;
+/*!40000 ALTER TABLE `question` DISABLE KEYS */;
+/*!40000 ALTER TABLE `question` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `registeruser`
 --
 
@@ -233,7 +262,7 @@ CREATE TABLE `registeruser` (
   `username` varchar(45) NOT NULL,
   `name` varchar(45) NOT NULL,
   `idnum` char(18) NOT NULL,
-  `password` CHAR(64) NOT NULL,
+  `password` char(64) NOT NULL,
   `credit` int(11) NOT NULL,
   `tel` varchar(45) DEFAULT NULL,
   `auth` int(11) NOT NULL,
@@ -311,4 +340,6 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-12-14 19:47:01
+DROP TABLE IF EXISTS `message`;
+
+-- Dump completed on 2014-12-16 21:36:43
