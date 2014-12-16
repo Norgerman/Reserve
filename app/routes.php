@@ -13,6 +13,8 @@
 
     Route::controller("/index", "IndexController");
 
+
+
     //Route::controller("/reg", "RegisterController");
 
     Route::controller("/usrreg", "UserregController");
