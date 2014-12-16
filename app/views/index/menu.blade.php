@@ -3,7 +3,7 @@
 
  ?>
 
-<div class="menu col-sm-12">
+<div class="menu">
     <div class="clearfix">
         <ul id="menulist" class="clearfix">
             @foreach ($arr as $menuname)

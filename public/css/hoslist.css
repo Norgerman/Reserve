@@ -1,21 +1,63 @@
 /**
  * Created by vvliebe on 2014/12/16.
  */
+body {
+  font-family: "微软雅黑";
+}
+.hr {
+  border: 1px solid #a2a2a2;
+  width: 80%;
+}
 .flow-div {
   height: 120px;
   margin-top: 20px;
+  background-color: #ffffff;
+  padding: 0;
 }
 .flow {
-  background-color: #ddc9ad;
+  background-color: #f0f0f0;
   text-align: center;
   line-height: 120px;
+  height: 120px;
 }
 .region-div {
-  height: 120px;
+  height: 140px;
   margin-top: 20px;
+  background-color: #ffffff;
+  padding: 0;
+  border: 1px solid #a2a2a2;
 }
 .region {
-  background-color: #ddc9ad;
+  background-color: #f0f0f0;
   text-align: center;
-  line-height: 140px;
+  line-height: 138px;
+  height: 138px;
+}
+.region-body {
+  padding: 10px;
+}
+.region-body ul {
+  padding: 0;
+  list-style: none;
+}
+.region-body li {
+  padding: 5px;
+  float: left;
+  min-width: 12.5%;
+}
+.main-content {
+  position: relative;
+  padding: 0 10%;
+}
+.hospital-list {
+  border: 1px solid #a2a2a2;
+  margin-top: 20px;
+  background-color: #ffffff;
+  padding: 0;
+  padding: 0 10px;
+  margin-bottom: 20px;
+}
+.media-title {
+  padding: 0px 0px 10px 10px;
+  border-bottom: 1px solid #a2a2a2;
 }
