@@ -12,22 +12,16 @@
     */
 
     Route::controller("/index", "IndexController");
-
-
-
-    //Route::controller("/reg", "RegisterController");
-
     Route::controller("/usrreg", "UserregController");
-
-
     //Route::controller("/query", "QueryController");
-
-
+    Route::controller("/hoslist", "HoslistController");
+    Route::controller("/deplist","DeplistController");
+    Route::controller("/admin","AdminController");
 
     Route::get('/', array("uses" => "IndexController@getIndex"));
 
-    Route::get('/register',function(){
-        return View::make('index.register',array("type" => "user"));
+    Route::get('/hospital',function(){
+        return View::make('hoslist.index');
     });
 
     Route::get("/welcome/{a}/{b?}", array("uses" => "HomeController@showWelcome"));

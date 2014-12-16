@@ -9,18 +9,28 @@
     class IndexController
         extends BaseController
     {
-        public function getIndex($login = "false", $user = null, $type="")
+        public function getIndex()
         {
-            return View::make("index.index", array("login" => $login, "register_user" => $user));
+            $type = Session::get("type");
+            $login = "false";
+            $username = null;
+            if ($type)
+            {
+                $username = Session::get("username");
+                $login = "true";
+            }
+
+            return View::make("index.index", array("login" => $login, "username" => $username));
         }
 
         public function postLogin()
         {
             $username = Input::get("username");
             $password = Input::get("password");
+            $result = array();
             if ($password == "" || $username == "")
             {
-                $result = "MESSAGE NOT COMPLETE";
+                $result["status"] = "empty";
             }
             else
             {
@@ -29,24 +39,28 @@
 
                 if ($user == null)
                 {
-                    $result = "username";
+                    $result["status"] = "username";
                 }
                 else
                 {
                     $pwd = hash("sha256", $password);
                     if ($pwd === $user->password)
                     {
-                        Session::put("id", $username);
-                        $result = "succeed";
+                        Session::set("id", $user->id);
+                        Session::set("type", "user");
+                        Session::set("auth", $user->auth);
+                        Session::set("username", $username);
+                        $result["status"] = "succeed";
+                        $result["username"] = $username;
                     }
                     else
                     {
-                        $result = "password";
+                        $result["status"] = "password";
                     }
                 }
             }
 
 
-            return Response::make($result);
+            return Response::json($result);
         }
     }

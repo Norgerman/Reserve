@@ -16,14 +16,14 @@
 
         protected $primaryKey = "id";
 
-        public function sentMessages()
+        public function question()
         {
-            return $this->hasMany("Message", "sender_id", "id");
+            return $this->hasMany("Question", "owner_id", "id");
         }
 
-        public function receivedMessages()
+        public function answer()
         {
-            return $this->hasMany("Message", "receiver_id", "id");
+            return $this->hasMany("Answer", "owner_id", "id");
         }
 
     }
