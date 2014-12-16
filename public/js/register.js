@@ -3,8 +3,18 @@
  */
 $(function () {
     $(".btn-group>.btn").click(function(){
-        $(this).addClass("active").parent().siblings().children().removeClass("active");
-        $(".different").toggleClass("not-current-user");
+        if($(this).attr('target')=="user"){
+            //alert("user");
+            $(".reg-form").attr('action','/usrreg/usersignin');
+        }else if($(this).attr('target')=="doctor"){
+            //alert("doctor");
+            $(".reg-form").attr('action','/docreg/docsignin');
+        }
+        if(!$(this).hasClass('active'))
+        {
+            $(".different").toggleClass("not-current-user");
+            $(this).addClass("active").parent().siblings().children().removeClass("active");
+        }
     });
 
 })
