@@ -16,6 +16,7 @@
     //Route::controller("/query", "QueryController");
     Route::controller("/hoslist", "HoslistController");
     Route::controller("/deplist","DeplistController");
+    Route::controller("/admin","AdminController");
 
     Route::get('/', array("uses" => "IndexController@getIndex"));
 
