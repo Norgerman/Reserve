@@ -37,19 +37,22 @@
 
     $hoslist = array (
         array ( 'h_id' => 1 ,
-                'name' => 2 ,
-                'rank' => 3 ,
-                'address' => 4 ,
-                'description' => 5 ,
-                'tel' => 6
+                'name' => "北京大学第三医院" ,
+                'rank' => "三级甲等" ,
+                'address' => "北京大学旁边" ,
+                'description' => "最好的医院之一" ,
+                'tel' => "8888-8888",
+                'zan' => 1234
                 ),
         array (
             'h_id' => 2 ,
-            'name' => 4 ,
-            'rank' => 5 ,
-            'address' => 6 ,
-            'description' => 7 ,
-            'tel' => 8 )
+            'name' => "北京大学第三医院" ,
+            'rank' => "三级甲等" ,
+            'address' => "北京大学旁边" ,
+            'description' => "最好的医院之一" ,
+            'tel' => "8888-8887" ,
+            'zan' => 12345
+            )
             );
  ?>
     <div class="col-sm-12 region-div">
@@ -66,17 +69,35 @@
      <div class="col-sm-12 hospital-list">
         <h4 class="media-title">选择医院</h4>
         <ul class="media-list">
-            <li class="media">
-                <div class="pull-left">123</div>
-                <div class="media-body">
-                    <div class="media-right">ok</div>
-                </div>
-            </li>
-            <li class="media">
-                <div class="pull-left">123</div>
-                <div class="media-body">
-                    <div class="media-heading">选择医院</div>
-                </div>
-            </li>
+            @foreach($hoslist as $index => $hospital)
+                <li class="media">
+                    <div class="media-left">
+                        <img src="{{asset('images/hoslist')}}/{{$hospital['h_id']}}.jpg" class="media-object" alt="123"/>
+                    </div>
+                    <div class="media-body">
+                        <div class="media-heading"><h1 style="margin:0;">{{$hospital['name']}} <small>{{$hospital['rank']}}</small></h1></div>
+                        <div>{{$hospital['description']}}</div>
+
+                    </div>
+                    <div class="media-right col-sm-2 zan">
+                        <a href="#"><span class="glyphicon glyphicon-hand-right text-primary"></span></a>
+                        <div class="bg-primary col-sm-6 col-sm-offset-3" style="font-size: medium;">{{$hospital['zan']}}</div>
+                    </div>
+                </li>
+            @endforeach
         </ul>
+     </div>
+     <div class="pagination-div">
+         <ul class="pagination">
+            <li><a href="#">首页</a></li>
+            <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
+            <li><a href="#">2</a></li>
+            <li><a href="#">3</a></li>
+            <li><a href="#">4</a></li>
+            <li><a href="#">5</a></li>
+            <li><a href="#">尾页</a></li>
+         </ul>
+     </div>
+     <div class="col-sm-12 hos-detail">
+
      </div>
