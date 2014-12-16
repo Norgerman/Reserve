@@ -11,7 +11,12 @@
     {
         public $timestamps = false;
 
-        protected $table = 'message';
+        protected $table = 'question';
 
-        protected $primaryKey = "m_id";
+        protected $primaryKey = "q_id";
+
+        public function answer()
+        {
+            return $this->hasOne("Answer", "a_id", "answer_id");
+        }
     }

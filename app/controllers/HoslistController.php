@@ -21,23 +21,51 @@
 
         public function  getIndex()
         {
-            $allhoscount = Hospital::count();
-            $remain = $allhoscount % $this->hosnum_perpage;
-            $pagecount = $allhoscount / $this->hosnum_perpage;
-            if ($remain != 0)
-            {
-                $pagecount = $pagecount + 1;
-            }
-
-            return View::make("index.hoslist", array("pagecount" => $pagecount,
-                                                     "hosinfo" => $this->getHoslist(1)));
-
+            return View::make("index.hoslist", $this->Hos(1));
         }
 
         private function Hos($pagenum)
         {
+            $result = array();
             $start_num = $pagenum * 25 - 25;
-            $hoslist = Hospital::skip($start_num)
+            $isnew = false;
+
+            if (Session::has("addr"))
+            {
+                $addr = Session::get("addr");
+            }
+            else
+            {
+                $addr = "北京市";
+                $isnew = true;
+            }
+
+            if (Input::has("addr"))
+            {
+                $addr = Input::get("addr");
+                $isnew = true;
+            }
+
+            if ($isnew)
+            {
+                $allhoscount = Hospital::where("address", "=", $addr)
+                                       ->count();
+                $remain = $allhoscount % $this->hosnum_perpage;
+                $pagecount = $allhoscount / $this->hosnum_perpage;
+                if ($remain != 0)
+                {
+                    $pagecount = $pagecount + 1;
+                }
+                Session::set("addr", $addr);
+                Session::set("pagecount", $pagecount);
+            }
+            else
+            {
+                $pagecount = Session::get("pagecount");
+            }
+
+            $hoslist = Hospital::where("address", "=", $addr)
+                               ->skip($start_num)
                                ->take(25)
                                ->get();
             $hosarray = $hoslist->toArray();
@@ -47,8 +75,10 @@
             $res["count"] = $hoscount;
             $res["list"] = $hosarray;
             $res["pagenum"] = $pagenum;
+            $result["hosinfo"] = $res;
+            $result["pagecount"] = $pagecount;
 
-            return $res;
+            return $result;
         }
 
     }
