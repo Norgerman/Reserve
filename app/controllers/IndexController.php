@@ -14,7 +14,7 @@
             $type = Session::get("type");
             $login = "false";
             $username = null;
-            if ($type)
+            if ($type === "user")
             {
                 $username = Session::get("username");
                 $login = "true";
@@ -60,7 +60,14 @@
                 }
             }
 
-
             return Response::json($result);
+        }
+
+        public function postLogout()
+        {
+            Session::remove("id");
+            Session::remove("type");
+            Session::remove("auth");
+            Session::remove("username");
         }
     }

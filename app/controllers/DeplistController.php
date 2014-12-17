@@ -9,43 +9,76 @@
     class DeplistController
         extends BaseController
     {
-        var $depnum_perpage = 25;
+        private $depnum_perpage = 25;
 
-        private function  getDeplist()
+        public function  getDeplist()
         {
-            $pagenum = Input::get("pagenum");
-
+            $pagenum = Input::get("pagenum", 1);
+            
             return Response::json($this->Dep($pagenum));
         }
 
         public function  getIndex()
         {
-            $alldepcount = Department::count();
-            $remain = $alldepcount % $this->depnum_perpage;
-            $pagecount = $alldepcount / $this->depnum_perpage;
-            if ($remain != 0)
-            {
-                $pagecount = $pagecount + 1;
-            }
-
-            return View::make("index.deplist", array("pagecount" => $pagecount,
-                                                     "depinfo" => $this->getDeplist(1)));
-
+            return View::make("index.deplist", array("depinfo" => $this->Dep(1)));
         }
 
         private function Dep($pagenum)
         {
-            $start_num = $pagenum * 25 - 25;
-            $deplist = Department::skip($start_num)
-                                 ->take(25)
+            $result = array();
+            $start_num = $pagenum * $this->depnum_perpage - $this->depnum_perpage;
+            $isnew = false;
+
+            if (Session::has("class_id"))
+            {
+                $class_id = Session::get("class_id");
+            }
+            else
+            {
+                $class_id = 1;
+                Session::set("class_id", $class_id);
+                $isnew = true;
+            }
+
+            if (Input::has("class_id"))
+            {
+                $class_id = Input::get("class_id");
+                Session::set("class_id", $class_id);
+                $isnew = true;
+            }
+
+            if ($isnew)
+            {
+                $alldepcount = Department::where("class_id", "=", $class_id)
+                                         ->count();
+                $remain = $alldepcount % $this->depnum_perpage;
+                $pagecount = $alldepcount / $this->depnum_perpage;
+                if ($remain != 0)
+                {
+                    $pagecount = $pagecount + 1;
+                }
+                Session::set("deppagecount", $pagecount);
+            }
+            else
+            {
+                $pagecount = Session::get("deppagecount");
+            }
+
+            $deplist = Department::where("class_id", "=", $class_id)
+                                 ->skip($start_num)
+                                 ->take($this->depnum_perpage)
                                  ->get();
+
             $deparray = array();
             foreach ($deplist as $index => $dep)
             {
                 $dp = array();
                 $dp["class"] = $dep->depclass->name;
                 $dp["hosptial"] = $dep->hospital->name;
-                $dp["dp"] = $dep->toArray();
+                $dp["d_id"] = $dep->d_id;
+                $dp["name"] = $dep->name;
+                $dp["description"] = $dep->description;
+                $dp["tel"] = $dep->tel;
                 $deparray[$index] = $dp;
             }
 
@@ -55,8 +88,10 @@
             $res["count"] = $depcount;
             $res["list"] = $deparray;
             $res["pagenum"] = $pagenum;
+            $result["depinfo"] = $res;
+            $result["pagecount"] = (int)$pagecount;
 
-            return $res;
+            return $result;
         }
 
     }

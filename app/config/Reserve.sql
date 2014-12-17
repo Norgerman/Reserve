@@ -39,15 +39,6 @@ CREATE TABLE `admin` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `admin`
---
-
-LOCK TABLES `admin` WRITE;
-/*!40000 ALTER TABLE `admin` DISABLE KEYS */;
-/*!40000 ALTER TABLE `admin` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `answer`
 --
 
@@ -66,15 +57,6 @@ CREATE TABLE `answer` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `answer`
---
-
-LOCK TABLES `answer` WRITE;
-/*!40000 ALTER TABLE `answer` DISABLE KEYS */;
-/*!40000 ALTER TABLE `answer` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `department`
 --
 
@@ -86,24 +68,15 @@ CREATE TABLE `department` (
   `hospital_id` int(11) NOT NULL,
   `class_id` int(11) NOT NULL,
   `name` varchar(50) NOT NULL,
-  `descrpition` text,
+  `description` longtext,
   `tel` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`d_id`),
   KEY `fk_department_class_idx` (`class_id`),
   KEY `fk_department_hospital_idx` (`hospital_id`),
   CONSTRAINT `fk_department_class` FOREIGN KEY (`class_id`) REFERENCES `depclass` (`c_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_department_hospital` FOREIGN KEY (`hospital_id`) REFERENCES `hospital` (`h_id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `department`
---
-
-LOCK TABLES `department` WRITE;
-/*!40000 ALTER TABLE `department` DISABLE KEYS */;
-/*!40000 ALTER TABLE `department` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `depclass`
@@ -116,17 +89,8 @@ CREATE TABLE `depclass` (
   `c_id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL,
   PRIMARY KEY (`c_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `depclass`
---
-
-LOCK TABLES `depclass` WRITE;
-/*!40000 ALTER TABLE `depclass` DISABLE KEYS */;
-/*!40000 ALTER TABLE `depclass` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `doctor`
@@ -153,15 +117,6 @@ CREATE TABLE `doctor` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `doctor`
---
-
-LOCK TABLES `doctor` WRITE;
-/*!40000 ALTER TABLE `doctor` DISABLE KEYS */;
-/*!40000 ALTER TABLE `doctor` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `hospital`
 --
 
@@ -179,16 +134,6 @@ CREATE TABLE `hospital` (
   PRIMARY KEY (`h_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `hospital`
---
-
-LOCK TABLES `hospital` WRITE;
-/*!40000 ALTER TABLE `hospital` DISABLE KEYS */;
-INSERT INTO `hospital` VALUES (1,'2','3','北京市','5','6',0),(2,'4','5','上海市','7','8',0);
-/*!40000 ALTER TABLE `hospital` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `order`
@@ -209,15 +154,6 @@ CREATE TABLE `order` (
   CONSTRAINT `fk_order_visit` FOREIGN KEY (`visit_id`) REFERENCES `visit` (`v_id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `order`
---
-
-LOCK TABLES `order` WRITE;
-/*!40000 ALTER TABLE `order` DISABLE KEYS */;
-/*!40000 ALTER TABLE `order` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `question`
@@ -243,15 +179,6 @@ CREATE TABLE `question` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `question`
---
-
-LOCK TABLES `question` WRITE;
-/*!40000 ALTER TABLE `question` DISABLE KEYS */;
-/*!40000 ALTER TABLE `question` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `registeruser`
 --
 
@@ -275,15 +202,6 @@ CREATE TABLE `registeruser` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `registeruser`
---
-
-LOCK TABLES `registeruser` WRITE;
-/*!40000 ALTER TABLE `registeruser` DISABLE KEYS */;
-/*!40000 ALTER TABLE `registeruser` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `user`
 --
 
@@ -296,15 +214,6 @@ CREATE TABLE `user` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `user`
---
-
-LOCK TABLES `user` WRITE;
-/*!40000 ALTER TABLE `user` DISABLE KEYS */;
-/*!40000 ALTER TABLE `user` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `visit`
@@ -322,15 +231,6 @@ CREATE TABLE `visit` (
   PRIMARY KEY (`v_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `visit`
---
-
-LOCK TABLES `visit` WRITE;
-/*!40000 ALTER TABLE `visit` DISABLE KEYS */;
-/*!40000 ALTER TABLE `visit` ENABLE KEYS */;
-UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -341,6 +241,6 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
-DROP TABLE IF EXISTS `message`;
 
--- Dump completed on 2014-12-17 13:00:46
+Drop TABLE IF EXISTS `message`;
+-- Dump completed on 2014-12-17 22:34:48

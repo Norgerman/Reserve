@@ -10,24 +10,24 @@
         extends BaseController
     {
 
-        var $hosnum_perpage = 25;
+        private $hosnum_perpage = 25;
 
         public function  getHoslist()
         {
-            $pagenum = Input::get("pagenum");
+            $pagenum = Input::get("pagenum", 1);
 
             return Response::json($this->Hos($pagenum));
         }
 
         public function  getIndex()
         {
-            return View::make("index.hoslist", $this->Hos(1));
+            return View::make("index.hoslist", array("hosinfo" => $this->Hos(1)));
         }
 
         private function Hos($pagenum)
         {
             $result = array();
-            $start_num = $pagenum * 25 - 25;
+            $start_num = $pagenum * $this->hosnum_perpage - $this->hosnum_perpage;
             $isnew = false;
 
             if (Session::has("addr"))
@@ -38,12 +38,14 @@
             {
                 $addr = "北京市";
                 $isnew = true;
+                Session::set("addr", $addr);
             }
 
             if (Input::has("addr"))
             {
                 $addr = Input::get("addr");
                 $isnew = true;
+                Session::set("addr", $addr);
             }
 
             if ($isnew)
@@ -57,16 +59,16 @@
                     $pagecount = $pagecount + 1;
                 }
                 Session::set("addr", $addr);
-                Session::set("pagecount", $pagecount);
+                Session::set("hospagecount", $pagecount);
             }
             else
             {
-                $pagecount = Session::get("pagecount");
+                $pagecount = Session::get("hospagecount");
             }
 
             $hoslist = Hospital::where("address", "=", $addr)
                                ->skip($start_num)
-                               ->take(25)
+                               ->take($this->hosnum_perpage)
                                ->get();
             $hosarray = $hoslist->toArray();
             $hoscount = count($hosarray);
