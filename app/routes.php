@@ -24,6 +24,10 @@
         return View::make('hoslist.index');
     });
 
+    Route::get('/getorder',function(){
+        return View::make('getord.index');
+    });
+
     Route::get("/welcome/{a}/{b?}", array("uses" => "HomeController@showWelcome"));
 
     Route::get("/slider", function ()

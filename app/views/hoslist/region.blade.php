@@ -75,12 +75,11 @@
                         <img src="{{asset('images/hoslist')}}/{{$hospital['h_id']}}.jpg" class="media-object" alt="123"/>
                     </div>
                     <div class="media-body">
-                        <div class="media-heading"><h1 style="margin:0;">{{$hospital['name']}} <small>{{$hospital['rank']}}</small></h1></div>
+                        <div class="media-heading"><h2 style="margin:0;">{{$hospital['name']}} <small>{{$hospital['rank']}}</small></h2></div>
                         <div>{{$hospital['description']}}</div>
-
                     </div>
                     <div class="media-right col-sm-2 zan">
-                        <a href="#"><span class="glyphicon glyphicon-hand-right text-primary"></span></a>
+                        <a href="#"><span class="glyphicon glyphicon-thumbs-up text-primary"></span></a>
                         <div class="bg-primary col-sm-6 col-sm-offset-3" style="font-size: medium;">{{$hospital['zan']}}</div>
                     </div>
                 </li>
