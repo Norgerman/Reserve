@@ -86,14 +86,14 @@ CREATE TABLE `department` (
   `hospital_id` int(11) NOT NULL,
   `class_id` int(11) NOT NULL,
   `name` varchar(50) NOT NULL,
-  `descrpition` text,
+  `description` longtext,
   `tel` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`d_id`),
   KEY `fk_department_class_idx` (`class_id`),
   KEY `fk_department_hospital_idx` (`hospital_id`),
   CONSTRAINT `fk_department_class` FOREIGN KEY (`class_id`) REFERENCES `depclass` (`c_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_department_hospital` FOREIGN KEY (`hospital_id`) REFERENCES `hospital` (`h_id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -102,6 +102,7 @@ CREATE TABLE `department` (
 
 LOCK TABLES `department` WRITE;
 /*!40000 ALTER TABLE `department` DISABLE KEYS */;
+INSERT INTO `department` VALUES (1,1,1,'神经内科','神经','111'),(2,2,1,'神经内科','哈哈','1111'),(3,1,2,'骨伤科','骨头','111'),(4,2,2,'中医骨伤科','带中医的骨头科','22222');
 /*!40000 ALTER TABLE `department` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -116,7 +117,7 @@ CREATE TABLE `depclass` (
   `c_id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL,
   PRIMARY KEY (`c_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -125,6 +126,7 @@ CREATE TABLE `depclass` (
 
 LOCK TABLES `depclass` WRITE;
 /*!40000 ALTER TABLE `depclass` DISABLE KEYS */;
+INSERT INTO `depclass` VALUES (1,'神经内科'),(2,'骨科'),(3,'皮肤科');
 /*!40000 ALTER TABLE `depclass` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -186,7 +188,7 @@ CREATE TABLE `hospital` (
 
 LOCK TABLES `hospital` WRITE;
 /*!40000 ALTER TABLE `hospital` DISABLE KEYS */;
-INSERT INTO `hospital` VALUES (1,'2','3','北京市','5','6',0),(2,'4','5','上海市','7','8',0);
+INSERT INTO `hospital` VALUES (1,'北医三院','x级x等','北京市','隔壁','6',0),(2,'xxx医院','x级x等','北京市','哈哈','8',0);
 /*!40000 ALTER TABLE `hospital` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -342,5 +344,4 @@ UNLOCK TABLES;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
 DROP TABLE IF EXISTS `message`;
-
--- Dump completed on 2014-12-17 13:00:46
+-- Dump completed on 2014-12-17 22:17:27
