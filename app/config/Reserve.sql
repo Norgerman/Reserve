@@ -175,6 +175,7 @@ CREATE TABLE `hospital` (
   `address` varchar(100) NOT NULL,
   `description` text,
   `tel` varchar(45) DEFAULT NULL,
+  `zan` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`h_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -185,7 +186,7 @@ CREATE TABLE `hospital` (
 
 LOCK TABLES `hospital` WRITE;
 /*!40000 ALTER TABLE `hospital` DISABLE KEYS */;
-INSERT INTO `hospital` VALUES (1,'2','3','北京市','5','6'),(2,'4','5','上海市','7','8');
+INSERT INTO `hospital` VALUES (1,'2','3','北京市','5','6',0),(2,'4','5','上海市','7','8',0);
 /*!40000 ALTER TABLE `hospital` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -342,4 +343,4 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `message`;
 
--- Dump completed on 2014-12-16 21:36:43
+-- Dump completed on 2014-12-17 13:00:46

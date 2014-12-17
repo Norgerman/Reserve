@@ -12,7 +12,7 @@
 
         var $hosnum_perpage = 25;
 
-        private function  getHoslist()
+        public function  getHoslist()
         {
             $pagenum = Input::get("pagenum");
 
@@ -76,7 +76,7 @@
             $res["list"] = $hosarray;
             $res["pagenum"] = $pagenum;
             $result["hosinfo"] = $res;
-            $result["pagecount"] = $pagecount;
+            $result["pagecount"] = (int)$pagecount;
 
             return $result;
         }
