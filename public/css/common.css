@@ -1,6 +1,6 @@
 body{
     font-family: "微软雅黑";
-    background-color: #e4eee8;
+    background-color: #abcbc2;
 }
 
 .hr{
@@ -27,7 +27,6 @@ a:focus{
 /*============================logo区================================*/
 .logo-div{
     padding: 0px 10%;
-    background-color: #e4eee8;
 }
 /*============================导航条================================*/
 .nav-bar{
