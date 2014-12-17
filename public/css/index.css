@@ -1,6 +1,6 @@
 
 .main-content{
-    padding: 30px 10%;
+    padding: 15px 10%;
 }
 
 
@@ -21,18 +21,34 @@
     margin: 5px auto;
 }
 /*=============================快速预约=================================*/
+.qs,.user{
+    height: 290px;
+}
+.qs-div{
+    margin-top: 30px;
+}
 .qs-form label{
     min-width: 40px;
 }
-.qs,.user,.query-box,.note{
+.caption p{
+    margin: 0;
+}
+.qs,.user,.hotlist-div,.doclist-div,.note{
     padding: 10px;
     border: 1px solid #cccccc;
     background-color: rgba(0,0,0,0.1);
 }
+.query-box{
+    padding: 0 15px 0 0;
+}
+.hotlist-div,.doclist-div{
+    margin-bottom: 15px;
+}
+
 .qs-title{
     font-size: large;
     color: #428698;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 .qs select{
     border-radius: 0;

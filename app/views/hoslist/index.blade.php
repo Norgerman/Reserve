@@ -7,14 +7,14 @@
 
 @section('js')
     @parent
-    {{HTML::script('js/hoslist.css')}}
+    {{HTML::script('js/hoslist.js')}}
 @stop
 
 @section('body')
     @include('index.nav')
     @include('index.logo')
     @include('index.menu')
-    <div class="col-sm-offset-1 col-sm-10">
+    <div class="main-content">
         @include('hoslist.flow')
         @include('hoslist.region')
     </div>

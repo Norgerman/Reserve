@@ -46,11 +46,10 @@ divider::after{
 /*===========================菜单栏=================================*/
 div.menu
 {
-    width:100%;
+    width: 80%;
+    margin-left: 10%;
     text-align: center;
     background-color: #428698;
-
-    padding: 0;
 }
 
 ul#menulist
@@ -76,7 +75,7 @@ li.menublock
     color: #FFFFFF;
 }
 .search-box{
-    /*position: relative;*/
+    position: relative;
 }
 
 .search-box form{

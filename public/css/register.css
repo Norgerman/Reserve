@@ -12,9 +12,13 @@ body {
   border: 1px solid #000000;
   padding-top: 5px;
 }
+.menu {
+  width: 100% !important;
+  margin-left: 0 !important;
+}
 .register-title {
   padding: 15px 0;
 }
-.not-current-user{
-    display: none;
+.not-current-user {
+  display: none;
 }
