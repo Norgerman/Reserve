@@ -9,18 +9,31 @@
     class DeplistController
         extends BaseController
     {
-        var $depnum_perpage = 25;
+        private $depnum_perpage = 25;
 
-        private function  getDeplist()
+        public function  getDeplist()
         {
-            $pagenum = Input::get("pagenum");
+            $pagenum = Input::get("pagenum", 1);
 
             return Response::json($this->Dep($pagenum));
         }
 
         public function  getIndex()
         {
-            $alldepcount = Department::count();
+
+            return View::make("index.deplist", $this->Dep(1));
+
+        }
+
+        private function Dep($pagenum)
+        {
+            $result = array();
+            $start_num = $pagenum * $this->depnum_perpage - $this->depnum_perpage;
+            $class_id = 1;
+            $isnew = false;
+
+            $alldepcount = Department::where("class_id", "=", $class_id)
+                                     ->count();
             $remain = $alldepcount % $this->depnum_perpage;
             $pagecount = $alldepcount / $this->depnum_perpage;
             if ($remain != 0)
@@ -28,17 +41,11 @@
                 $pagecount = $pagecount + 1;
             }
 
-            return View::make("index.deplist", array("pagecount" => $pagecount,
-                                                     "depinfo" => $this->getDeplist(1)));
-
-        }
-
-        private function Dep($pagenum)
-        {
-            $start_num = $pagenum * 25 - 25;
-            $deplist = Department::skip($start_num)
-                                 ->take(25)
+            $deplist = Department::where("class_id", "=", $class_id)
+                                 ->skip($start_num)
+                                 ->take($this->depnum_perpage)
                                  ->get();
+
             $deparray = array();
             foreach ($deplist as $index => $dep)
             {
@@ -55,8 +62,10 @@
             $res["count"] = $depcount;
             $res["list"] = $deparray;
             $res["pagenum"] = $pagenum;
+            $result["hosinfo"] = $res;
+            $result["pagecount"] = (int)$pagecount;
 
-            return $res;
+            return $result;
         }
 
     }
