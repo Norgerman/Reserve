@@ -15,7 +15,7 @@
         {
             $pagenum = Input::get("pagenum", 1);
 
-            return Response::json();
+            return Response::json($this->Doc($pagenum));
         }
 
         public function  getIndex()
@@ -39,7 +39,10 @@
                 }
                 $departmentgroup[$ind] = $group;
             }
-            print_r($departmentgroup);
+
+            print_r($this->Doc(1));
+
+            //return View::make("", array("depgroup" => $departmentgroup));
         }
 
         private function Doc($pagenum)
@@ -47,7 +50,10 @@
             $department_id = Session::get("department_id");
             $start_num = $pagenum * $this->docnum_perpage - $this->docnum_perpage;
             $isnew = false;
-
+            $basedate = date("Y-m-d", strtotime("+3 days"));
+            $res = array();
+            $result = array();
+            $doclist = array();
             if (Input::has("department_id"))
             {
                 $department_id = Input::get("department_id");
@@ -65,14 +71,42 @@
                 {
                     $pagecount = $pagecount + 1;
                 }
-                Session::set("docpagecount", $pagecount);
+                Session::set("docpagecount", (int)$pagecount);
             }
             else
             {
                 $pagecount = Session::get("docpagecount");
             }
 
+            $docs = Doctor::where("department_id", "=", $department_id)
+                          ->skip($start_num)
+                          ->take($this->docnum_perpage)
+                          ->get();
 
+            foreach ($docs as $index => $doc)
+            {
+                $doctor = array();
+                $doctor["id"] = $doc->id;
+                $doctor["name"] = $doc->name;
+                $doctor["description"] = $doc->description;
+                $doctor["tel"] = $doc->tel;
+                $doctor["zan"] = $doc->zan;
+
+                $doctor["visit"] = $doc->visits->filter(function ($visit) use ($basedate)
+                {
+                    return $visit->work_date >= $basedate;
+                })
+                                               ->toArray();
+                $doclist[$index] = $doctor;
+            }
+
+            $res["count"] = count($doclist);
+            $res["list"] = $doclist;
+            $res["pagenum"] = $pagenum;
+            $result["docinfo"] = $res;
+            $result["pagecount"] = (int)$pagecount;
+
+            return $result;
         }
 
     }

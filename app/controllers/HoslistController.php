@@ -21,7 +21,7 @@
 
         public function  getIndex()
         {
-            return View::make("index.hoslist", array("hosinfo" => $this->Hos(1)));
+            return View::make("hoslist.index", array("hosinfo" => $this->Hos(1)));
         }
 
         private function Hos($pagenum)
@@ -58,7 +58,7 @@
                 {
                     $pagecount = $pagecount + 1;
                 }
-                Session::set("hospagecount", $pagecount);
+                Session::set("hospagecount", (int)$pagecount);
             }
             else
             {

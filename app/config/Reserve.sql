@@ -229,7 +229,9 @@ CREATE TABLE `visit` (
   `work_date` date NOT NULL,
   `time` int(11) NOT NULL,
   `peonum` int(11) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`v_id`)
+  PRIMARY KEY (`v_id`),
+  KEY `idx_doctor_id` (`doctor_id`),
+  CONSTRAINT `fk_visit_doctor` FOREIGN KEY (`doctor_id`) REFERENCES `doctor` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -242,6 +244,6 @@ CREATE TABLE `visit` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
-DROP TABLE IF EXISTS `message`;
+DROP TABLE IF EXISTS `message`
 
--- Dump completed on 2014-12-18 12:45:34
+-- Dump completed on 2014-12-18 18:04:00
