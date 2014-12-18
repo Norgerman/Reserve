@@ -9,86 +9,101 @@
     class DeplistController
         extends BaseController
     {
-        private $depnum_perpage = 25;
+        private $docnum_perpage = 5;
 
-        public function  getDeplist()
+        public function  getDoclist()
         {
             $pagenum = Input::get("pagenum", 1);
-            
-            return Response::json($this->Dep($pagenum));
+
+            return Response::json($this->Doc($pagenum));
         }
 
         public function  getIndex()
         {
-            return View::make("index.deplist", array("depinfo" => $this->Dep(1)));
+            $hos_id = Input::get("hos_id", 1);
+            Session::set("hos_id", $hos_id);
+            $departmentgroup = Department::where("hospital_id", "=", $hos_id)
+                                         ->get()
+                                         ->groupBy("class_id");
+
+            $firstgroup = $departmentgroup->first();
+            Session::set("department_id", $firstgroup[0]->d_id);
+
+            $departmentgroup = $departmentgroup->toArray();
+
+            foreach ($departmentgroup as $ind => $group)
+            {
+                foreach ($group as $index => $dep)
+                {
+                    $group[$index] = $dep->toArray();
+                }
+                $departmentgroup[$ind] = $group;
+            }
+
+            print_r($this->Doc(1));
+
+            //return View::make("", array("depgroup" => $departmentgroup));
         }
 
-        private function Dep($pagenum)
+        private function Doc($pagenum)
         {
-            $result = array();
-            $start_num = $pagenum * $this->depnum_perpage - $this->depnum_perpage;
+            $department_id = Session::get("department_id");
+            $start_num = $pagenum * $this->docnum_perpage - $this->docnum_perpage;
             $isnew = false;
-
-            if (Session::has("class_id"))
+            $basedate = date("Y-m-d", strtotime("+3 days"));
+            $res = array();
+            $result = array();
+            $doclist = array();
+            if (Input::has("department_id"))
             {
-                $class_id = Session::get("class_id");
-            }
-            else
-            {
-                $class_id = 1;
-                Session::set("class_id", $class_id);
+                $department_id = Input::get("department_id");
                 $isnew = true;
+                Session::set("department_id", $department_id);
             }
 
-            if (Input::has("class_id"))
+            if ($isnew || !Session::has("docpagecount"))
             {
-                $class_id = Input::get("class_id");
-                Session::set("class_id", $class_id);
-                $isnew = true;
-            }
-
-            if ($isnew)
-            {
-                $alldepcount = Department::where("class_id", "=", $class_id)
-                                         ->count();
-                $remain = $alldepcount % $this->depnum_perpage;
-                $pagecount = $alldepcount / $this->depnum_perpage;
+                $alldoccount = Doctor::where("department_id", "=", $department_id)
+                                     ->count();
+                $remain = $alldoccount % $this->docnum_perpage;
+                $pagecount = $alldoccount / $this->docnum_perpage;
                 if ($remain != 0)
                 {
                     $pagecount = $pagecount + 1;
                 }
-                Session::set("deppagecount", $pagecount);
+                Session::set("docpagecount", (int)$pagecount);
             }
             else
             {
-                $pagecount = Session::get("deppagecount");
+                $pagecount = Session::get("docpagecount");
             }
 
-            $deplist = Department::where("class_id", "=", $class_id)
-                                 ->skip($start_num)
-                                 ->take($this->depnum_perpage)
-                                 ->get();
+            $docs = Doctor::where("department_id", "=", $department_id)
+                          ->skip($start_num)
+                          ->take($this->docnum_perpage)
+                          ->get();
 
-            $deparray = array();
-            foreach ($deplist as $index => $dep)
+            foreach ($docs as $index => $doc)
             {
-                $dp = array();
-                $dp["class"] = $dep->depclass->name;
-                $dp["hosptial"] = $dep->hospital->name;
-                $dp["d_id"] = $dep->d_id;
-                $dp["name"] = $dep->name;
-                $dp["description"] = $dep->description;
-                $dp["tel"] = $dep->tel;
-                $deparray[$index] = $dp;
+                $doctor = array();
+                $doctor["id"] = $doc->id;
+                $doctor["name"] = $doc->name;
+                $doctor["description"] = $doc->description;
+                $doctor["tel"] = $doc->tel;
+                $doctor["zan"] = $doc->zan;
+
+                $doctor["visit"] = $doc->visits->filter(function ($visit) use ($basedate)
+                {
+                    return $visit->work_date >= $basedate;
+                })
+                                               ->toArray();
+                $doclist[$index] = $doctor;
             }
 
-            $depcount = count($deparray);
-
-            $res = array();
-            $res["count"] = $depcount;
-            $res["list"] = $deparray;
+            $res["count"] = count($doclist);
+            $res["list"] = $doclist;
             $res["pagenum"] = $pagenum;
-            $result["depinfo"] = $res;
+            $result["docinfo"] = $res;
             $result["pagecount"] = (int)$pagecount;
 
             return $result;
