@@ -128,6 +128,7 @@ CREATE TABLE `hospital` (
   `h_id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL,
   `rank` char(20) NOT NULL,
+  `province` varchar(10) NOT NULL,
   `address` varchar(100) NOT NULL,
   `description` text,
   `tel` varchar(45) DEFAULT NULL,
@@ -244,6 +245,4 @@ CREATE TABLE `visit` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
-DROP TABLE IF EXISTS `message`
-
--- Dump completed on 2014-12-18 18:04:00
+-- Dump completed on 2014-12-18 19:56:26

@@ -20,7 +20,13 @@
                 $login = "true";
             }
 
-            return View::make("index.index", array("login" => $login, "username" => $username));
+            $besthos = Hospital::orderBy("zan", "desc")
+                               ->take(4)
+                               ->get();
+
+            return View::make("index.index", array("login" => $login,
+                                                   "username" => $username,
+                                                   "besthos" => $besthos->toArray()));
         }
 
         public function postLogin()

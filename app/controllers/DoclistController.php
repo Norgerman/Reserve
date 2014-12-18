@@ -45,6 +45,11 @@
             //return View::make("", array("depgroup" => $departmentgroup));
         }
 
+        public function getFirstdoclist()
+        {
+
+        }
+
         private function Doc($pagenum)
         {
             $department_id = Session::get("department_id");
