@@ -6,7 +6,7 @@
      * Date: 2014/12/15
      * Time: 15:43
      */
-    class DeplistController
+    class DoclistController
         extends BaseController
     {
         private $docnum_perpage = 5;
@@ -92,11 +92,12 @@
                 $doctor["tel"] = $doc->tel;
                 $doctor["zan"] = $doc->zan;
 
-                $doctor["visit"] = $doc->visits->filter(function ($visit) use ($basedate)
+                $doctor["visit"] = array();
+                $doctor["visit"] = array_merge($doctor["visit"], $doc->visits->filter(function ($visit) use ($basedate)
                 {
                     return $visit->work_date >= $basedate;
                 })
-                                               ->toArray();
+                                                                             ->toArray());
                 $doclist[$index] = $doctor;
             }
 
