@@ -58,7 +58,6 @@
                 {
                     $pagecount = $pagecount + 1;
                 }
-                Session::set("addr", $addr);
                 Session::set("hospagecount", $pagecount);
             }
             else

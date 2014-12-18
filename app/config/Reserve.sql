@@ -75,7 +75,7 @@ CREATE TABLE `department` (
   KEY `fk_department_hospital_idx` (`hospital_id`),
   CONSTRAINT `fk_department_class` FOREIGN KEY (`class_id`) REFERENCES `depclass` (`c_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_department_hospital` FOREIGN KEY (`hospital_id`) REFERENCES `hospital` (`h_id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -108,6 +108,7 @@ CREATE TABLE `doctor` (
   `description` text,
   `auth` int(11) NOT NULL,
   `tel` varchar(45) DEFAULT NULL,
+  `zan` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `uk_usermane` (`username`),
   KEY `fk_doctor_department_idx` (`department_id`),
@@ -225,8 +226,8 @@ DROP TABLE IF EXISTS `visit`;
 CREATE TABLE `visit` (
   `v_id` int(11) NOT NULL AUTO_INCREMENT,
   `doctor_id` int(11) NOT NULL,
-  `start_date` datetime NOT NULL,
-  `end_date` datetime NOT NULL,
+  `work_date` date NOT NULL,
+  `time` int(11) NOT NULL,
   `peonum` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`v_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -241,6 +242,6 @@ CREATE TABLE `visit` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
+DROP TABLE IF EXISTS `message`
 
-Drop TABLE IF EXISTS `message`;
--- Dump completed on 2014-12-17 22:34:48
+-- Dump completed on 2014-12-18 12:45:34

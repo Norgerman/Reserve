@@ -9,7 +9,7 @@
     class DeplistController
         extends BaseController
     {
-        private $docnum_perpage = 25;
+        private $docnum_perpage = 5;
 
         public function  getDoclist()
         {
@@ -45,7 +45,34 @@
         private function Doc($pagenum)
         {
             $department_id = Session::get("department_id");
+            $start_num = $pagenum * $this->docnum_perpage - $this->docnum_perpage;
             $isnew = false;
+
+            if (Input::has("department_id"))
+            {
+                $department_id = Input::get("department_id");
+                $isnew = true;
+                Session::set("department_id", $department_id);
+            }
+
+            if ($isnew || !Session::has("docpagecount"))
+            {
+                $alldoccount = Doctor::where("department_id", "=", $department_id)
+                                     ->count();
+                $remain = $alldoccount % $this->docnum_perpage;
+                $pagecount = $alldoccount / $this->docnum_perpage;
+                if ($remain != 0)
+                {
+                    $pagecount = $pagecount + 1;
+                }
+                Session::set("docpagecount", $pagecount);
+            }
+            else
+            {
+                $pagecount = Session::get("docpagecount");
+            }
+
+
         }
 
     }
