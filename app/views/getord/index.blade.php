@@ -7,13 +7,12 @@
 
 @section('js')
     @parent
-    {{HTML::script('js/getord.js')}}
 @stop
 
 @section('body')
-    @include('getord.nav')
-    @include('getord.logo')
-    @include('getord.menu')
+    @include('index.nav')
+    @include('index.logo')
+    @include('index.menu')
 
 　　@include('getord.getord')
 @stop

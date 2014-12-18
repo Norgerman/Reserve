@@ -75,7 +75,7 @@
                         <img src="{{asset('images/hoslist')}}/{{$hospital['h_id']}}.jpg" class="media-object" alt="123"/>
                     </div>
                     <div class="media-body">
-                        <div class="media-heading"><h2 style="margin:0;">{{$hospital['name']}} <small>{{$hospital['rank']}}</small></h2></div>
+                        <div class="media-heading"><h4 style="margin:0;"><a href="#">{{$hospital['name']}}</a><small>{{$hospital['rank']}}</small></h4></div>
                         <div>{{$hospital['description']}}</div>
                     </div>
                     <div class="media-right col-sm-2 zan">
