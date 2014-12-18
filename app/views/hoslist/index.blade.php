@@ -7,6 +7,7 @@
 
 @section('js')
     @parent
+    {{Html::script('lib/jquery.dotdotdot.min.js')}}
     {{HTML::script('js/hoslist.js')}}
 @stop
 
