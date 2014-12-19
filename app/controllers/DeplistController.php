@@ -13,7 +13,7 @@
 
         public function getIndex()
         {
-            print_r($this->Dep($pagenum));
+            print_r($this->Dep(1));
         }
 
         public function getDeplist()
