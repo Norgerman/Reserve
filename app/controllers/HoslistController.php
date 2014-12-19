@@ -50,7 +50,7 @@
 
             if ($isnew)
             {
-                $allhoscount = Hospital::where("address", "=", $addr)
+                $allhoscount = Hospital::where("province", "=", $addr)
                                        ->count();
                 $remain = $allhoscount % $this->hosnum_perpage;
                 $pagecount = $allhoscount / $this->hosnum_perpage;

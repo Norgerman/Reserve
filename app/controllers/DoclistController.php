@@ -1,0 +1,118 @@
+<?php
+
+    /**
+     * Created by PhpStorm.
+     * User: CloudeTown
+     * Date: 2014/12/15
+     * Time: 15:43
+     */
+    class DoclistController
+        extends BaseController
+    {
+        private $docnum_perpage = 5;
+
+        public function  getDoclist()
+        {
+            $pagenum = Input::get("pagenum", 1);
+
+            return Response::json($this->Doc($pagenum));
+        }
+
+        public function  getIndex()
+        {
+            $hos_id = Input::get("hos_id", 1);
+            Session::set("hos_id", $hos_id);
+            $departmentgroup = Department::where("hospital_id", "=", $hos_id)
+                                         ->get()
+                                         ->groupBy("class_id");
+
+            $firstgroup = $departmentgroup->first();
+            Session::set("department_id", $firstgroup[0]->d_id);
+
+            $departmentgroup = $departmentgroup->toArray();
+
+            foreach ($departmentgroup as $ind => $group)
+            {
+                foreach ($group as $index => $dep)
+                {
+                    $group[$index] = $dep->toArray();
+                }
+                $departmentgroup[$ind] = $group;
+            }
+
+            print_r($this->Doc(1));
+
+            //return View::make("", array("depgroup" => $departmentgroup));
+        }
+
+        public function getFirstdoclist()
+        {
+
+        }
+
+        private function Doc($pagenum)
+        {
+            $department_id = Session::get("department_id");
+            $start_num = $pagenum * $this->docnum_perpage - $this->docnum_perpage;
+            $isnew = false;
+            $basedate = date("Y-m-d", strtotime("+3 days"));
+            $res = array();
+            $result = array();
+            $doclist = array();
+            if (Input::has("department_id"))
+            {
+                $department_id = Input::get("department_id");
+                $isnew = true;
+                Session::set("department_id", $department_id);
+            }
+
+            if ($isnew || !Session::has("docpagecount"))
+            {
+                $alldoccount = Doctor::where("department_id", "=", $department_id)
+                                     ->count();
+                $remain = $alldoccount % $this->docnum_perpage;
+                $pagecount = $alldoccount / $this->docnum_perpage;
+                if ($remain != 0)
+                {
+                    $pagecount = $pagecount + 1;
+                }
+                Session::set("docpagecount", (int)$pagecount);
+            }
+            else
+            {
+                $pagecount = Session::get("docpagecount");
+            }
+
+            $docs = Doctor::where("department_id", "=", $department_id)
+                          ->skip($start_num)
+                          ->take($this->docnum_perpage)
+                          ->get();
+
+            foreach ($docs as $index => $doc)
+            {
+                $doctor = array();
+                $doctor["id"] = $doc->id;
+                $doctor["name"] = $doc->name;
+                $doctor["description"] = $doc->description;
+                $doctor["tel"] = $doc->tel;
+                $doctor["zan"] = $doc->zan;
+
+                $doctor["visit"] = array();
+                $doctor["visit"] = array_merge($doctor["visit"], $doc->visits->filter(function ($visit) use ($basedate)
+                {
+                    return $visit->work_date >= $basedate;
+                })
+                                                                             ->toArray());
+                $doclist[$index] = $doctor;
+            }
+
+            $res["count"] = count($doclist);
+            $res["list"] = $doclist;
+            $res["pagenum"] = $pagenum;
+            $result["docinfo"] = $res;
+            $result["pagecount"] = (int)$pagecount;
+
+            return $result;
+        }
+
+    }
