@@ -1,0 +1,21 @@
+/**
+ * Created by vvliebe on 2014/12/19.
+ */
+.flow-div {
+  height: 120px;
+  margin-top: 20px;
+  background-color: #ffffff;
+  padding: 0;
+}
+.flow {
+  background-color: #f0f0f0;
+  text-align: center;
+  line-height: 120px;
+  height: 120px;
+}
+.flow-img {
+  padding: 10px;
+}
+.flow-img img {
+  max-height: 100px;
+}

@@ -25,6 +25,10 @@
         return View::make('hoslist.hospital');
     });
 
+    Route::get('/time',function(){
+        return View::make('hoslist.doctortime');
+    });
+
     Route::get('/getorder',function(){
         return View::make('getord.index');
     });

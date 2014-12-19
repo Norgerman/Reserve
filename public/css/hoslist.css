@@ -20,6 +20,12 @@ body {
   line-height: 120px;
   height: 120px;
 }
+.flow-img {
+  padding: 10px;
+}
+.flow-img img {
+  max-height: 100px;
+}
 .region-div {
   height: 140px;
   margin-top: 20px;
@@ -69,12 +75,6 @@ body {
 }
 .pagination-div {
   text-align: center;
-}
-.flow-img {
-  padding: 10px;
-}
-.flow-img img {
-  max-height: 100px;
 }
 .media-title {
   padding: 0px 0px 10px 10px;
