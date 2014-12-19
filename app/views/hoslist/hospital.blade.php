@@ -16,7 +16,9 @@
     @include('index.logo')
     @include('index.menu')
     <div class="main-content">
-
+        @include('hoslist.mainpage')
+        @include('hoslist.flow')
+        @include('hoslist.department')
     </div>
 
 @stop

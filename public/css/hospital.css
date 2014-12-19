@@ -1,0 +1,68 @@
+/**
+ * Created by vvliebe on 2014/12/19.
+ */
+.mainpage,
+.department-div {
+  margin-top: 20px;
+}
+.flow-img {
+  padding: 10px;
+}
+.flow-img img {
+  max-height: 100px;
+}
+.flow-div {
+  height: 120px;
+  margin-top: 0px;
+  background-color: #ffffff;
+  padding: 0;
+  float: none;
+}
+.flow {
+  background-color: #f0f0f0;
+  text-align: center;
+  line-height: 120px;
+  height: 120px;
+}
+.panel,
+.panel-heading {
+  border-radius: 0px !important;
+}
+.department,
+.panel-body {
+  padding: 0;
+}
+.department ul,
+.panel-body ul {
+  margin: 0px;
+}
+.department li,
+.panel-body li {
+  cursor: pointer;
+  border: none !important;
+  border-radius: 0px !important;
+}
+.department li.active,
+.panel-body li.active {
+  background-color: #0094ff;
+}
+.department-box {
+  position: relative;
+}
+.detail-department {
+  padding: 0;
+  margin-left: 13%;
+  margin-top: 10px;
+  position: absolute;
+}
+.detail-department ul {
+  list-style: none;
+}
+.detail-department li {
+  float: left;
+  min-width: 12.5%;
+  padding: 5px;
+}
+.detail-department a {
+  width: 100%;
+}

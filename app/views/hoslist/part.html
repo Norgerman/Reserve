@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-type" content="text/html;charset=utf-8">
+		<script type="text/javascript" src="/bower_components/jquery/dist/jquery.js"></script>
+		<link rel="stylesheet" type="text/css" href="/bower_components/bootstrap/dist/css/bootstrap.css">
+		<script type="text/javascript" src="/bower_components/bootstrap/dist/js/bootstrap.js"></script>
+		<title>Test</title>
+		<style>
+
+			body {
+				padding: 5px;
+			}
+
+			.panel {
+				border-radius: 0px;
+				-moz-border-radius: 0px;
+				-webkit-border-radius: 0px;
+				border-width: 1px;
+				border-style: solid;
+				box-shadow: none;
+
+				transition-property: border-color;
+				transition-duration:0.4s;
+			}
+
+			.panel.default-color {
+				border-color: #c5c5c5;
+			}
+
+			.panel.selected-color {
+				border-color: #6197a5;
+			}
+
+			.panel-heading {
+				border-radius: 0px;
+				-moz-border-radius: 0px;
+				-webkit-border-radius: 0px;
+				transition-property: background-color;
+				transition-duration:0.4s;
+			}
+
+			.panel-heading.default-color {
+				/*border-top: 1px solid #ffffff;*/
+				/*backg*/
+				background-color: #c5c5c5;
+				color: #ffffff;
+			}
+
+			.panel-heading.selected-color {
+				background-color: #6197a5;
+				color: #ffffff;
+			}
+
+			.panel-body > a.btn {
+				color: #ffffff;
+				border-radius: 0px;
+				-moz-border-radius: 0px;
+				-webkit-border-radius: 0px;
+				border: none;
+				transition-property: background-color;
+				transition-duration:0.4s;
+			}
+
+			.panel-body > a.btn.selected-color {
+				background-color: #6297a5; 
+			}
+
+			.panel-body > a.btn.default-color {
+				background-color: #c5c5c5; 
+			}
+
+			.panel-body > a.btn.default-color:hover {
+				background-color: #999999; 
+			}
+		</style>
+		<script type="text/javascript">
+
+		$(document).ready(init);
+
+		function init() {
+			$(".panel-body > a.btn").on("click", function() {
+				// remove selected button
+				var selectedBtn = $(".panel-body > a.btn.selected-color");
+				selectedBtn.removeClass("selected-color");
+				selectedBtn.addClass("default-color");
+
+				// remove selected panel-heading
+				var selectedTitle = $(".panel-heading.selected-color");
+				selectedTitle.removeClass("selected-color");
+				selectedTitle.addClass("default-color");
+
+				// remove selected panel border
+				var selectPanel = $(".panel.selected-color");
+				selectPanel.removeClass("selected-color");
+				selectPanel.addClass("default-color");
+
+				// set selected button
+				$(this).removeClass("default-color");
+				$(this).addClass("selected-color");
+
+				// set selected panel-heading
+				$(this).parent().prev().removeClass("default-color");
+				$(this).parent().prev().addClass("selected-color");
+
+				$(this).parent().parent().removeClass("default-color");
+				$(this).parent().parent().addClass("selected-color");
+
+				// set selected panel border
+
+				// $(this).parent().prev().children(".panel-heading").removeClass("default-color");
+				// $(this).parent().prev().children(".panel-heading").addClass("selected-color");
+			});
+		}
+
+
+
+		</script>
+	</head>
+	<body>
+		<div class="panel panel-default selected-color">
+			<div class="panel-heading selected-color">
+				<h4 class="panel-title">内科</h3>
+			</div>
+			<div class="panel-body">
+				<a class="btn btn-default selected-color" href="javascript:void(0);">神经科</a>
+				<a class="btn btn-default default-color" href="javascript:void(0);">皮肤</a>
+			</div>
+		</div>
+		<div class="panel panel-default default-color">
+			<div class="panel-heading default-color">
+				<h4 class="panel-title">外科</h3>
+			</div>
+			<div class="panel-body">
+				<a  class="btn btn-default default-color" href="javascript:void(0);">脑外科</a>
+				<a  class="btn btn-default default-color" href="javascript:void(0);">心脏外科</a>
+			</div>
+		</div>
+	</body>
+</html>
