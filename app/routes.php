@@ -21,7 +21,7 @@
     Route::get('/', array("uses" => "IndexController@getIndex"));
 
     Route::get('/hospital',function(){
-        return View::make('hoslist.index');
+        return View::make('hoslist.hospital');
     });
 
     Route::get('/getorder',function(){

@@ -24,6 +24,9 @@ body{
 a:focus{
     outline: none !important;
 }
+.main-content{
+    padding: 0px 10%;
+}
 /*============================logo区================================*/
 .logo-div{
     padding: 0px 10%;

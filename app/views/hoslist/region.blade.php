@@ -1,5 +1,4 @@
 {{--Created by vvliebe on 2014/12/16.--}}
-{{--{{HTML::script('json/hoslist.js')}}--}}
  <?php
     $provinces = array(
                         "北京市",
@@ -75,7 +74,7 @@
      </div>
 
      <div class="col-sm-12 hospital-list">
-        <h4 class="media-title">选择医院</h4>
+        <h4 class="media-title">选择医院 <span class="glyphicon glyphicon-map-marker" style="color: red"></span><a href="#">北京市</a></h4>
         <ul class="media-list">
             @foreach($pageData['hosinfo']['list'] as $index => $hospital)
                 <li class="media">
