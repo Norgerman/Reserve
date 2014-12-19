@@ -19,6 +19,7 @@
         public function getDeplist()
         {
             $pagenum = Input::get("pagenum", 1);
+            print_r($this->Dep($pagenum));
         }
 
         private function Dep($pagenum)
