@@ -6,7 +6,7 @@
      * Date: 12/8/14
      * Time: 10:07 PM
      */
-    class Message
+    class Question
         extends Eloquent
     {
         public $timestamps = false;

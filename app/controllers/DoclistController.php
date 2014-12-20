@@ -55,7 +55,8 @@
             $department_id = Session::get("department_id");
             $start_num = $pagenum * $this->docnum_perpage - $this->docnum_perpage;
             $isnew = false;
-            $basedate = date("Y-m-d", strtotime("+3 days"));
+            $startdate = date("Y-m-d", strtotime("+1 day"));
+            $enddate = date("Y-m-d", strtotime("+8 days"));
             $res = array();
             $result = array();
             $doclist = array();
@@ -98,11 +99,14 @@
                 $doctor["zan"] = $doc->zan;
 
                 $doctor["visit"] = array();
-                $doctor["visit"] = array_merge($doctor["visit"], $doc->visits->filter(function ($visit) use ($basedate)
-                {
-                    return $visit->work_date >= $basedate;
-                })
-                                                                             ->toArray());
+                $doctor["visit"] =
+                    array_merge($doctor["visit"], $doc->visits->filter(function ($visit) use ($startdate, $enddate)
+                    {
+                        $work_date = $visit->work_date;
+
+                        return $work_date >= $startdate && $work_date <= $enddate;
+                    })
+                                                              ->toArray());
                 $doclist[$index] = $doctor;
             }
 

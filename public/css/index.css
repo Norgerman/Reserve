@@ -36,7 +36,7 @@
 .qs,.user,.hotlist-div,.doclist-div,.note{
     padding: 10px;
     border: 1px solid #cccccc;
-    background-color: rgba(0,0,0,0.1);
+    background-color: rgba(255,255,255,0.45);
 }
 .query-box{
     padding: 0 15px 0 0;

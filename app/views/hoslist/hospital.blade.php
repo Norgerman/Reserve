@@ -1,14 +1,14 @@
+{{--Created by vvliebe on 2014/12/19.--}}
 @extends('layout.index')
 @section('css')
     @parent
     {{HTML::style('css/common.css')}}
-    {{HTML::style('css/hoslist.css')}}
+    {{HTML::style('css/hospital.css')}}
 @stop
 
 @section('js')
     @parent
-    {{Html::script('lib/jquery.dotdotdot.min.js')}}
-    {{HTML::script('js/hoslist.js')}}
+    {{HTML::script('js/hospital.js')}}
 @stop
 
 @section('body')
@@ -16,8 +16,9 @@
     @include('index.logo')
     @include('index.menu')
     <div class="main-content">
+        @include('hoslist.mainpage')
         @include('hoslist.flow')
-        @include('hoslist.region')
+        @include('hoslist.department')
     </div>
 
 @stop

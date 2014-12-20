@@ -19,4 +19,9 @@
         {
             return $this->hasMany("Order", "visit_id", "v_id");
         }
+
+        public function doctor()
+        {
+            return $this->belongsTo("Doctor", "doctor_id", "id");
+        }
     }
