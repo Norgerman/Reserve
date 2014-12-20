@@ -15,25 +15,7 @@
 
                             );
 
-    $hoslist = array (
-        array ( 'h_id' => 1 ,
-                'name' => "北京大学第三医院" ,
-                'rank' => "三级甲等" ,
-                'address' => "北京大学旁边" ,
-                'description' => "最好的医院之一" ,
-                'tel' => "8888-8888",
-                'zan' => 1234
-                ),
-        array (
-            'h_id' => 2 ,
-            'name' => "北京大学第三医院" ,
-            'rank' => "三级甲等" ,
-            'address' => "北京大学旁边" ,
-            'description' => "最好的医院之一" ,
-            'tel' => "8888-8887" ,
-            'zan' => 12345
-            )
-            );
+
 
     $isAnswer=1;
 
