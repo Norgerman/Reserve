@@ -1,0 +1,33 @@
+/**
+ * Created by vvliebe on 2014/12/16.
+ */
+
+
+
+.datetab .light{
+    background: #f6fcff;
+}
+
+.datetab div{
+    color: #d5ffdf;
+    text-align:center;
+}
+
+.datetab span{
+    color: #71cdee;
+    text-align:center;
+}
+
+.datetab tr,td,th{
+    text-align:center;
+}
+
+.datetab tr,th{
+    border:1px solid #e0e0e0;
+
+}
+
+.datetab .selected span{
+    color: #2927ca;
+}
+
