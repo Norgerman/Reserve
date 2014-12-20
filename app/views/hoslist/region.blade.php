@@ -79,6 +79,4 @@
             <li><a href="#">尾页</a></li>
          </ul>
      </div>
-     <div class="col-sm-12 hos-detail">
 
-     </div>
