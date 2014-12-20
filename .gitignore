@@ -11,3 +11,4 @@ Thumbs.db
 /public/src
 
 app/views/index/quickreserve.blade.bak.php
+app/views/hoslist/part.html
