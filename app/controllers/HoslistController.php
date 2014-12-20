@@ -65,7 +65,7 @@
                 $pagecount = Session::get("hospagecount");
             }
 
-            $hoslist = Hospital::where("address", "=", $addr)
+            $hoslist = Hospital::where("province", "=", $addr)
                                ->skip($start_num)
                                ->take($this->hosnum_perpage)
                                ->get();
