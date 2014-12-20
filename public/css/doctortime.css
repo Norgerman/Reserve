@@ -19,3 +19,14 @@
 .flow-img img {
   max-height: 100px;
 }
+.tip {
+  color: #999999;
+}
+.zan {
+  position: absolute;
+  right: 0;
+  top: 0;
+  text-align: center;
+  font-size: 80px;
+  border-left: 1px solid #a2a2a2;
+}
