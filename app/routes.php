@@ -15,17 +15,20 @@
     Route::controller("/usrreg", "UserregController");
     //Route::controller("/query", "QueryController");
     Route::controller("/hoslist", "HoslistController");
-    Route::controller("/doclist","DoclistController");
-    Route::controller("/admin","AdminController");
-    Route::controller("/deplist","DeplistController");
+    Route::controller("/doclist", "DoclistController");
+    Route::controller("/admin", "AdminController");
+    Route::controller("/deplist", "DeplistController");
+    Route::controller("/detail", "DetailController");
 
     Route::get('/', array("uses" => "IndexController@getIndex"));
 
-    Route::get('/hospital',function(){
+    Route::get('/hospital', function ()
+    {
         return View::make('hoslist.index');
     });
 
-    Route::get('/getorder',function(){
+    Route::get('/getorder', function ()
+    {
         return View::make('getord.index');
     });
 
@@ -36,6 +39,7 @@
         return View::make('index.slider');
     });
 
-Route::get('/question',function(){
-    return View::make('question.index');
-});
+    Route::get('/question', function ()
+    {
+        return View::make('question.index');
+    });

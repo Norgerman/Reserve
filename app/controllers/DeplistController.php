@@ -79,6 +79,7 @@
             foreach ($hoslist as $index => $hos)
             {
                 $dep = array();
+                $dep["h_id"] = $hos->h_id;
                 $dep["hosname"] = $hos->name;
                 $dep["deplist"] = array();
                 $dep["deplist"] =
@@ -94,7 +95,7 @@
             $res["count"] = count($deparray);
             $res["list"] = $deparray;
             $res["pagenum"] = $pagenum;
-            $result["docinfo"] = $res;
+            $result["depinfo"] = $res;
             $result["pagecount"] = (int)$pagecount;
 
             return $result;
