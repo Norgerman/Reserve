@@ -176,9 +176,9 @@ CREATE TABLE `hospital` (
   `h_id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL,
   `price` int(11) NOT NULL,
-  `rank` varchar(30) NOT NULL,
-  `province` varchar(10) NOT NULL,
   `address` varchar(100) NOT NULL,
+  `province` varchar(10) NOT NULL,
+  `rank` varchar(30) NOT NULL,
   `description` text,
   `tel` varchar(45) DEFAULT NULL,
   `zan` int(11) NOT NULL DEFAULT '0',
@@ -350,4 +350,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-12-20 13:02:26
+-- Dump completed on 2014-12-20 15:20:58
