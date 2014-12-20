@@ -197,6 +197,32 @@ INSERT INTO `hospital` VALUES (1,'山西省肿瘤医院',12,'太原市杏花岭�
 UNLOCK TABLES;
 
 --
+-- Table structure for table `notice`
+--
+
+DROP TABLE IF EXISTS `notice`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `notice` (
+  `n_id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(30) NOT NULL,
+  `content` varchar(400) NOT NULL,
+  `time` datetime NOT NULL,
+  PRIMARY KEY (`n_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `notice`
+--
+
+LOCK TABLES `notice` WRITE;
+/*!40000 ALTER TABLE `notice` DISABLE KEYS */;
+INSERT INTO `notice` VALUES (1,'公告1','111','2014-12-01 00:00:00'),(2,'公告2','222','2014-12-08 00:00:00'),(3,'公告2','333','2014-12-09 00:00:00');
+/*!40000 ALTER TABLE `notice` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `order`
 --
 
@@ -350,4 +376,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-12-20 15:20:58
+-- Dump completed on 2014-12-20 15:32:40

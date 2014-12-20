@@ -24,9 +24,14 @@
                                ->take(4)
                                ->get();
 
+            $notice = Notice::orderBy("n_id", "desc")
+                            ->take(20)
+                            ->get();
+
             return View::make("index.index", array("login" => $login,
                                                    "username" => $username,
-                                                   "besthos" => $besthos->toArray()));
+                                                   "besthos" => $besthos->toArray(),
+                                                   "notice" => $notice->toArray()));
         }
 
         public function postLogin()
