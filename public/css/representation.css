@@ -1,0 +1,169 @@
+/**
+ * Created by vvliebe on 2014/12/16.
+ */
+body {
+  font-family: "微软雅黑";
+}
+.hr {
+  border: 1px solid #a2a2a2;
+  width: 80%;
+}
+
+.department-div {
+    margin-top: 20px;
+    background-color: #ffffff;
+    padding: 0;
+    width:1077px;
+    margin:20px 135px;
+    border: 1px solid #a2a2a2;
+}
+.department {
+  background-color: #f0f0f0;
+  text-align: center;
+  line-height: 100%;
+  height: 100%;
+    padding-top:30%;
+}
+.department-body {
+  padding: 10px;
+}
+.department-body ul {
+  padding: 0;
+  list-style: none;
+}
+.department-body li {
+  padding: 5px;
+  float: left;
+  min-width: 12.5%;
+}
+
+.department-panel{
+    width:100%;
+}
+
+.department-panel .panel-heading{
+    background:#336f82;
+
+}
+
+.department-panel .panel-heading .panel-title{
+    color:white;
+
+}
+
+.department-panel .lab-dep{
+    height:50px;
+    width:150px;
+    float:left;
+    color:white;
+    margin:0 20px;
+    background: #e0e0e0;
+    font-size:25px;
+    text-align:center;
+    padding:5px;
+}
+
+.department-panel .selected{
+    background: #336f82;
+}
+
+.seltim-div {
+    width:1110px;
+    margin:20px 117px;
+}
+
+.seltim-div .panel-heading .panel-title{
+    color:#336f82;
+
+}
+
+
+
+
+.artable .light{
+    background: #f6fcff;
+}
+
+.artable div{
+    color: #d5ffdf;
+    text-align:center;
+}
+
+
+.artable tr,td,th{
+    text-align:center;
+}
+
+.artable tr{
+    font-size:13px;
+}
+
+.artable{
+    width:50%;
+    float:left;
+}
+
+.artable .selected{
+    background: #aebaff;
+}
+
+.doc-div{
+    float:left;
+    margin:20px 30px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+.main-content {
+  position: relative;
+  padding: 0 10%;
+}
+.hospital-list {
+  border: 1px solid #a2a2a2;
+  margin-top: 20px;
+  background-color: #ffffff;
+  padding: 0;
+  padding: 0 10px;
+}
+.hospital-list li {
+  position: relative;
+}
+.hospital-list li > .zan {
+  position: absolute;
+  right: 0;
+  top: 0;
+  text-align: center;
+  font-size: 80px;
+  border-left: 1px solid #a2a2a2;
+}
+.pagination-div {
+  text-align: center;
+}
+.media-title {
+  padding: 0px 0px 10px 10px;
+  border-bottom: 1px solid #a2a2a2;
+  word-spacing: 20px;
+}
+.hosinfo p {
+  margin-bottom: 0px;
+  margin-top: 10px;
+  color: #888888;
+}
+.hosinfo span {
+  color: #333333;
+}
+.hosinfo .intro {
+  position: absolute;
+  max-width: 550px;
+  max-height: 40px;
+}
