@@ -10,7 +10,7 @@
         extends BaseController
     {
 
-        private $hosnum_perpage = 25;
+        private $hosnum_perpage = 5;
 
         public function  getHoslist()
         {
