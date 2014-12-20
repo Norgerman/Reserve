@@ -32,7 +32,7 @@ body {
 }
 
 .qta-div {
-    height: 39.9%;
+    height: 37%;
     width:95%;
     background-color: #f0f0f0;
     padding:25px 50px;
@@ -123,9 +123,40 @@ body {
 
 }
 
-.qt-div .quefor .panel-question .panel-heading , .panel-answer .panel-heading{
-    width:75px;
 
+.qt-div .quefor .qutim{
+    float:right;
+}
+
+.qt-div .quefor .qutim .label{
+    float:right;
+    margin:0 20px;
+}
+
+.qt-div .quefor .qutim p{
+    float:right;
+    margin:0 20px;
+}
+
+
+
+.qt-div .quefor .panel-t{
+    list-style: none;
+
+    color:white;
+    width:75px;
+    height:30px;
+    text-align:center;
+    padding:5px;
+    background:#336f82;
+    margin-top:30px;
+
+
+}
+
+.qt-div .quefor .bo{
+    border-top:1px solid black;
+    width:100%;
 }
 
 .qt-div .alert{
@@ -136,6 +167,11 @@ body {
 
 .qt-div .alert-success{
     background: rgba(12, 128, 18, 0.36);
+}
+
+.qt-div .panel-a{
+    width:95%;
+    margin-top:20px;
 }
 
 

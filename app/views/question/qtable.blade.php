@@ -39,16 +39,12 @@
 
     $question="100";
     $answer="000";
+    $solvedtime="2014-12-20";
  ?>
 
  <div class="qt-div">
     <div class="qta-div">
-        <div class="col-sm-12 lab-div">
-            <div class="lab-title">可选标签</div>
-               @foreach($qlabel as  $index=>$qlabel)
-                 <div class="lab-la">{{$qlabel}}</div>
-               @endforeach
-        </div>
+
      <div class="inp-div">
      <form role="form">
            <div class="input-title">
@@ -80,38 +76,29 @@
 
 
    <div class="quefor">
-      <div class="panel panel-default">
+      <div class="panel panel-default panel-a">
          <div class="panel-heading">
             <div class="panel-title">
-               @foreach($qlabel2 as  $index=>$qlabel2)
-                  <div class="lab-la">{{$qlabel2}}</div>
-               @endforeach
+
                <div class="qutim">
+                  <label>解决时间:</label>
+                  <p> {{ $solvedtime }}</p>
                </div>
             </div>
          </div>
+
+
          <div class="panel-body">
-            <div class="panel panel-default panel-question">
-                     <div class="panel-heading ">
-                        <div class="panel-title">
-                           提问
-                        </div>
-                     </div>
+         <div class="panel-t">提问</div>
                      <div class="panel-body">
                        {{ $question }}
                      </div>
-                  </div>
+         <div class="bo"></div>
           @if ($isAnswer==1)
-            <div class="panel panel-default panel-answer">
-                     <div class="panel-heading">
-                        <div class="panel-title">
-                           回答
-                        </div>
-                     </div>
+            <div class="panel-t">回答</div>
                      <div class="panel-body">
                         {{ $answer }}
                      </div>
-                  </div>
           @endif
          </div>
       </div>
@@ -119,6 +106,3 @@
  </div>
 
 
-     <div class="col-sm-12 hos-detail">
-
-     </div>
