@@ -39,3 +39,7 @@
 Route::get('/question',function(){
     return View::make('question.index');
 });
+
+Route::get('/datetab',function(){
+    return View::make('datetab');
+});
