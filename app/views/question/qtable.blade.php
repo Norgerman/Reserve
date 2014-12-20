@@ -1,0 +1,124 @@
+{{--Created by vvliebe on 2014/12/16.--}}
+{{--{{HTML::script('json/question.js')}}--}}
+ <?php
+    $qlabel = array(
+                       "label1",
+                       "label2",
+                       "label3"
+
+                        );
+
+    $qlabel2 = array(
+                           "label1",
+                           "label2",
+                           "label3"
+
+                            );
+
+    $hoslist = array (
+        array ( 'h_id' => 1 ,
+                'name' => "北京大学第三医院" ,
+                'rank' => "三级甲等" ,
+                'address' => "北京大学旁边" ,
+                'description' => "最好的医院之一" ,
+                'tel' => "8888-8888",
+                'zan' => 1234
+                ),
+        array (
+            'h_id' => 2 ,
+            'name' => "北京大学第三医院" ,
+            'rank' => "三级甲等" ,
+            'address' => "北京大学旁边" ,
+            'description' => "最好的医院之一" ,
+            'tel' => "8888-8887" ,
+            'zan' => 12345
+            )
+            );
+
+    $isAnswer=1;
+
+    $question="100";
+    $answer="000";
+ ?>
+
+ <div class="qt-div">
+    <div class="qta-div">
+        <div class="col-sm-12 lab-div">
+            <div class="lab-title">可选标签</div>
+               @foreach($qlabel as  $index=>$qlabel)
+                 <div class="lab-la">{{$qlabel}}</div>
+               @endforeach
+        </div>
+     <div class="inp-div">
+     <form role="form">
+           <div class="input-title">
+                 <input type="text" class="form-control" id="name" placeholder="请输入标题">
+           </div>
+           <div class="input-context">
+               <textarea class="form-control" rows="15" placeholder="请输入你想要解决的问题"></textarea>
+             </div>
+          </form>
+     <button type="button" class="btn btn-primary input-button">
+           提交
+        </button>
+
+        <div class="alert alert-warning alert-failure" style="display:none">
+           <a href="#" class="close" data-dismiss="alert">
+              &times;
+           </a>
+           <strong style="font-size:15px">失败!</strong>发送问题失败。
+        </div>
+
+         <div class="alert alert-warning alert-success" style="display:none">
+                   <a href="#" class="close" data-dismiss="alert">
+                      &times;
+                   </a>
+                   <strong style="font-size:15px">成功!</strong>发送问题成功了。
+         </div>
+     </div>
+   </div>
+
+
+   <div class="quefor">
+      <div class="panel panel-default">
+         <div class="panel-heading">
+            <div class="panel-title">
+               @foreach($qlabel2 as  $index=>$qlabel2)
+                  <div class="lab-la">{{$qlabel2}}</div>
+               @endforeach
+               <div class="qutim">
+               </div>
+            </div>
+         </div>
+         <div class="panel-body">
+            <div class="panel panel-default panel-question">
+                     <div class="panel-heading ">
+                        <div class="panel-title">
+                           提问
+                        </div>
+                     </div>
+                     <div class="panel-body">
+                       {{ $question }}
+                     </div>
+                  </div>
+          @if ($isAnswer==1)
+            <div class="panel panel-default panel-answer">
+                     <div class="panel-heading">
+                        <div class="panel-title">
+                           回答
+                        </div>
+                     </div>
+                     <div class="panel-body">
+                        {{ $answer }}
+                     </div>
+                  </div>
+          @endif
+         </div>
+      </div>
+   </div>
+ </div>
+
+
+     <div class="col-sm-12 hos-detail">
+
+     </div>
