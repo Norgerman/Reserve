@@ -94,3 +94,16 @@ body {
   max-width: 550px;
   max-height: 40px;
 }
+.region-list li a:link {
+  text-decoration: none;
+}
+.region-list li a:active,
+.region-list li a.active {
+  padding: 2px 4px;
+  font-size: 90%;
+  color: #fff;
+  background-color: #0094ff;
+  border-radius: 3px;
+  -webkit-box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.25);
+  box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.25);
+}

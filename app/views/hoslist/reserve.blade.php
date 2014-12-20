@@ -20,8 +20,8 @@
         </div>
     </div>
 </div>
-<div class="selectdoctor">
-    <h4 class="media-title">选择医院 <span class="glyphicon glyphicon-map-marker" style="color: red"></span><a href="#">北京市</a></h4>
+<div class="select-doctor">
+    <h4 class="media-title">选择医生 <span class="glyphicon glyphicon-map-marker" style="color: red"></span><a href="#">北京市</a></h4>
     <ul class="media-list">
         {{--@foreach($pageData['hosinfo']['list'] as $index => $hospital)--}}
         @for($index=0;$index<4;$index++)
