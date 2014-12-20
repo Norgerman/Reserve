@@ -12,6 +12,7 @@
     */
 
     Route::controller("/index", "IndexController");
+    Route::controller("/docreg", "DocregController");
     Route::controller("/usrreg", "UserregController");
     //Route::controller("/query", "QueryController");
     Route::controller("/hoslist", "HoslistController");
@@ -24,7 +25,12 @@
 
     Route::get('/hospital', function ()
     {
-        return View::make('hoslist.index');
+        return View::make('hoslist.hospital');
+    });
+
+    Route::get('/time', function ()
+    {
+        return View::make('hoslist.doctortime');
     });
 
     Route::get('/getorder', function ()

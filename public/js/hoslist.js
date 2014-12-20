@@ -19,4 +19,20 @@ $(function(){
             trigger: 'hover'
         });
     });
+    $(".region-list li").click(function(){
+        $(this).children('a').addClass('active').parent('li').siblings().children('a').removeClass('active');
+        var addr = $(this).children('a').text();
+        $.ajax('/hoslist/hoslist',{
+            type: 'get',
+            data: {"addr":addr,"pagenum":1},
+            dataType: 'json',
+            success: function(data){
+                //TODO:数据
+            },
+            error: function(){
+                alert('error');
+            }
+        });
+    });
+
 });
