@@ -40,4 +40,6 @@
         return View::make('index.slider');
     });
 
-
+Route::get('/question',function(){
+    return View::make('question.index');
+});
