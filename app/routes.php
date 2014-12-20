@@ -43,3 +43,12 @@
     {
         return View::make('question.index');
     });
+
+Route::get('/representation', function ()
+{
+    return View::make('representation.index');
+});
+
+
+
+
