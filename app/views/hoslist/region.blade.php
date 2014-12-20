@@ -33,35 +33,8 @@
                         "宁夏回族",
                         "海南省"
                         );
- $pageData = array(
-         'hosinfo' => array(
-                 'count' => 2,
-                 'list' => array(
-                             0 => array(
-                                     'h_id' => 1,
-                                     'name' => "北医三院",
-                                     'rank' => "x级x等",
-                                     'address' => "北京市xxx",
-                                     'description' => "隔壁",
-                                     'province' => '北京市',
-                                     'tel' => 6,
-                                     'zan' => 0),
-                             1 => array(
-                                     'h_id' => 2,
-                                     'name' => "xxx医院",
-                                     'rank' => "x级x等",
-                                     'address' => "上海市xxx",
-                                     'province' => '北京市',
-                                     'description' => "哈哈saflafasdfasf啊都是发到fads发士大夫手动阀手动阀撒旦发射点发胜多负少士大夫士大夫撒地方阿道夫飞洒地方啊sdkjflakdsjfl对手啦空间flak圣诞节flak圣诞节flak说到减肥了adsl付款记录是的空间方腊时的看见分厘卡似的范老师的课件flask的解放拉萨的放假了空手道解放",
-                                     'tel' => 8,
-                                     'zan' => 0)
-                            ),
-                    'pagenum' => 3
-                     ),
-         'pagecount' => 5
-        );
-
  ?>
+{{--         print_r($hosinfo);--}}
     <div class="col-sm-12 region-div">
         <div class="col-sm-2 region">选择地区</div>
         <div class="col-sm-10 region-body">
@@ -76,13 +49,13 @@
      <div class="col-sm-12 hospital-list">
         <h4 class="media-title">选择医院 <span class="glyphicon glyphicon-map-marker" style="color: red"></span><a href="#">北京市</a></h4>
         <ul class="media-list">
-            @foreach($pageData['hosinfo']['list'] as $index => $hospital)
+            @foreach($hosinfo['hosinfo']['list'] as $index => $hospital)
                 <li class="media">
                     <div class="media-left">
-                        <img src="{{asset('images/hoslist')}}/{{$hospital['h_id']}}.jpg" class="media-object" alt="123"/>
+                        <img src="{{asset('images/hoslist/1.jpg')}}" class="media-object" alt="123"/>
                     </div>
                     <div class="media-body">
-                        <div class="media-heading"><h4 style="margin:0;word-spacing: 10px;"><a href="#">{{$hospital['name']}}</a> <small>{{$hospital['rank']}}</small></h4></div>
+                        <div class="media-heading"><h4 style="margin:0;word-spacing: 10px;"><a href="/detail/index?hospital_id={{$hospital['h_id']}}">{{$hospital['name']}}</a> <small>{{$hospital['rank']}}</small></h4></div>
                         <div class="hosinfo">
                             <p>地址:&nbsp;<span>{{$hospital['address']}}</span></p>
                             <p>电话:&nbsp;<span>{{$hospital['tel']}}</span></p>
@@ -100,8 +73,8 @@
      <div class="pagination-div">
          <ul class="pagination">
             <li><a href="#">首页</a></li>
-             @for($index = 1; $index<=$pageData['pagecount']; $index++)
-                <li @if($index==$pageData['hosinfo']['pagenum']) class="active" @endif><a href="#">{{$index}}</a></li>
+             @for($index = 1; $index<=$hosinfo['pagecount']; $index++)
+                <li @if($index==$hosinfo['hosinfo']['pagenum']) class="active" @endif><a href="#">{{$index}}</a></li>
              @endfor
             <li><a href="#">尾页</a></li>
          </ul>
