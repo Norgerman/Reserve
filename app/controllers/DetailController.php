@@ -12,8 +12,9 @@
         public function getIndex()
         {
             $hos_id = Input::get("hospital_id");
-//            print_r($this->detail($hos_id));
-            return View::make('hoslist.hospital',array('hosdetail'=>$this->detail($hos_id)));
+
+            //            print_r($this->detail($hos_id));
+            return View::make('hoslist.hospital', array('hosdetail' => $this->detail($hos_id)));
         }
 
         private function detail($hos_id)

@@ -114,7 +114,12 @@
             $res["list"] = $doclist;
             $res["pagenum"] = $pagenum;
             $result["docinfo"] = $res;
-            $result["pagecount"] = (int)$pagecount;
+            for ($i = 1; $i <= (int)$pagecount; $i++)
+            {
+                $pages = array();
+                $pages[$i] = $i;
+            }
+            $result["pagecount"] = $pages;
 
             return $result;
         }
