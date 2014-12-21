@@ -74,6 +74,28 @@
             return Response::json($result);
         }
 
+        public function getHospital()
+        {
+            $addr = Input::get("addr");
+            $hos = Hospital::where("province", "=", $addr)
+                           ->select("h_id", "name")
+                           ->get()
+                           ->toArray();
+
+            return Response::json($hos);
+        }
+
+        public function getDepartment()
+        {
+            $h_id = Input::get("h_id");
+            $dep = Department::where("hospital_id", "=", $h_id)
+                             ->select("d_id", "name")
+                             ->get()
+                             ->toArray();
+
+            return Response::json($dep);
+        }
+
         public function postLogout()
         {
             Session::remove("id");

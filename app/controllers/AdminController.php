@@ -9,9 +9,43 @@
     class AdminController
         extends BaseController
     {
-        public function getIndex()
+        public function getIndex($result = "none")
         {
-            $hosptial = Hospital::all();
-            print_r($hosptial->toArray());
+            return Response::make($result);
+        }
+
+        public function getLogin()
+        {
+            $username = Input::get("username");
+            $password = Input::get("password");
+            $admin = Admin::where("username", "=", $username)
+                          ->first();
+            if ($admin !== null)
+            {
+                if ($admin->password == hash("sha256", $password))
+                {
+                    Session::set("id", $admin->id);
+                    if ($admin->auth == 1)
+                    {
+                        Session::set("type", "manager");
+                    }
+                    else if ($admin->auth == 2)
+                    {
+                        Session::set("type", "admin");
+                    }
+                    Session::set("auth", $admin->auth);
+                    Session::set("username", $username);
+
+                    return Redirect::action("AdminController@getIndex", array("result" => "succeed"));
+                }
+                else
+                {
+                    return Redirect::action("AdminController@getIndex", array("result" => "password"));
+                }
+            }
+            else
+            {
+                return Redirect::action("AdminController@getIndex", array("result" => "username"));
+            }
         }
     }
