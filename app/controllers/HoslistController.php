@@ -10,7 +10,7 @@
         extends BaseController
     {
 
-        private $hosnum_perpage = 25;
+        private $hosnum_perpage = 3;
 
         public function  getHoslist()
         {
@@ -21,7 +21,8 @@
 
         public function  getIndex()
         {
-            return View::make("hoslist.index", array("hosinfo" => $this->Hos(1)));
+            $hos = $this->Hos(1);
+            return View::make("hoslist.index", array("pagecount"=>$hos['pagecount'],"hosinfo" =>json_encode($hos)));
         }
 
         private function Hos($pagenum)
