@@ -47,7 +47,15 @@
 
         public function getDoctortime()
         {
-            return View::make("hoslist.doctortime", array("doclist" => json_encode($this->Doc(1))));
+            $hos_id = Input::get("hospital_id");
+            Session::set("hos_id", $hos_id);
+            $hosinfo = Hospital::find($hos_id)
+                               ->select(array("h_id", "name"))
+                               ->get()
+                               ->toArray();
+
+            return View::make("hoslist.doctortime", array("hosinfo" => $hosinfo,
+                                                          "doclist" => json_encode($this->Doc(1))));
         }
 
         public function postZan()
