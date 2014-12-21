@@ -4,26 +4,21 @@
         选择科室
     </div>
     <div class="panel-body department-box">
-        <div class="col-sm-2 department">
-            <ul class="list-group">
-                <li class="list-group-item list-group-item-success isclick active">1</li>
-                <li class="list-group-item list-group-item-success">2</li>
-                <li class="list-group-item list-group-item-success">3</li>
-                <li class="list-group-item list-group-item-success">4</li>
-                <li class="list-group-item list-group-item-success">5</li>
-                <li class="list-group-item list-group-item-success">6</li>
-                <li class="list-group-item list-group-item-success">7</li>
-                <li class="list-group-item list-group-item-success">8</li>
-            </ul>
-        </div>
-        <div class="col-sm-10 detail-department">
-            <div class="col-sm-12">
-                <ul>
-                    @for($index=0;$index<18;$index++)
-                        <li><a class="btn btn-primary" href="#">{{$index}}</a></li>
-                    @endfor
-                </ul>
-            </div>
+        <ul class="nav nav-tabs department" role="tablist">
+            @foreach($hosdetail['depinfo'] as $index => $detail)
+                <li role="presentation" class="@if($index==0) active @endif col-sm-2"><a href="{{'#tab'.$index}}" role="tab" data-toggle="tab">{{$detail['class_name']}}</a></li>
+            @endforeach
+        </ul>
+        <div class="col-sm-12 detail-department tab-content">
+            @foreach($hosdetail['depinfo'] as $i => $deplist)
+                <div id="{{'tab'.$i}}" role="tabpanel" class="tab-pane @if($i==0) active @endif ">
+                    <ul class="clearfix">
+                        @foreach($deplist['deplist'] as $j => $department)
+                            <li><a class="btn btn-primary" href="/doclist/doctortime?hospital_id={{$hosdetail['hosinfo']['h_id']}}&?department_id={{$department['d_id']}}">{{$department['name']}}</a></li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endforeach
         </div>
     </div>
 </div>

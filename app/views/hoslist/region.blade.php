@@ -1,6 +1,6 @@
 {{--Created by vvliebe on 2014/12/16.--}}
  <?php
-    $provinces = array(
+    $provinces = json_encode(array(
                         "北京市",
                         "天津市",
                         "上海市",
@@ -32,35 +32,44 @@
                         "四川省",
                         "宁夏回族",
                         "海南省"
-                        );
+                        ));
  ?>
 <script>
     var hosinfo = eval({{$hosinfo}});
+    var provinces = eval({{$provinces}});
     var hosdata = avalon.define('hosinfo',function(vm){
+        vm.procvinces = provinces;
+        vm.province = provinces[0];
         vm.hosinfo = hosinfo;
-        vm.$watch('hosinfo',function(a) {
-            console.log('watch');
-        });
-        vm.rendered = function(){
-            console.log(123);
-            $(".intro").dotdotdot({
-                ellipsis: "...",
-                callback: function( isTruncated, orgContent){
-                    if(isTruncated){
-                        $(this).after(" <a href='#' style='position: absolute;margin-left: 550px;margin-top: 20px;' class='more-info'>更多</a>");
-                    }
-                }
-            });
-        }
+        vm.pagenum = vm.hosinfo.hosinfo.pagenum;
+        vm.pagecount = vm.hosinfo.pagecount[vm.hosinfo.pagecount.length-1];
         vm.myclick = function(province){
 
             var addr = province;
+            vm.province = addr;
             $.ajax('/hoslist/hoslist',{
                 type: 'get',
                 data: {"addr":addr,"pagenum":1},
                 dataType: 'json',
                 success: function(data){
                     vm.hosinfo=data;
+                },
+                error: function(){
+                    alert('error');
+                }
+            });
+        }
+        vm.gopage = function (num) {
+            if(num==vm.pagenum)
+                return;
+            $.ajax('/hoslist/hoslist',{
+                type: 'get',
+                data: {"pagenum":num},
+                dataType: 'json',
+                success: function(data){
+                    vm.hosinfo=data;
+                    vm.pagenum = data.hosinfo.pagenum;
+                    vm.pagecount = data.pagecount[data.pagecount.length-1];
                 },
                 error: function(){
                     alert('error');
@@ -76,15 +85,13 @@
         <div class="col-sm-2 region">选择地区</div>
         <div class="col-sm-10 region-body">
             <ul class="region-list">
-               @foreach($provinces as  $index=>$province)
-                 <li><a href="javascript:void(0);"  ms-click="myclick('{{$province}}')">{{$province}}</a></li>
-               @endforeach
+                <li  ms-repeat-item="provinces"><a href="javascript:void(0);" ms-class="active:province==item" ms-click="myclick(item)">@{{item}}</a></li>
             </ul>
         </div>
      </div>
 
      <div class="col-sm-12 hospital-list">
-        <h4 class="media-title">选择医院 <span class="glyphicon glyphicon-map-marker" style="color: red"></span><a href="#">北京市</a></h4>
+        <h4 class="media-title">选择医院 <span class="glyphicon glyphicon-map-marker" style="color: red"></span><a href="#">@{{province}}</a></h4>
         <ul class="media-list">
             {{--@foreach($hosinfo['hosinfo']['list'] as $index => $hospital)--}}
                 <li class="media" ms-repeat-item="hosinfo.hosinfo.list" data-repeat-rendered="rendered">
@@ -109,12 +116,12 @@
      </div>
      <div class="pagination-div">
          <ul class="pagination">
-            <li><a href="#">首页</a></li>
+            <li><a href="javascript:void(0);" ms-click="gopage(1)">首页</a></li>
              {{--{{$pagecount}}--}}
              {{--@for($index = 1; $index<=$pagecount; $index++)--}}
-                <li ms-class="active" ><a href="#">{{$index}}</a></li>
+                <li ms-class="active:pagenum==item" ms-repeat-item="hosinfo.pagecount"><a href="javascript:void(0);" ms-click="gopage(item)">@{{item}}</a></li>
              {{--@endfor--}}
-            <li><a href="#">尾页</a></li>
+            <li><a href="javascript:void(0);" ms-click="gopage(pagecount);">尾页</a></li>
          </ul>
      </div>
 

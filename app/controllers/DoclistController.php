@@ -58,43 +58,6 @@
                                                           "doclist" => json_encode($this->Doc(1))));
         }
 
-        public function postZan()
-        {
-            if (Input::has("doctor_id"))
-            {
-                $doc_id = Input::get("doctor_id");
-                DB::begintransaction();
-
-                $doc = Doctor::find($doc_id);
-                if ($doc !== null)
-                {
-                    $doc->zan++;
-                    if (!$doc->save())
-                    {
-                        DB::rollback();
-
-                        return Response::make("failed");
-                    }
-                    else
-                    {
-                        DB::commit();
-
-                        return Response::make("succeed");
-                    }
-                }
-                else
-                {
-                    DB::rollback();
-
-                    return Response::make("failed");
-                }
-            }
-            else
-            {
-                return Response::make("failed");
-            }
-        }
-
         private function Doc($pagenum)
         {
             $department_id = Session::get("department_id");

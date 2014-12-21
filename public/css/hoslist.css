@@ -46,11 +46,6 @@ body {
   padding: 0;
   list-style: none;
 }
-.region-body li {
-  padding: 5px;
-  float: left;
-  min-width: 12.5%;
-}
 .main-content {
   position: relative;
   padding: 0 10%;
@@ -93,6 +88,11 @@ body {
   position: absolute;
   max-width: 550px;
   max-height: 40px;
+}
+.region-list li {
+  padding: 5px;
+  float: left;
+  min-width: 12.5% !important;
 }
 .region-list li a:link {
   text-decoration: none;
