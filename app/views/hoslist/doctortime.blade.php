@@ -8,6 +8,7 @@
 
 @section('js')
     @parent
+    {{HTML::script('lib/avalon.min.js')}}
 @stop
 
 @section('body')

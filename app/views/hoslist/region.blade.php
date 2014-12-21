@@ -53,6 +53,8 @@
                 dataType: 'json',
                 success: function(data){
                     vm.hosinfo=data;
+                    vm.pagenum = data.hosinfo.pagenum;
+                    vm.pagecount = data.pagecount[data.pagecount.length-1];
                 },
                 error: function(){
                     alert('error');

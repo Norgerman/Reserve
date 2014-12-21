@@ -14,7 +14,7 @@
                 <div id="{{'tab'.$i}}" role="tabpanel" class="tab-pane @if($i==0) active @endif ">
                     <ul class="clearfix">
                         @foreach($deplist['deplist'] as $j => $department)
-                            <li><a class="btn btn-primary" href="/doclist/doctortime?hospital_id={{$hosdetail['hosinfo']['h_id']}}&?department_id={{$department['d_id']}}">{{$department['name']}}</a></li>
+                            <li><a class="btn btn-primary" href="/doclist/doctortime?department_id={{$department['d_id']}}">{{$department['name']}}</a></li>
                         @endforeach
                     </ul>
                 </div>
