@@ -35,7 +35,7 @@
                     $depa = array();
                     foreach ($depgroup as $index => $dep)
                     {
-                        $depa = $dep->toArray();
+                        $depa[$index] = $dep->toArray();
                     }
                     $depgps[$baseidx] = array("class_name" => $classname, "deplist" => $depa);
                     $baseidx++;
