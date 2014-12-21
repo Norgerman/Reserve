@@ -24,6 +24,43 @@
             return View::make("hoslist.index", array("hosinfo" => json_encode($this->Hos(1))));
         }
 
+        public function postZan()
+        {
+            if (Input::has("hospital_id"))
+            {
+                $hos_id = Input::get("hospital_id");
+                DB::begintransaction();
+
+                $hos = Hospital::find($hos_id);
+                if ($hos !== null)
+                {
+                    $hos->zan++;
+                    if (!$hos->save())
+                    {
+                        DB::rollback();
+
+                        return Response::make("failed");
+                    }
+                    else
+                    {
+                        DB::commit();
+
+                        return Response::make("succeed");
+                    }
+                }
+                else
+                {
+                    DB::rollback();
+
+                    return Response::make("failed");
+                }
+            }
+            else
+            {
+                return Response::make("failed");
+            }
+        }
+
         private function Hos($pagenum)
         {
             $result = array();
