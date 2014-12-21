@@ -49,9 +49,8 @@
         {
             $hos_id = Input::get("hospital_id");
             Session::set("hos_id", $hos_id);
-            $hosinfo = Hospital::find($hos_id)
-                               ->select(array("h_id", "name"))
-                               ->get()
+            $hosinfo = Hospital::select(array("h_id", "name"))
+                               ->find($hos_id)
                                ->toArray();
 
             return View::make("hoslist.doctortime", array("hosinfo" => $hosinfo,
