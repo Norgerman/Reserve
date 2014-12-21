@@ -47,13 +47,17 @@
 
         public function getDoctortime()
         {
-            $hos_id = Input::get("hospital_id");
-            Session::set("hos_id", $hos_id);
-            $hosinfo = Hospital::select(array("h_id", "name"))
-                               ->find($hos_id)
-                               ->toArray();
+            $dep_id = Input::get("department_id");
 
+            $dep = Department::find($dep_id);
+            $hos = $dep->hospital;
+
+            Session::set("hos_id", $hos->h_id);
+            $hosinfo = array("h_id" => $hos->h_id, "name" => $hos->name);
+            $depinfo = array("d_id" => $dep->d_id, "name" => $dep->name);
+            
             return View::make("hoslist.doctortime", array("hosinfo" => $hosinfo,
+                                                          "depinfo" => $depinfo,
                                                           "doclist" => json_encode($this->Doc(1))));
         }
 
