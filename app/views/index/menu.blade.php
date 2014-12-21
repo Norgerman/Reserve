@@ -3,8 +3,8 @@
 
  ?>
 
-<div class="menu">
-    <div class="clearfix">
+<div class="menu row">
+    <div class="clearfix col-sm-12" style="padding: 0;">
         <ul id="menulist" class="clearfix">
             @foreach ($arr as $menuname)
                 <a href="{{$menuname[1]}}"><li class="menublock">{{$menuname[0]}}</li></a>

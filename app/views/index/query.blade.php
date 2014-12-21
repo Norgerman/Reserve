@@ -5,7 +5,7 @@
                 <div class="thumbnail" style="margin-bottom: 0;">
                     <img src="{{asset('images/hoslist/1.jpg')}}" >
                     <div class="caption" style="overflow: hidden;word-wrap: break-word;text-align: center;">
-                        <a href="#">{{$hos["name"]}}</a>
+                        <a href="/detail/index?hospital_id={{$hos['h_id']}}">{{$hos["name"]}}</a>
                         <p>好评:<span>{{$hos["zan"]}}</span></p>
                         <p>等级:<span>{{$hos["rank"]}}</span></p>
                     </div>
