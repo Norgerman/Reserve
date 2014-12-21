@@ -45,9 +45,9 @@
             //return View::make("", array("depgroup" => $departmentgroup));
         }
 
-        public function getFirstdoclist()
+        public function getDoctortime()
         {
-
+            return View::make("hoslist.doctortime", array("doclist" => json_encode($this->Doc(1))));
         }
 
         public function postZan()
