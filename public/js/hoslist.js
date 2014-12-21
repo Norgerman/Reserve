@@ -2,9 +2,7 @@
  * Created by vvliebe on 2014/12/16.
  */
 
-avalon.ready(function(){
-
-       //TODO:监听hosinfo值变化
+//avalon.ready(function(){
        // $(".intro").dotdotdot({
        //     ellipsis: "...",
        //     callback: function( isTruncated, orgContent){
@@ -13,15 +11,12 @@ avalon.ready(function(){
        //         }
        //     }
        // });
-        $(".intro").each(function(){
-            $(this).tooltip({
-                delay: 500,
-                placement: 'top',
-                title: $(this).text(),
-                trigger: 'hover'
-            });
-        });
-        //$(".region-list li").click(function(){
-
-        //});
-});
+       // $(".intro").each(function(){
+       //     $(this).tooltip({
+       //         delay: 500,
+       //         placement: 'top',
+       //         title: $(this).text(),
+       //         trigger: 'hover'
+       //     });
+       // });
+//});
