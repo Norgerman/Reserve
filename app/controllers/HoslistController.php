@@ -21,7 +21,7 @@
 
         public function  getIndex()
         {
-            return View::make("hoslist.index", array("hosinfo" => $this->Hos(1)));
+            return View::make("hoslist.index", array("hosinfo" => json_encode($this->Hos(1))));
         }
 
         private function Hos($pagenum)
@@ -70,6 +70,12 @@
                                ->take($this->hosnum_perpage)
                                ->get();
             $hosarray = $hoslist->toArray();
+            foreach ($hosarray as $index => $hos)
+            {
+                $des = $hos["description"];
+                $hos["description"] = substr($des, 0, 70)."...";
+                $hosarray[$index] = $hos;
+            }
             $hoscount = count($hosarray);
 
             $res = array();
@@ -77,7 +83,12 @@
             $res["list"] = $hosarray;
             $res["pagenum"] = $pagenum;
             $result["hosinfo"] = $res;
-            $result["pagecount"] = (int)$pagecount;
+            $pages = array();
+            for ($i = 1; $i <= (int)$pagecount; $i++)
+            {
+                $pages[$i - 1] = $i;
+            }
+            $result["pagecount"] = $pages;
 
             return $result;
         }

@@ -96,10 +96,10 @@
             $res["list"] = $deparray;
             $res["pagenum"] = $pagenum;
             $result["depinfo"] = $res;
+            $pages = array();
             for ($i = 1; $i <= (int)$pagecount; $i++)
             {
-                $pages = array();
-                $pages[$i] = $i;
+                $pages[$i - 1] = $i;
             }
             $result["pagecount"] = $pages;
 
