@@ -73,7 +73,8 @@
             foreach ($hosarray as $index => $hos)
             {
                 $des = $hos["description"];
-                $hos["description"] = substr($des, 0, 70)."...";
+                $des = mb_substr($des, 0, 140)."...";
+                $hos["description"] = $des;
                 $hosarray[$index] = $hos;
             }
             $hoscount = count($hosarray);
