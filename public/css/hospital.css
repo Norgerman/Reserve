@@ -28,35 +28,13 @@
 .panel-heading {
   border-radius: 0px !important;
 }
-.department,
-.panel-body {
-  padding: 0;
-}
-.department ul,
-.panel-body ul {
-  margin: 0px;
-}
-.department li,
-.panel-body li {
-  cursor: pointer;
-  border: none !important;
-  border-radius: 0px !important;
-}
-.department li.active,
-.panel-body li.active {
-  background-color: #0094ff;
-}
-.department-box {
-  position: relative;
-}
-.detail-department {
-  padding: 0;
-  margin-left: 13%;
-  margin-top: 10px;
-  position: absolute;
+.department li {
+  padding-left: 0px;
+  padding-right: 0px;
 }
 .detail-department ul {
   list-style: none;
+  padding: 0;
 }
 .detail-department li {
   float: left;
