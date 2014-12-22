@@ -65,7 +65,7 @@
                     {
                         DB::begintransaction();
                         $visit = Visit::find("visit_id");
-                        if (!$visit)
+                        if ($visit == null)
                         {
                             DB::rollback();
                             App::abort(404, "visit not found");
