@@ -7,7 +7,7 @@
 .doclist li .zan {
   position: absolute;
   right: 0;
-  top: 0;
+  top: 20px;
   text-align: center;
   font-size: 80px;
   border-left: 1px solid #a2a2a2;
@@ -65,4 +65,15 @@
 }
 .data-tr td.unclickable {
   cursor: not-allowed;
+}
+.doclist li {
+  border: 1px solid transparent;
+  padding: 3px;
+}
+.doclist li.active {
+  border: 1px solid red;
+}
+.doclist .doctor-info {
+  cursor: pointer;
+  height: 135px;
 }

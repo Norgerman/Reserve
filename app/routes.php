@@ -10,11 +10,11 @@
     | and give it the Closure to execute when that URI is requested.
     |
     */
-
+    Route::controller("/order","OrderController");
     Route::controller("/index", "IndexController");
     Route::controller("/docreg", "DocregController");
     Route::controller("/usrreg", "UserregController");
-    //Route::controller("/query", "QueryController");
+//    Route::controller("/query", "QueryController");
     Route::controller("/hoslist", "HoslistController");
     Route::controller("/doclist", "DoclistController");
     Route::controller("/admin", "AdminController");

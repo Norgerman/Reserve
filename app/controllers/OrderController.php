@@ -64,7 +64,7 @@
                     try
                     {
                         DB::begintransaction();
-                        $visit = Visit::find("visit_id");
+                        $visit = Visit::find($visit_id);
                         if ($visit == null)
                         {
                             DB::rollback();
