@@ -128,6 +128,8 @@ CREATE TABLE `hospital` (
   `h_id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL,
   `price` int(11) NOT NULL,
+  `lat` double NOT NULL,
+  `lng` double NOT NULL,
   `address` varchar(100) NOT NULL,
   `province` varchar(10) NOT NULL,
   `rank` varchar(30) NOT NULL,
@@ -165,10 +167,15 @@ CREATE TABLE `order` (
   `o_id` int(11) NOT NULL AUTO_INCREMENT,
   `owner_id` int(11) NOT NULL,
   `visit_id` int(11) NOT NULL,
+  `department_id` int(11) NOT NULL,
+  `hospital_id` int(11) NOT NULL,
+  `time` int(11) NOT NULL,
   `status` int(11) NOT NULL DEFAULT '2',
   PRIMARY KEY (`o_id`),
   KEY `fk_order_visit_idx` (`visit_id`),
   KEY `fk_rorder_registuser_idx` (`owner_id`),
+  KEY `department_id` (`department_id`),
+  KEY `hospital_id` (`hospital_id`),
   CONSTRAINT `fk_order_registeruser` FOREIGN KEY (`owner_id`) REFERENCES `registeruser` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `fk_order_visit` FOREIGN KEY (`visit_id`) REFERENCES `visit` (`v_id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -262,4 +269,4 @@ CREATE TABLE `visit` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-12-20 15:33:12
+-- Dump completed on 2014-12-22 15:32:26
