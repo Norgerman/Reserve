@@ -11,6 +11,6 @@
     {
         public function getIndex()
         {
-
+            return View::make('personinfo.index');
         }
     }

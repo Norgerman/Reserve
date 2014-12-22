@@ -22,15 +22,18 @@
                 data: {visit_id:vid,time:time},
                 dataType: 'json',
                 success: function(data){
-                    alert(data);
 //                   status o_id
+                    if(data.status==1)
+                        window.location = "/personinfo/index";
+                    else
+                        //TODO:没成功提交数据
+                        alert('没成功提交数据');
+
                 },
                 error: function(){
                     alert('error');
                 }
             });
-//            //TODO 跳转
-//            window.location = "/";
         }
         vm.selectdoctor = function(num){
             vm.docnum = num;
@@ -56,7 +59,6 @@
                 },
                 error: function (req) {
                     if(req.status==403){
-                        //TODO:请先登录
                         alert("请先登录!");
                         $("#login-modal").modal('show');
                     }
