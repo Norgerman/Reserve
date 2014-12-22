@@ -1,6 +1,17 @@
 /**
  * Created by vvliebe on 2014/12/19.
  */
+.doclist li {
+  position: relative;
+}
+.doclist li .zan {
+  position: absolute;
+  right: 0;
+  top: 0;
+  text-align: center;
+  font-size: 80px;
+  border-left: 1px solid #a2a2a2;
+}
 .flow-div {
   height: 120px;
   margin-top: 20px;
@@ -22,14 +33,19 @@
 .tip {
   color: #999999;
 }
-.zan {
-  position: absolute;
-  right: 0;
-  top: 0;
-  text-align: center;
-  font-size: 80px;
-  border-left: 1px solid #a2a2a2;
-}
 .select-doctor {
   background-color: #f0f0f0;
+}
+.docinfo p {
+  margin-bottom: 0px;
+  margin-top: 10px;
+  color: #888888;
+}
+.docinfo span {
+  color: #333333;
+}
+.docinfo .intro {
+  position: absolute;
+  max-width: 550px;
+  max-height: 40px;
 }

@@ -9,7 +9,7 @@
     class DoclistController
         extends BaseController
     {
-        private $docnum_perpage = 5;
+        private $docnum_perpage = 2;
 
         public function  getDoclist()
         {
