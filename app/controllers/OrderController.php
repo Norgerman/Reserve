@@ -67,7 +67,8 @@
                         $visit = Visit::find("visit_id");
                         if (!$visit)
                         {
-                            App::abort(404);
+                            DB::rollback();
+                            App::abort(404, "visit not found");
                         }
                         if ($time == 1)
                         {
