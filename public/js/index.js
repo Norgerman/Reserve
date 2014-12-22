@@ -15,20 +15,21 @@ $(function(){
             },
             dataType: "json",
             success: function(data){
-                if(data['status']=="succeed"){
+                if(data['status']==1){
                     if($("#login").hasClass('hide')){
                         $(".login-div").toggleClass('hide');
                         $("#login-modal").modal("hide");
                     }
                 }else{
-                   //TODO: 登陆框显示错误
+                    //TODO: 登陆框显示错误
+                    alert('meiren');
                 }
             },
             error: function(){
+                alert('404');
                 $("#login-modal").modal("hide");
             }
         });
-        event.preventDefault();
     });
     $("#area").change(function(){
         //alert($(this).val());

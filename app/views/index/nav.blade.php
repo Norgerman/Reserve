@@ -1,3 +1,4 @@
+
 <div class="nav-bar col-sm-12">
     <span>您好，欢迎来到挂号网！</span>
     <a class="btn btn-link btn-login" data-toggle="modal" href="#login-modal">登陆</a>
@@ -30,7 +31,7 @@
 
                   <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-8" style="padding: 0;">
-                      <button type="submit" class="login-btn btn btn-default" style="word-spacing: 10px;">登陆 <span class="glyphicon glyphicon-hand-right"></span></button>
+                      <button type="button" class="login-btn btn btn-default" style="word-spacing: 10px;">登陆 <span class="glyphicon glyphicon-hand-right"></span></button>
                     </div>
                   </div>
                 </form>
@@ -38,3 +39,4 @@
         </div>
     </div>
 </div>
+
