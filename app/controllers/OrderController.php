@@ -143,7 +143,7 @@
             {
                 DB::begintransaction();
                 $order = Order::find($order_id);
-                if (!$order)
+                if ($order != null)
                 {
                     if (!$order->stauts == 2)
                     {
