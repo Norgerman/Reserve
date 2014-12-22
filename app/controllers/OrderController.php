@@ -33,6 +33,23 @@
             $result["doc_name"] = $order->visit->doctor->name;
         }
 
+        public function getUserinfo()
+        {
+            if (Session::has("id"))
+            {
+                $id = Session::get("id");
+                $user = Registeruser::select(array("name", "idnum", "tel"))
+                                    ->find($id)
+                                    ->toArray();
+
+                return Response::json($user);
+            }
+            else
+            {
+                App::abort(403, "Unauthorized");
+            }
+        }
+
         public function postOrder()
         {
             if (Session::has("id"))
@@ -114,7 +131,7 @@
             }
             else
             {
-                return Response::json(array("status" => -2, "error" => "login"));
+                App::abort(403, "Unauthorized");
             }
         }
 

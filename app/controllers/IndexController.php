@@ -50,7 +50,7 @@
 
                 if ($user == null)
                 {
-                    $result["status"] = "username";
+                    $result["status"] = "-2";
                 }
                 else
                 {
@@ -61,12 +61,12 @@
                         Session::set("type", "user");
                         Session::set("auth", $user->auth);
                         Session::set("username", $username);
-                        $result["status"] = "succeed";
+                        $result["status"] = "1";
                         $result["username"] = $username;
                     }
                     else
                     {
-                        $result["status"] = "password";
+                        $result["status"] = "-1";
                     }
                 }
             }
