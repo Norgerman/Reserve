@@ -17,4 +17,18 @@
             }
         }
 
+        protected function getLogininfo()
+        {
+            $result = array();
+            $type = Session::get("type");
+            $result["login"] = "false";
+            if ($type === "user")
+            {
+                $result["username"] = Session::get("username");
+                $result["login"] = "true";
+            }
+
+            return $result;
+        }
+
     }

@@ -11,15 +11,6 @@
     {
         public function getIndex()
         {
-            $type = Session::get("type");
-            $login = "false";
-            $username = null;
-            if ($type === "user")
-            {
-                $username = Session::get("username");
-                $login = "true";
-            }
-
             $besthos = Hospital::orderBy("zan", "desc")
                                ->take(4)
                                ->get();
@@ -28,8 +19,7 @@
                             ->take(20)
                             ->get();
 
-            return View::make("index.index", array("login" => $login,
-                                                   "username" => $username,
+            return View::make("index.index", array("logininfo" => parent::getLogininfo(),
                                                    "besthos" => $besthos->toArray(),
                                                    "notice" => $notice->toArray()));
         }

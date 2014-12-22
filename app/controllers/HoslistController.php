@@ -21,7 +21,8 @@
 
         public function  getIndex()
         {
-            return View::make("hoslist.index", array("hosinfo" => json_encode($this->Hos(1))));
+            return View::make("hoslist.index", array("logininfo" => parent::getLogininfo(),
+                                                     "hosinfo" => json_encode($this->Hos(1))));
         }
 
         public function postZan()

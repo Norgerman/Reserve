@@ -56,7 +56,8 @@
             $hosinfo = array("h_id" => $hos->h_id, "name" => $hos->name);
             $depinfo = array("d_id" => $dep->d_id, "name" => $dep->name);
 
-            return View::make("hoslist.doctortime", array("hosinfo" => $hosinfo,
+            return View::make("hoslist.doctortime", array("logininfo" => parent::getLogininfo(),
+                                                          "hosinfo" => $hosinfo,
                                                           "depinfo" => $depinfo,
                                                           "doclist" => json_encode($this->Doc(1))));
         }
