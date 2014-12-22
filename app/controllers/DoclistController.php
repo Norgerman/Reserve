@@ -55,7 +55,7 @@
             Session::set("hos_id", $hos->h_id);
             $hosinfo = array("h_id" => $hos->h_id, "name" => $hos->name);
             $depinfo = array("d_id" => $dep->d_id, "name" => $dep->name);
-            
+
             return View::make("hoslist.doctortime", array("hosinfo" => $hosinfo,
                                                           "depinfo" => $depinfo,
                                                           "doclist" => json_encode($this->Doc(1))));
@@ -71,30 +71,31 @@
                 $doc = Doctor::find($doc_id);
                 if ($doc !== null)
                 {
+                    $zan = $doc->zan;
                     $doc->zan++;
                     if (!$doc->save())
                     {
                         DB::rollback();
 
-                        return Response::make("failed");
+                        return Response::json(array("zan" => $zan));
                     }
                     else
                     {
                         DB::commit();
 
-                        return Response::make("succeed");
+                        return Response::josn(array("zan" => $zan + 1));
                     }
                 }
                 else
                 {
                     DB::rollback();
 
-                    return Response::make("failed");
+                    return Response::json(array("zan" => -1));
                 }
             }
             else
             {
-                return Response::make("failed");
+                return Response::json(array("zan" => -1));
             }
         }
 

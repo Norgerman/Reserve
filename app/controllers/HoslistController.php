@@ -34,30 +34,31 @@
                 $hos = Hospital::find($hos_id);
                 if ($hos !== null)
                 {
+                    $zan = $hos->zan;
                     $hos->zan++;
                     if (!$hos->save())
                     {
                         DB::rollback();
 
-                        return Response::make("failed");
+                        return Response::json(array("zan" => $zan));
                     }
                     else
                     {
                         DB::commit();
 
-                        return Response::make("succeed");
+                        return Response::json(array("zan" => $zan + 1));
                     }
                 }
                 else
                 {
                     DB::rollback();
 
-                    return Response::make("failed");
+                    return Response::json(array("zan" => -1));
                 }
             }
             else
             {
-                return Response::make("failed");
+                return Response::json(array("zan" => -1));
             }
         }
 
