@@ -87,7 +87,7 @@
 
         public function getDepartment()
         {
-            $h_id = Input::get("h_id");
+            $h_id = Input::get("hospital_id");
             $dep = Department::where("hospital_id", "=", $h_id)
                              ->select("d_id", "name")
                              ->get()
