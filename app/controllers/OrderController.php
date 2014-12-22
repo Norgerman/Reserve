@@ -65,7 +65,7 @@
                     {
                         DB::begintransaction();
                         $visit = Visit::find("visit_id");
-                        if (!$visit)
+                        if ($visit == null)
                         {
                             DB::rollback();
                             App::abort(404, "visit not found");
@@ -143,7 +143,7 @@
             {
                 DB::begintransaction();
                 $order = Order::find($order_id);
-                if (!$order)
+                if ($order != null)
                 {
                     if (!$order->stauts == 2)
                     {
