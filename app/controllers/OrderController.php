@@ -58,7 +58,7 @@
                 {
                     $visit_id = Input::get("visit_id");
                     $time = Input::get("time");
-                    $department_id = Session::get("department_id");
+                    $department_id = Session::get("dep_id");
                     $hospital_id = Session::get("hos_id");
                     $id = Session::get("id");
                     try

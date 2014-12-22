@@ -20,7 +20,7 @@
             $.ajax('/order/order',{
                 type: 'post',
                 data: {visit_id:vid,time:time},
-                dataType: 'text',
+                dataType: 'json',
                 success: function(data){
                     alert(data);
 //                   status o_id
