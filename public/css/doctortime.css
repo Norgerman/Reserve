@@ -49,3 +49,20 @@
   max-width: 550px;
   max-height: 40px;
 }
+.data-tr td:nth-child(2n) {
+  background-color: #eeeeee;
+}
+.data-tr td {
+  text-align: center;
+  title: "hah";
+  transition: background-color 500ms;
+}
+.data-tr td.clickable {
+  cursor: pointer;
+}
+.data-tr td.clickable:hover {
+  background-color: #0094ff;
+}
+.data-tr td.unclickable {
+  cursor: not-allowed;
+}

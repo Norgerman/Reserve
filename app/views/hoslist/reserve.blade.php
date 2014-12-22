@@ -7,6 +7,8 @@
         vm.doclist = doclist.docinfo.list;
         vm.pagenum = doclist.docinfo.pagenum;
         vm.pagecount = doclist.pagecount[doclist.pagecount.length-1];
+        vm.visit = vm.doclist[0].visit;
+        vm.time = ['上午','下午','晚上'];
         vm.gopage = function(num){
             if(num == vm.pagenum)
                 return;
@@ -79,10 +81,19 @@
                 <h3 class="panel-title">选择时间</h3>
             </div>
             <div class="panel-body row">
-                <div class="col-sm-7">
-                    sdfjl
+                <div class="col-sm-9">
+                    <table class="table table-condensed">
+                        <tr>
+                            <th></th>
+                            <th ms-repeat-item="visit">@{{item.work_date}}</th>
+                        </tr>
+                        <tr class="data-tr" ms-repeat-item="time">
+                            <th>@{{item}}</th>
+                            <td ms-repeat-el="visit" ms-class-1="clickable:el.peonum!=20" ms-class="unclickable:el.peonum==20">@{{el.peonum}}</td>
+                        </tr>
+                    </table>
                 </div>
-                <div class="col-sm-5">
+                <div class="col-sm-3">
                     <div class="tip">
                         预约，即“约定将来订立一定契约的契约”。通常，人们把将来要订立的契约称为本约，而以订立本约为其标的合同便是预约。按照私法自治原则，当事人享有广泛的合同自由，包括是否订立合同、与谁订立合同、订立什么样内容与形式的合同的自由等。预约，无疑是对与谁和就何种事情订立合同等作出预先安排，这似乎是对当事人合同自由进行了限制，实质上却把合同自由运用到极至。
                     </div>
