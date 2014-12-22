@@ -101,7 +101,7 @@
 
         private function Doc($pagenum)
         {
-            $department_id = Session::get("department_id");
+            $department_id = Session::get("dep_id");
             $start_num = $pagenum * $this->docnum_perpage - $this->docnum_perpage;
             $isnew = false;
             $startdate = date("Y-m-d", strtotime("+1 day"));
@@ -113,7 +113,7 @@
             {
                 $department_id = Input::get("department_id");
                 $isnew = true;
-                Session::set("department_id", $department_id);
+                Session::set("dep_id", $department_id);
             }
 
             if ($isnew || !Session::has("docpagecount"))
@@ -148,14 +148,22 @@
                 $doctor["zan"] = $doc->zan;
 
                 $doctor["visit"] = array();
-                $doctor["visit"] =
-                    array_merge($doctor["visit"], $doc->visits->filter(function ($visit) use ($startdate, $enddate)
-                    {
-                        $work_date = $visit->work_date;
+                $visits = $doc->visits->filter(function ($visit) use ($startdate, $enddate)
+                {
+                    $work_date = $visit->work_date;
 
-                        return $work_date >= $startdate && $work_date <= $enddate;
-                    })
-                                                              ->toArray());
+                    return $work_date >= $startdate && $work_date <= $enddate;
+                });
+                $i = 0;
+                foreach ($visits as $visit)
+                {
+                    $vi = array();
+                    $vi["v_id"] = $visit["v_id"];
+                    $vi["work_date"] = $visit["work_date"];
+                    $vi["time"] = array($visit["am"], $visit["pm"], $visit["ng"]);
+                    $doctor["visit"][$i] = $vi;
+                    $i++;
+                }
                 $doclist[$index] = $doctor;
             }
 
