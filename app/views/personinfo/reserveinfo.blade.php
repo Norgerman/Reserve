@@ -30,7 +30,7 @@
                         <span style="float: right;">
                             <span class="glyphicon glyphicon-time"></span>
                             <span style="margin-right: 20px">{{$order['date']}}</span>
-                            <a class="btn-cancel btn btn-xs btn-default">取消预约</a>
+                            <a oid="{{$order['o_id']}}" class="btn-reserve-cancel btn btn-xs btn-default">取消预约</a>
                         </span>
                     </div>
                     <table class="table table-condensed" id="reserveinfo">
@@ -54,13 +54,26 @@
                                     晚上
                                 @endif
                             </td>
-                            <td>{{$order['status']}}</td>
+                            <td>
+                                {{--1:人没去，2: 未付款 3. 已付款 4.已取消 5。已完成--}}
+                                @if($order['status']==1)
+                                    已过期
+                                @elseif($order['status']==2)
+                                    未付款
+                                @elseif($order['status']==3)
+                                    已付款
+                                @elseif($order['status']==4)
+                                    已取消
+                                @elseif($order['status']==5)
+                                    已完成
+                                @endif
+                            </td>
                         </tr>
                     </table>
                     <div class="panel-footer clearfix">
                         <div style="float: right;word-spacing: 20px;">
-                            <a href="#" class="btn btn-primary">打印</a>
-                            <a href="#" class="btn btn-primary">付款</a>
+                            <a class="btn btn-primary">打印</a>
+                            <a class="btn-pay btn btn-primary" money="@{{$order['pay']}}" oid="{{$order['o_id']}}" @if($order['status']!=2) disabled @endif>付款</a>
                         </div>
                     </div>
                 </div>
@@ -68,3 +81,21 @@
         </div>
     </div>
 </div>
+
+
+<div id="pay-modal" class="modal fade modal-sm">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title">付款</h4>
+            </div>
+            <div class="modal-body">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-primary">付款</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
