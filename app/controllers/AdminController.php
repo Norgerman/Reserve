@@ -619,7 +619,8 @@
                 $sord = "asc";
             }
 
-            $order = Order::where("visit_id", "=", $visit_id)
+            $order = Order::select(array("o_id", "owner_id", "time", "status"))
+                          ->where("visit_id", "=", $visit_id)
                           ->skip($startrow)
                           ->take($limit)
                           ->orderBy("o_id", $sord)
