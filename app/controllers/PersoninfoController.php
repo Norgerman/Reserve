@@ -18,13 +18,17 @@
                 $id = Session::get("id");
                 $user = Registeruser::find($id);
                 $userinfo = $user->toArray();
-                foreach ($user->orders as $index => $ord)
+                $orders = $user->orders;
+                foreach ($orders as $index => $ord)
                 {
                     $visit = $ord->visit;
                     $docname = $visit->doctor->name;
-                    $hosname = Hospital::find($ord->hospital_id)->name;
+                    $hospital = Hospital::find($ord->hospital_id);
+                    $hosname = $hospital->name;
+                    $price = $hospital->price;
                     $depname = Department::find($ord->department_id)->name;
                     $order[$index] = array("o_id" => $ord->o_id,
+                                           "prive" => $price,
                                            "doctorname" => $docname,
                                            "hospitalname" => $hosname,
                                            "departmentname" => $depname,
@@ -32,6 +36,24 @@
                                            "time" => $ord->time,
                                            "status" => $ord->status);
                 }
+
+                $result = array();
+
+                foreach ($order as $index => $ord)
+                {
+                    $result[$index] = strtotime($ord["date"]);
+                }
+
+                arsort($result);
+
+                foreach (array_keys($result) as $key)
+                {
+                    $result[$key] = $order[$key];
+                }
+
+                $order = array();
+
+                array_merge($order, $result);
             }
 
             return View::make('personinfo.index', array("logininfo" => parent::getLogininfo(),
