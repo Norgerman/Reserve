@@ -30,7 +30,8 @@
                     {
                         Session::set("type", "manager");
                         Session::set("hos_id", $admin->hospital_id);
-                        $values["name"] = Hospital::find($admin->hospital_id)->name;
+                        $hospital = Hospital::find($admin->hospital_id);
+                        $values = $hospital->toArray();
                         $view = "admin.manager";
                     }
                     else if ($admin->auth == 2)
@@ -103,7 +104,8 @@
                 Session::set("hospagenum", $total);
                 Session::set("hoscount", $count);
             }
-            $hospital = Hospital::skip($startrow)
+            $hospital = Hospital::select(array("h_id", "name", "price", "address", "province", "rank", "tel"))
+                                ->skip($startrow)
                                 ->take($limit)
                                 ->get()
                                 ->toArray();
@@ -119,14 +121,129 @@
         public function postHospitalmanage()
         {
             $oper = Input::get("oper");
+            $status = 0;
             if ($oper == "edit")
             {
-
+                $h_id = Input::get("h_id");
+                $name = Input::get("name");
+                $price = Input::get("price");
+                $address = Input::get("address");
+                $province = Input::get("province");
+                $rank = Input::get("rank");
+                $tel = Input::get("tel");
+                $hospital = Hospital::find($h_id);
+                if ($hospital)
+                {
+                    $hospital->name = $name;
+                    $hospital->price = $price;
+                    $hospital->address = $address;
+                    $hospital->province = $province;
+                    $hospital->rank = $rank;
+                    $hospital->tel = $tel;
+                    if ($hospital->save())
+                    {
+                        $status = 1;
+                    }
+                    else
+                    {
+                        $status = 2;
+                    }
+                }
+                else
+                {
+                    $status = 3;
+                }
             }
-            else if($oper == "del")
+
+            return Response::json(array("status" => $status));
+        }
+
+        public function getShowadmin()
+        {
+
+            $limit = (int)Input::get("rows");
+            $page = (int)Input::get("page");
+            $startrow = $limit * $page - $limit;
+            if (Session::has("adminpagenum"))
             {
-
+                $total = Session::get("adminpagenum");
+                $count = Session::get("admincount");
             }
+            else
+            {
+                $count = Admin::count();
+                $total = (int)($count / $limit) + (($count % $limit) > 0 ? 1 : 0);
+                Session::set("adminpagenum", $total);
+                Session::set("admincount", $count);
+            }
+            $admin = Admin::skip($startrow)
+                          ->take($limit)
+                          ->get()
+                          ->toArray();
+            $result = array();
+            $result["total"] = $total;
+            $result["page"] = $page;
+            $result["records"] = $count;
+            $result["rows"] = $admin;
+
+            return Response::json($result);
+        }
+
+        public function postAdminmanage()
+        {
+            $oper = Input::get("oper");
+            $status = 0;
+            if ($oper == "edit")
+            {
+                $id = Input::get("id");
+                //$username = Input::get("username");
+                $password = hash("sha256", trim((string)Input::get("password")));
+                $auth = Input::get("auth");
+                $hospital_id = Input::get("hospital_id");
+                $admin = Admin::find($id);
+                if ($admin)
+                {
+                    $admin->auth = $auth;
+                    $admin->password = $password;
+                    $admin->$hospital_id = $hospital_id;
+                    if ($admin->save())
+                    {
+                        $status = 1;
+                    }
+                    else
+                    {
+                        $status = 2;
+                    }
+                }
+            }
+            else if ($oper == "add")
+            {
+                DB::begintransaction();
+                try
+                {
+                    $password = hash("sha256", trim((string)Input::get("password")));
+                    $auth = Input::get("auth");
+                    $username = Input::get("username");
+                    $user = new User();
+                    $user->type = 3;
+                    if ($user->save())
+                    {
+                        $admin = new Admin();
+                        $admin->username = $username;
+                    }
+                    else
+                    {
+                        throw new PDOException("", 2);
+                    }
+                }
+                catch (PDOException $e)
+                {
+                    $status = $e->getCode();
+                    DB::rollback();
+                }
+            }
+
+            return Response::json(array("status" => $status));
         }
 
         public function getShowdepartment()
