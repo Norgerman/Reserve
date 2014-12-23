@@ -421,6 +421,8 @@
             $result["page"] = $page;
             $result["records"] = $count;
             $result["rows"] = $doctor;
+
+            return Response::json($result);
         }
 
         public function postDoctormanage()
@@ -542,6 +544,8 @@
             $result["page"] = $page;
             $result["records"] = $count;
             $result["rows"] = $visit;
+
+            return Response::json($result);
         }
 
         public function postVisitmanage()
@@ -631,6 +635,8 @@
             $result["page"] = $page;
             $result["records"] = $count;
             $result["rows"] = $order;
+
+            return Response::json($result);
         }
 
         public function postOrdermanage()
