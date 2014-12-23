@@ -9,7 +9,7 @@
             <ul style="list-style: none;margin: 0px;padding-left: 10%" class="clearfix">
                 @for($index = 0 ;$index<5;$index++)
                     <li style="float: left;min-width: 18%; font-size: xx-large">
-                        <span class="text-primary glyphicon @if($index<3) glyphicon-star @else glyphicon-star-empty @endif"></span>
+                        <span class="text-primary glyphicon @if($index<$userinfo['credit']) glyphicon-star @else glyphicon-star-empty @endif"></span>
                     </li>
                 @endfor
             </ul>
@@ -29,8 +29,8 @@
                         <span>预约单</span>
                         <span style="float: right;">
                             <span class="glyphicon glyphicon-time"></span>
-                            <span style="margin-right: 20px">5天</span>
-                            <a class="btn btn-xs btn-default">取消预约</a>
+                            <span style="margin-right: 20px">{{$order['date']}}</span>
+                            <a class="btn-cancel btn btn-xs btn-default">取消预约</a>
                         </span>
                     </div>
                     <table class="table table-condensed" id="reserveinfo">
