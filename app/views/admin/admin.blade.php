@@ -1,7 +1,6 @@
 {{--Created by vvliebe on 2014/12/23.--}}
 <html>
     <head>
-
         {{HTML::style('lib/jqgrid/ui.jqgrid.css')}}
         {{HTML::style('lib/jqgrid/ace.min.css')}}
         {{HTML::style('lib/jqgrid/ace-fonts.css')}}
