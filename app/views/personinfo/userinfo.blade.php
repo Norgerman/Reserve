@@ -18,7 +18,23 @@
             </div>
             <div class="hr"></div>
             <div class="user-body">
-
+                <div class="panel panel-primary">
+                    <table class="table table-condensed" id="reserveinfo">
+                        <tr>
+                            <td>用户名</td>
+                            <td>真实姓名</td>
+                            <td>身份证号码</td>
+                            <td>手机号码</td>
+                        </tr>
+                        <tr>
+                            <td>{{$userinfo['username']}}</td>
+                            <td>{{$userinfo['name']}}</td>
+                            <td>{{$userinfo['idnum']}}</td>
+                            {{--<td>{{$userinfo['credit']}}</td>--}}
+                            <td>{{$userinfo['tel']}}</td>
+                        </tr>
+                    </table>
+                </div>
             </div>
         </div>
     </div>

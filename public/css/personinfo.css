@@ -1,0 +1,21 @@
+/**
+ * Created by vvliebe on 2014/12/23.
+ */
+.main-content {
+  padding-top: 20px;
+}
+.main-content > div {
+  padding-left: 0px;
+}
+.main-content > div > div {
+  background-color: #ffffff;
+}
+.hr {
+  border-color: #0094ff;
+}
+.user-header {
+  padding: 15px 5px 0 5px;
+}
+.user-body {
+  padding-bottom: 10px;
+}
