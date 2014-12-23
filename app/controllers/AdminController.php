@@ -334,7 +334,7 @@
             return Response::json($result);
         }
 
-        public function postDepartmentmanager()
+        public function postDepartmentmanage()
         {
             $oper = Input::get("oper");
             $status = 0;
@@ -423,7 +423,7 @@
             $result["rows"] = $doctor;
         }
 
-        public function postDoctormanager()
+        public function postDoctormanage()
         {
             $oper = Input::get("oper");
             $status = 0;
@@ -544,7 +544,7 @@
             $result["rows"] = $visit;
         }
 
-        public function postVisitmanager()
+        public function postVisitmanage()
         {
             $oper = Input::get("oper");
             $status = 0;
@@ -632,7 +632,7 @@
             $result["rows"] = $order;
         }
 
-        public function postOrdermanager()
+        public function postOrdermanage()
         {
             App::abort(405, "Method not allowed");
         }
