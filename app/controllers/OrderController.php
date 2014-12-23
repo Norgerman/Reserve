@@ -145,11 +145,46 @@
                 $order = Order::find($order_id);
                 if ($order != null)
                 {
-                    if (!$order->stauts == 2)
+                    if (!$order->status == 2)
                     {
                         throw new PDOException("invaild", -2);
                     }
                     $order->status = 3;
+                    if (!$order->save())
+                    {
+                        throw new PDOException("unknow", -3);
+                    }
+                    DB::commit();
+
+                    return Response::json(array("status" => 1));
+                }
+                else
+                {
+                    throw new PDOException("notfount", -1);
+                }
+            }
+            catch (PDOException $e)
+            {
+                DB::rollback();
+
+                return Response::json(array("status" => $e->getCode(), "error" => $e->getMessage()));
+            }
+        }
+
+        public function postReject()
+        {
+            $order_id = Input::get("order_id");
+            try
+            {
+                DB::begintransaction();
+                $order = Order::find($order_id);
+                if ($order != null)
+                {
+                    if ($order->status == 1 || $order->status == 5)
+                    {
+                        throw new PDOException("invaild", -2);
+                    }
+                    $order->status = 4;
                     if (!$order->save())
                     {
                         throw new PDOException("unknow", -3);
