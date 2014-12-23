@@ -230,6 +230,21 @@
                     {
                         $admin = new Admin();
                         $admin->username = $username;
+                        $admin->password = $password;
+                        $admin->auth = $auth;
+                        if (Input::has("hospital_id"))
+                        {
+                            $admin->hospital_id = Input::get("hospital_id");
+                        }
+                        if ($admin->save())
+                        {
+                            $status = 1;
+                        }
+                        else
+                        {
+                            throw new PDOException("", 2);
+                        }
+                        DB::commit();
                     }
                     else
                     {
