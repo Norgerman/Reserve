@@ -54,7 +54,30 @@
 
         public function getShowhospital()
         {
+            $limit = (int)Input::get("rows");
+            $page = (int)Input::get("page");
+            $startrow = $limit * $page - $limit;
+            if (Session::has("hospagenum"))
+            {
+                $total = Session::get("hospagenum");
+            }
+            else
+            {
+                $count = Hospital::count();
+                $total = (int)($count / $limit) + (($count % $limit) > 0 ? 1 : 0);
+                Session::set("hospagenum", $total);
+            }
+            $hospital = Hospital::skip($startrow)
+                                ->take($limit)
+                                ->get()
+                                ->toArray();
+            $result = array();
+            $result["total"] = $total;
+            $result["page"] = $page;
+            $result["record"] = count($hospital);
+            $result["rows"] = $hospital;
 
+            return Response::json($result);
         }
 
         public function postHospitalmanage()
