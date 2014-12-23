@@ -28,7 +28,7 @@
                                            "doctorname" => $docname,
                                            "hospitalname" => $hosname,
                                            "departmentname" => $depname,
-                                           "date" => $visit->date,
+                                           "date" => $visit->work_date,
                                            "time" => $ord->time,
                                            "status" => $ord->status);
                 }
