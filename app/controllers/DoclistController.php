@@ -18,32 +18,32 @@
             return Response::json($this->Doc($pagenum));
         }
 
-        public function  getIndex()
-        {
-            $hos_id = Input::get("hos_id", 1);
-            Session::set("hos_id", $hos_id);
-            $departmentgroup = Department::where("hospital_id", "=", $hos_id)
-                                         ->get()
-                                         ->groupBy("class_id");
-
-            $firstgroup = $departmentgroup->first();
-            Session::set("department_id", $firstgroup[0]->d_id);
-
-            $departmentgroup = $departmentgroup->toArray();
-
-            foreach ($departmentgroup as $ind => $group)
-            {
-                foreach ($group as $index => $dep)
-                {
-                    $group[$index] = $dep->toArray();
-                }
-                $departmentgroup[$ind] = $group;
-            }
-
-            print_r($this->Doc(1));
-
-            //return View::make("", array("depgroup" => $departmentgroup));
-        }
+//        public function  getIndex()
+//        {
+//            $hos_id = Input::get("hos_id", 1);
+//            Session::set("hos_id", $hos_id);
+//            $departmentgroup = Department::where("hospital_id", "=", $hos_id)
+//                                         ->get()
+//                                         ->groupBy("class_id");
+//
+//            $firstgroup = $departmentgroup->first();
+//            Session::set("department_id", $firstgroup[0]->d_id);
+//
+//            $departmentgroup = $departmentgroup->toArray();
+//
+//            foreach ($departmentgroup as $ind => $group)
+//            {
+//                foreach ($group as $index => $dep)
+//                {
+//                    $group[$index] = $dep->toArray();
+//                }
+//                $departmentgroup[$ind] = $group;
+//            }
+//
+//            print_r($this->Doc(1));
+//
+//            //return View::make("", array("depgroup" => $departmentgroup));
+//        }
 
         public function getDoctortime()
         {

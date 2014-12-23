@@ -40,8 +40,10 @@
                     }
                     Session::set("auth", $admin->auth);
                     Session::set("username", $username);
+                    Session::set("view", $view);
+                    Session::set("values", $values);
 
-                    return Redirect::action("AdminController@Manage", array("view" => $view, "values" => $values, 200));
+                    return Redirect::action("AdminController@getManage");
                 }
                 else
                 {
@@ -54,9 +56,32 @@
             }
         }
 
-        public function postManage($view, $values)
+        public function postLogout()
         {
-            return View::make($view, $values);
+            Session::remove("type");
+            Session::remove("auth");
+            Session::remove("username");
+            Session::remove("view");
+            Session::remove("values");
+            if (Session::has("hos_id"))
+            {
+                Session::remove("hos_id");
+            }
+        }
+
+        public function getManage()
+        {
+            if (Session::has("view"))
+            {
+                $view = Session::get("view");
+                $values = Session::get("values");
+
+                return View::make($view, $values);
+            }
+            else
+            {
+                App::abort(403, "Unauthorized");
+            }
         }
 
         public function getShowhospital()
@@ -167,20 +192,20 @@
             $doctor_id = Input::get("doctor_id");
             $startrow = $limit * $page - $limit;
 
-            $count = Doctor::where("doctor_id", "=", $doctor_id)
-                           ->count();
+            $count = Visit::where("doctor_id", "=", $doctor_id)
+                          ->count();
             $total = (int)($count / $limit) + (($count % $limit) > 0 ? 1 : 0);
 
-            $doctor = Doctor::where("doctor_id", "=", $doctor_id)
-                            ->skip($startrow)
-                            ->take($limit)
-                            ->get()
-                            ->toArray();
+            $visit = Visit::where("doctor_id", "=", $doctor_id)
+                          ->skip($startrow)
+                          ->take($limit)
+                          ->get()
+                          ->toArray();
             $result = array();
             $result["total"] = $total;
             $result["page"] = $page;
             $result["records"] = $count;
-            $result["rows"] = $doctor;
+            $result["rows"] = $visit;
         }
 
         public function postVisitmanager()
@@ -190,7 +215,25 @@
 
         public function getShoworder()
         {
+            $limit = (int)Input::get("rows");
+            $page = (int)Input::get("page");
+            $visit_id = Input::get("visit_id");
+            $startrow = $limit * $page - $limit;
 
+            $count = Order::where("visit_id", "=", $visit_id)
+                          ->count();
+            $total = (int)($count / $limit) + (($count % $limit) > 0 ? 1 : 0);
+
+            $order = Order::where("visit_id", "=", $visit_id)
+                          ->skip($startrow)
+                          ->take($limit)
+                          ->get()
+                          ->toArray();
+            $result = array();
+            $result["total"] = $total;
+            $result["page"] = $page;
+            $result["records"] = $count;
+            $result["rows"] = $order;
         }
 
         public function postOrdermanager()
