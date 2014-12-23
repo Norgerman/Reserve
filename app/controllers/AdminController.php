@@ -14,7 +14,7 @@
             return Response::make($result);
         }
 
-        public function getLogin()
+        public function postLogin()
         {
             $username = Input::get("username");
             $password = Input::get("password");
@@ -28,10 +28,13 @@
                     if ($admin->auth == 1)
                     {
                         Session::set("type", "manager");
+                        Session::set("hos_id", $admin->hospital_id);
+                        $view = "";
                     }
                     else if ($admin->auth == 2)
                     {
                         Session::set("type", "admin");
+                        $view = "";
                     }
                     Session::set("auth", $admin->auth);
                     Session::set("username", $username);
@@ -48,4 +51,55 @@
                 return Redirect::action("AdminController@getIndex", array("result" => "username"));
             }
         }
+
+        public function getShowhospital()
+        {
+
+        }
+
+        public function postHospitalmanage()
+        {
+
+        }
+
+        public function getShowdepartment()
+        {
+
+        }
+
+        public function postDepartmentmanager()
+        {
+
+        }
+
+        public function getShowdoctor()
+        {
+
+        }
+
+        public function postDoctormanager()
+        {
+
+        }
+
+        public function getShowvisit()
+        {
+
+        }
+
+        public function postVisitmanager()
+        {
+
+        }
+
+        public function getShoworder()
+        {
+            //$str=date("Y-m-d",strtotime());
+        }
+
+        public function postOrdermanager()
+        {
+
+        }
+
     }

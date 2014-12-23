@@ -2,7 +2,7 @@
 <?php
 $positVar = json_encode(array("positX"=>116.403884, "positY"=>39.914887, "positName"=>$hosdetail['hosinfo']['name'], "positDes"=>$hosdetail['hosinfo']['address'], "positTel"=>$hosdetail['hosinfo']['tel']));
 ?>
-<script type="text/javascript" src="http://api.map.baidu.com/api?v=1.5&ak=2b866a6daac9014292432d81fe9b47e3"></script>
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=1.5&ak=82GWUyPdpxV2PcqhbeSBzZ7a"></script>
 <script src="http://d1.lashouimg.com/static/js/release/jquery-1.4.2.min.js" type="text/javascript"></script>
 
 <div class="panel panel-primary mainpage">

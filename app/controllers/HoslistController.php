@@ -80,6 +80,13 @@
                 Session::set("addr", $addr);
             }
 
+            if (!Input::ajax())
+            {
+                $addr = "北京市";
+                $isnew = true;
+                Session::set("addr", $addr);
+            }
+
             if (Input::has("addr"))
             {
                 $addr = Input::get("addr");
