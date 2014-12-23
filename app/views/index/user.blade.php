@@ -14,6 +14,10 @@
         <div class="user-title">
             <span class="glyphicon glyphicon-user"></span> 您已登陆
         </div>
+        <div class="hr"></div>
+        <div class="user-body row">
+            <img src="{{asset('images/header/1.jpg')}}" class="col-sm-offset-1 col-sm-10 img-circle img-responsive">
+        </div>
     </div>
 
 </div>
