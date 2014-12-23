@@ -67,6 +67,8 @@
             {
                 Session::remove("hos_id");
             }
+
+            return Redirect::action("AdminController@getIndex", array("result" => "none"));
         }
 
         public function getManage()
@@ -116,15 +118,18 @@
 
         public function postHospitalmanage()
         {
+            $oper = Input::get("oper");
+            if ($oper == "edit")
+            {
 
+            }
+            else if($oper == "del")
+            {
+
+            }
         }
 
         public function getShowdepartment()
-        {
-
-        }
-
-        public function postDepartmentmanager()
         {
             $limit = (int)Input::get("rows");
             $page = (int)Input::get("page");
@@ -155,6 +160,11 @@
             $result["rows"] = $department;
 
             return Response::json($result);
+        }
+
+        public function postDepartmentmanager()
+        {
+
         }
 
         public function getShowdoctor()
