@@ -1,10 +1,10 @@
 {{--{{HTML::style('lib/bootstrap/css/bootstrap.min.css')}}--}}
 {{--{{HTML::script('lib/jquery.js')}}--}}
 {{--{{HTML::script('lib/bootstrap/js/bootstrap.min.js')}}--}}
-<div class="slider-box col-sm-6">
+<div class="slider-box col-sm-6 clearfix">
     <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
       <!-- Indicators -->
-      <ol class="carousel-indicators" style="bottom: -10px;">
+      <ol class="carousel-indicators clearfix" style="bottom: -10px;">
         <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
         <li data-target="#carousel-example-generic" data-slide-to="1"></li>
         <li data-target="#carousel-example-generic" data-slide-to="2"></li>
