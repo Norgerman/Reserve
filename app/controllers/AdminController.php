@@ -421,6 +421,8 @@
             $result["page"] = $page;
             $result["records"] = $count;
             $result["rows"] = $doctor;
+
+            return Response::json($result);
         }
 
         public function postDoctormanage()
@@ -542,6 +544,8 @@
             $result["page"] = $page;
             $result["records"] = $count;
             $result["rows"] = $visit;
+
+            return Response::json($result);
         }
 
         public function postVisitmanage()
@@ -619,7 +623,8 @@
                 $sord = "asc";
             }
 
-            $order = Order::where("visit_id", "=", $visit_id)
+            $order = Order::select(array("o_id", "owner_id", "time", "status"))
+                          ->where("visit_id", "=", $visit_id)
                           ->skip($startrow)
                           ->take($limit)
                           ->orderBy("o_id", $sord)
@@ -630,6 +635,8 @@
             $result["page"] = $page;
             $result["records"] = $count;
             $result["rows"] = $order;
+
+            return Response::json($result);
         }
 
         public function postOrdermanage()
