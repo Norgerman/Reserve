@@ -28,7 +28,7 @@
                     $price = $hospital->price;
                     $depname = Department::find($ord->department_id)->name;
                     $order[$index] = array("o_id" => $ord->o_id,
-                                           "prive" => $price,
+                                           "price" => $price,
                                            "doctorname" => $docname,
                                            "hospitalname" => $hosname,
                                            "departmentname" => $depname,
