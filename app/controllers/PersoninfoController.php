@@ -20,13 +20,15 @@
                 $userinfo = $user->toArray();
                 foreach ($user->orders as $index => $ord)
                 {
-                    $docname = $ord->doctor->name;
+                    $visit = $ord->visit;
+                    $docname = $visit->doctor->name;
                     $hosname = Hospital::find($ord->hospital_id)->name;
                     $depname = Department::find($ord->department_id)->name;
                     $order[$index] = array("o_id" => $ord->o_id,
                                            "doctorname" => $docname,
                                            "hospitalname" => $hosname,
                                            "departmentname" => $depname,
+                                           "date" => $visit->date,
                                            "time" => $ord->time,
                                            "status" => $ord->status);
                 }
