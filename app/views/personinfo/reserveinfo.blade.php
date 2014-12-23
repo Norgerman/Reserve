@@ -16,6 +16,7 @@
         </div>
     </div>
 </div>
+
 <div class="col-sm-9">
     <div class="user-info col-sm-12 main-div">
         <div class="user-header">
@@ -83,19 +84,20 @@
 </div>
 
 
-<<div class="modal fade" id="pay-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+<div class="modal fade" id="pay-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+                <h4 class="modal-title" id="myModalLabel">付款</h4>
             </div>
             <div class="modal-body">
-                ...
+                <input type="text" class="form-control" placeholder="淘宝用户名">
+                <input type="password" class="form-control" placeholder="密码">
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-primary">付款</button>
             </div>
         </div>
     </div>

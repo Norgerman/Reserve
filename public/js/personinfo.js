@@ -25,20 +25,24 @@ $(function () {
     $(".btn-pay").click(function () {
         var pay = $(this).attr('money');
         var oid = $(this).attr('oid');
+        $("#btn-pay").attr('oid',oid).attr('money',pay);
         $("#pay-modal").modal();
-        //$.ajax('/order/pay',{
-        //    type: 'post',
-        //    data: {order_id: oid},
-        //    dataType: 'json',
-        //    success: function(data){
-        //        if(data.status == 1){
-        //            alert('您已成功付款!');
-        //            window.location="/personinfo/index";
-        //        }
-        //    },
-        //    error: function(){
-        //        alert('error');
-        //    }
-        //});
+    });
+    $("#btn-pay").click(function () {
+        var oid = $(this).attr('oid');
+        $.ajax('/order/pay',{
+            type: 'post',
+            data: {order_id: oid},
+            dataType: 'json',
+            success: function(data){
+                if(data.status == 1){
+                    alert('您已成功付款!');
+                    window.location="/personinfo/index";
+                }
+            },
+            error: function(){
+                alert('error');
+            }
+        });
     });
 });
