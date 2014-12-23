@@ -237,6 +237,10 @@
                         $status = 2;
                     }
                 }
+                else
+                {
+                    $status = 3;
+                }
             }
             else if ($oper == "add")
             {
@@ -251,6 +255,7 @@
                     if ($user->save())
                     {
                         $admin = new Admin();
+                        $admin->id = $user->id;
                         $admin->username = $username;
                         $admin->password = $password;
                         $admin->auth = $auth;
@@ -341,17 +346,24 @@
                 $description = Input::get("description");
                 $tel = Input::get("tel");
                 $department = Department::find($d_id);
-                $department->class_id = $class_id;
-                $department->name = $name;
-                $department->description = $description;
-                $department->tel = $tel;
-                if ($department->save())
+                if ($department)
                 {
-                    $status = 1;
+                    $department->class_id = $class_id;
+                    $department->name = $name;
+                    $department->description = $description;
+                    $department->tel = $tel;
+                    if ($department->save())
+                    {
+                        $status = 1;
+                    }
+                    else
+                    {
+                        $status = 2;
+                    }
                 }
                 else
                 {
-                    $status = 2;
+                    $status = 3;
                 }
             }
             else if ($oper == "add")
@@ -396,8 +408,9 @@
             {
                 $sord = "asc";
             }
-
-            $doctor = Doctor::where("department_id", "=", $department_id)
+            Session::set("dep_id", $department_id);
+            $doctor = Doctor::select(array("id", "username", "password", "name", "description", "auth", "tel"))
+                            ->where("department_id", "=", $department_id)
                             ->skip($startrow)
                             ->take($limit)
                             ->orderBy("id", $sord)
@@ -412,7 +425,87 @@
 
         public function postDoctormanager()
         {
+            $oper = Input::get("oper");
+            $status = 0;
+            if ($oper == "edit")
+            {
+                $password = hash("sha256", trim((string)Input::get("password")));
+                $auth = Input::get("auth");
+                $username = Input::get("username");
+                $name = Input::get("name");
+                $tel = Input::get("tel");
+                $id = Input::get("id");
+                $description = Input::get("description");
+                $doctor = Doctor::find($id);
+                if ($doctor)
+                {
+                    $doctor->password = $password;
+                    $doctor->auth = $auth;
+                    $doctor->username = $username;
+                    $doctor->name = $name;
+                    $doctor->tel = $tel;
+                    $doctor->description = $description;
+                    if ($doctor->save())
+                    {
+                        $status = 1;
+                    }
+                    else
+                    {
+                        $status = 2;
+                    }
+                }
+                else
+                {
+                    $status = 3;
+                }
+            }
+            else if ($oper == "add")
+            {
+                DB::begintransaction();
+                try
+                {
+                    $password = hash("sha256", trim((string)Input::get("password")));
+                    $auth = Input::get("auth");
+                    $username = Input::get("username");
+                    $name = Input::get("name");
+                    $tel = Input::get("tel");
+                    $description = Input::get("description");
+                    $user = new User();
+                    $user->type = 2;
+                    if ($user->save())
+                    {
+                        $doctor = new Doctor();
+                        $doctor->username = $username;
+                        $doctor->password = $password;
+                        $doctor->auth = $auth;
+                        $doctor->id = $user->id;
+                        $doctor->name = $name;
+                        $doctor->tel = $tel;
+                        $doctor->description = $description;
+                        $doctor->department_id = Session::get("dep_id");
+                        if ($doctor->save())
+                        {
+                            $status = 1;
+                        }
+                        else
+                        {
+                            throw new PDOException("", 2);
+                        }
+                        DB::commit();
+                    }
+                    else
+                    {
+                        throw new PDOException("", 2);
+                    }
+                }
+                catch (PDOException $e)
+                {
+                    $status = $e->getCode();
+                    DB::rollback();
+                }
+            }
 
+            return Response::json(array("status" => $status));
         }
 
         public function getShowvisit()
@@ -426,6 +519,8 @@
                           ->count();
             $total = (int)($count / $limit) + (($count % $limit) > 0 ? 1 : 0);
 
+            Session::set("doc_id", $doctor_id);
+
             if (Input::get("sord"))
             {
                 $sord = Input::get("sord");
@@ -435,7 +530,8 @@
                 }
             }
 
-            $visit = Visit::where("doctor_id", "=", $doctor_id)
+            $visit = Visit::select(array("v_id", "work_date", "am", "pm", "ng"))
+                          ->where("doctor_id", "=", $doctor_id)
                           ->skip($startrow)
                           ->take($limit)
                           ->orderBy("v_id", $sord)
@@ -450,7 +546,59 @@
 
         public function postVisitmanager()
         {
+            $oper = Input::get("oper");
+            $status = 0;
+            if ($oper == "edit")
+            {
+                $v_id = Input::get("v_id");
+                $work_date = Input::get("work_date");
+                $am = Input::get("am");
+                $pm = Input::get("pm");
+                $ng = Input::get("ng");
+                $visit = Visit::find($v_id);
+                if ($visit)
+                {
+                    $visit->work_date = $work_date;
+                    $visit->am = $am;
+                    $visit->pm = $pm;
+                    $visit->ng = $ng;
+                    if ($visit->save())
+                    {
+                        $status = 1;
+                    }
+                    else
+                    {
+                        $status = 2;
+                    }
+                }
+                else
+                {
+                    $status = 3;
+                }
+            }
+            else if ($oper == "add")
+            {
+                $work_date = Input::get("work_date");
+                $am = Input::get("am");
+                $pm = Input::get("pm");
+                $ng = Input::get("ng");
+                $visit = new Visit();
+                $visit->doctor_id = Session::get("doc_id");
+                $visit->work_date = $work_date;
+                $visit->am = $am;
+                $visit->pm = $pm;
+                $visit->ng = $ng;
+                if ($visit->save())
+                {
+                    $status = 1;
+                }
+                else
+                {
+                    $status = 3;
+                }
+            }
 
+            return Response::json(array("status" => $status));
         }
 
         public function getShoworder()
