@@ -7,7 +7,7 @@
 .main-content > div {
   padding-left: 0px;
 }
-.main-content > div > div {
+.main-content > div .main-div {
   background-color: #ffffff;
 }
 .hr {
