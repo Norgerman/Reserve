@@ -11,7 +11,7 @@
     {
         public function getIndex($result = "none")
         {
-            return Response::make("admin.index", array("result" => $result));
+            return View::make("admin.index", array("result" => $result));
         }
 
         public function postLogin()
