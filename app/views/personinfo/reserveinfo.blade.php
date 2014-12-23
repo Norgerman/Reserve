@@ -1,6 +1,6 @@
 {{--Created by vvliebe on 2014/12/23.--}}
 <div class="col-sm-3">
-    <div class="col-sm-12">
+    <div class="col-sm-12 main-div">
         <div class="user-header">
             <span class="text-primary title"> 信用等级 </span>
         </div>
@@ -17,7 +17,7 @@
     </div>
 </div>
 <div class="col-sm-9">
-    <div class="user-info col-sm-12">
+    <div class="user-info col-sm-12 main-div">
         <div class="user-header">
             <span class="text-primary title"> 预约列表 </span>
         </div>
@@ -83,19 +83,20 @@
 </div>
 
 
-<div id="pay-modal" class="modal fade modal-sm">
+<<div class="modal fade" id="pay-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                <h4 class="modal-title">付款</h4>
+                <h4 class="modal-title" id="myModalLabel">Modal title</h4>
             </div>
             <div class="modal-body">
+                ...
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-                <button type="button" class="btn btn-primary">付款</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
             </div>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
+        </div>
+    </div>
+</div>
