@@ -1,5 +1,5 @@
  <?php
- $arr = array(array("首页","/"),array("医院","/hoslist/index"),array("科室",""),array("在线咨询",""),array("个人信息","/personinfo/index"));
+ $arr = array(array("首页","/"),array("预约","/hoslist/index"),array("在线咨询",""),array("个人信息","/personinfo/index"));
 
  ?>
 
@@ -14,7 +14,7 @@
                     <div class="input-area">
                         <input type="text" class="search-text" placeholder="搜索">
                         <button class="search-btn">
-                            <span class="glyphicon glyphicon-search"></span>
+                            <span class="glyphicon glyphicon-search" style="color:#428698"></span>
                         </button>
                     </div>
                 </form>
