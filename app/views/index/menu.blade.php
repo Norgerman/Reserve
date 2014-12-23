@@ -1,5 +1,5 @@
  <?php
- $arr = array(array("首页","/"),array("医院","/hoslist/index"),array("科室",""),array("在线咨询",""),array("个人信息",""));
+ $arr = array(array("首页","/"),array("医院","/hoslist/index"),array("科室",""),array("在线咨询",""),array("个人信息","/personinfo/index"));
 
  ?>
 
