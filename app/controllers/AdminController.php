@@ -92,14 +92,19 @@
             $limit = (int)Input::get("rows");
             $page = (int)Input::get("page");
             $startrow = $limit * $page - $limit;
-            if (Input::get("sord"))
+
+            $sord = Input::get("sord");
+            if ($sord == "" || $sord == null)
             {
-                $sord = Input::get("sord");
-                if ($sord == "" || $sord == null)
-                {
-                    $sord = "asc";
-                }
+                $sord = "asc";
             }
+
+            $sidx = Input::get("sidx");
+            if ($sidx == null || $sidx == "")
+            {
+                $sidx = "h_id";
+            }
+
             if (Session::has("hospagenum"))
             {
                 $total = Session::get("hospagenum");
@@ -115,7 +120,7 @@
             $hospital = Hospital::select(array("h_id", "name", "price", "address", "province", "rank", "tel"))
                                 ->skip($startrow)
                                 ->take($limit)
-                                ->orderBy("h_id", $sord)
+                                ->orderBy($sidx, $sord)
                                 ->get()
                                 ->toArray();
             $result = array();
@@ -185,14 +190,13 @@
                 Session::set("adminpagenum", $total);
                 Session::set("admincount", $count);
             }
-            if (Input::get("sord"))
+
+            $sord = Input::get("sord");
+            if ($sord == "" || $sord == null)
             {
-                $sord = Input::get("sord");
-                if ($sord == "" || $sord == null)
-                {
-                    $sord = "asc";
-                }
+                $sord = "asc";
             }
+
             $admin = Admin::skip($startrow)
                           ->take($limit)
                           ->orderBy("id", $sord)
@@ -386,14 +390,13 @@
             $count = Doctor::where("department_id", "=", $department_id)
                            ->count();
             $total = (int)($count / $limit) + (($count % $limit) > 0 ? 1 : 0);
-            if (Input::get("sord"))
+
+            $sord = Input::get("sord");
+            if ($sord == "" || $sord == null)
             {
-                $sord = Input::get("sord");
-                if ($sord == "" || $sord == null)
-                {
-                    $sord = "asc";
-                }
+                $sord = "asc";
             }
+
             $doctor = Doctor::where("department_id", "=", $department_id)
                             ->skip($startrow)
                             ->take($limit)
@@ -431,6 +434,7 @@
                     $sord = "asc";
                 }
             }
+
             $visit = Visit::where("doctor_id", "=", $doctor_id)
                           ->skip($startrow)
                           ->take($limit)
@@ -460,14 +464,13 @@
                           ->count();
             $total = (int)($count / $limit) + (($count % $limit) > 0 ? 1 : 0);
 
-            if (Input::get("sord"))
+
+            $sord = Input::get("sord");
+            if ($sord == "" || $sord == null)
             {
-                $sord = Input::get("sord");
-                if ($sord == "" || $sord == null)
-                {
-                    $sord = "asc";
-                }
+                $sord = "asc";
             }
+
             $order = Order::where("visit_id", "=", $visit_id)
                           ->skip($startrow)
                           ->take($limit)
