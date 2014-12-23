@@ -74,7 +74,7 @@
                     <div class="panel-footer clearfix">
                         <div style="float: right;word-spacing: 20px;">
                             <a class="btn btn-primary">打印</a>
-                            <a class="btn-pay btn btn-primary" money="@{{$order['pay']}}" oid="{{$order['o_id']}}" @if($order['status']!=2) disabled @endif>付款</a>
+                            <a class="btn-pay btn btn-primary" money="{{$order['price']}}" oid="{{$order['o_id']}}" @if($order['status']!=2) disabled @endif>付款</a>
                         </div>
                     </div>
                 </div>
@@ -97,7 +97,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-                <button type="button" class="btn btn-primary">付款</button>
+                <button type="button" id="btn-pay" class="btn btn-primary">付款</button>
             </div>
         </div>
     </div>
