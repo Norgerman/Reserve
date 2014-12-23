@@ -92,6 +92,14 @@
             $limit = (int)Input::get("rows");
             $page = (int)Input::get("page");
             $startrow = $limit * $page - $limit;
+            if (Input::get("sord"))
+            {
+                $sord = Input::get("sord");
+                if ($sord == "" || $sord == null)
+                {
+                    $sord = "asc";
+                }
+            }
             if (Session::has("hospagenum"))
             {
                 $total = Session::get("hospagenum");
@@ -107,6 +115,7 @@
             $hospital = Hospital::select(array("h_id", "name", "price", "address", "province", "rank", "tel"))
                                 ->skip($startrow)
                                 ->take($limit)
+                                ->orderBy("h_id", $sord)
                                 ->get()
                                 ->toArray();
             $result = array();
@@ -176,8 +185,17 @@
                 Session::set("adminpagenum", $total);
                 Session::set("admincount", $count);
             }
+            if (Input::get("sord"))
+            {
+                $sord = Input::get("sord");
+                if ($sord == "" || $sord == null)
+                {
+                    $sord = "asc";
+                }
+            }
             $admin = Admin::skip($startrow)
                           ->take($limit)
+                          ->orderBy("id", $sord)
                           ->get()
                           ->toArray();
             $result = array();
@@ -234,7 +252,11 @@
                         $admin->auth = $auth;
                         if (Input::has("hospital_id"))
                         {
-                            $admin->hospital_id = Input::get("hospital_id");
+                            $hospital_id = Input::get("hospital_id");
+                            if ($hospital_id != "")
+                            {
+                                $admin->hospital_id = (int)$hospital_id;
+                            }
                         }
                         if ($admin->save())
                         {
@@ -280,9 +302,18 @@
                 Session::set("deppagenum", $total);
                 Session::set("depcount", $count);
             }
+            if (Input::get("sord"))
+            {
+                $sord = Input::get("sord");
+                if ($sord == "" || $sord == null)
+                {
+                    $sord = "asc";
+                }
+            }
             $department = Department::where("hospital_id", "=", $hospital_id)
                                     ->skip($startrow)
                                     ->take($limit)
+                                    ->orderBy("d_id", $sord)
                                     ->get()
                                     ->toArray();
             $result = array();
@@ -296,7 +327,53 @@
 
         public function postDepartmentmanager()
         {
-            //TODO:
+            $oper = Input::get("oper");
+            $status = 0;
+            if ($oper == "edit")
+            {
+                $d_id = Input::get("d_id");
+                $class_id = Input::get("class_id");
+                $name = Input::get("name");
+                $description = Input::get("description");
+                $tel = Input::get("tel");
+                $department = Department::find($d_id);
+                $department->class_id = $class_id;
+                $department->name = $name;
+                $department->description = $description;
+                $department->tel = $tel;
+                if ($department->save())
+                {
+                    $status = 1;
+                }
+                else
+                {
+                    $status = 2;
+                }
+            }
+            else if ($oper == "add")
+            {
+                $hospital_id = Session::get("hos_id");
+                $department = new Department();
+                $class_id = Input::get("class_id");
+                $name = Input::get("name");
+                $description = Input::get("description");
+                $tel = Input::get("tel");
+                $department->class_id = $class_id;
+                $department->name = $name;
+                $department->description = $description;
+                $department->tel = $tel;
+                $department->hospital_id = $hospital_id;
+                if ($department->save())
+                {
+                    $status = 1;
+                }
+                else
+                {
+                    $status = 2;
+                }
+            }
+
+            return Response::json(array("status" => $status));
         }
 
         public function getShowdoctor()
@@ -309,10 +386,18 @@
             $count = Doctor::where("department_id", "=", $department_id)
                            ->count();
             $total = (int)($count / $limit) + (($count % $limit) > 0 ? 1 : 0);
-
+            if (Input::get("sord"))
+            {
+                $sord = Input::get("sord");
+                if ($sord == "" || $sord == null)
+                {
+                    $sord = "asc";
+                }
+            }
             $doctor = Doctor::where("department_id", "=", $department_id)
                             ->skip($startrow)
                             ->take($limit)
+                            ->orderBy("id", $sord)
                             ->get()
                             ->toArray();
             $result = array();
@@ -338,9 +423,18 @@
                           ->count();
             $total = (int)($count / $limit) + (($count % $limit) > 0 ? 1 : 0);
 
+            if (Input::get("sord"))
+            {
+                $sord = Input::get("sord");
+                if ($sord == "" || $sord == null)
+                {
+                    $sord = "asc";
+                }
+            }
             $visit = Visit::where("doctor_id", "=", $doctor_id)
                           ->skip($startrow)
                           ->take($limit)
+                          ->orderBy("v_id", $sord)
                           ->get()
                           ->toArray();
             $result = array();
@@ -366,9 +460,18 @@
                           ->count();
             $total = (int)($count / $limit) + (($count % $limit) > 0 ? 1 : 0);
 
+            if (Input::get("sord"))
+            {
+                $sord = Input::get("sord");
+                if ($sord == "" || $sord == null)
+                {
+                    $sord = "asc";
+                }
+            }
             $order = Order::where("visit_id", "=", $visit_id)
                           ->skip($startrow)
                           ->take($limit)
+                          ->orderBy("o_id", $sord)
                           ->get()
                           ->toArray();
             $result = array();
@@ -380,7 +483,7 @@
 
         public function postOrdermanager()
         {
-
+            App::abort(405, "Method not allowed");
         }
 
     }
