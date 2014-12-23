@@ -54,7 +54,7 @@
             }
         }
 
-        public function Manage($view, $values)
+        public function postManage($view, $values)
         {
             return View::make($view, $values);
         }
@@ -162,7 +162,25 @@
 
         public function getShowvisit()
         {
+            $limit = (int)Input::get("rows");
+            $page = (int)Input::get("page");
+            $doctor_id = Input::get("doctor_id");
+            $startrow = $limit * $page - $limit;
 
+            $count = Doctor::where("doctor_id", "=", $doctor_id)
+                           ->count();
+            $total = (int)($count / $limit) + (($count % $limit) > 0 ? 1 : 0);
+
+            $doctor = Doctor::where("doctor_id", "=", $doctor_id)
+                            ->skip($startrow)
+                            ->take($limit)
+                            ->get()
+                            ->toArray();
+            $result = array();
+            $result["total"] = $total;
+            $result["page"] = $page;
+            $result["records"] = $count;
+            $result["rows"] = $doctor;
         }
 
         public function postVisitmanager()
