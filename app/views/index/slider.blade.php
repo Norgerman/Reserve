@@ -4,7 +4,7 @@
 <div class="slider-box col-sm-6">
     <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
       <!-- Indicators -->
-      <ol class="carousel-indicators">
+      <ol class="carousel-indicators" style="bottom: -10px;">
         <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
         <li data-target="#carousel-example-generic" data-slide-to="1"></li>
         <li data-target="#carousel-example-generic" data-slide-to="2"></li>
@@ -13,22 +13,22 @@
       <!-- Wrapper for slides -->
       <div class="carousel-inner" role="listbox">
         <div class="item active">
-          <img src="{{asset("images/slider1.jpg")}}" alt="123">
-          <div class="carousel-caption">
-            hello
-          </div>
+          <img src="{{asset("images/slider1.jpg")}}" class="img-responsive" style="width: 100%;" alt="123">
+          {{--<div class="carousel-caption">--}}
+            {{--hello--}}
+          {{--</div>--}}
         </div>
         <div class="item">
-          <img src="{{asset("images/slider2.jpg")}}" alt="456">
-          <div class="carousel-caption">
-            hello2
-          </div>
+          <img src="{{asset("images/slider2.jpg")}}" class="img-responsive" style="width: 100%;" alt="456">
+          {{--<div class="carousel-caption">--}}
+            {{--hello2--}}
+          {{--</div>--}}
         </div>
         <div class="item">
-          <img src="{{asset("images/slider3.jpg")}}" alt="456">
-          <div class="carousel-caption">
-            hello3
-          </div>
+          <img src="{{asset("images/slider3.jpg")}}" class="img-responsive" style="width: 100%;" alt="456">
+          {{--<div class="carousel-caption">--}}
+            {{--hello3--}}
+          {{--</div>--}}
         </div>
       </div>
 
