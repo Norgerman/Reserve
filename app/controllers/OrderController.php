@@ -50,6 +50,38 @@
             }
         }
 
+        public function postPrint()
+        {
+            if (Session::has("id"))
+            {
+                $id = Session::get("id");
+                $user = Registeruser::find($id);
+                $order_id = Input::get("order_id");
+                $ord = Order::find($order_id);
+                $visit = $ord->visit;
+                $docname = $visit->doctor->name;
+                $hospital = Hospital::find($ord->hospital_id);
+                $hosname = $hospital->name;
+                $price = $hospital->price;
+                $depname = Department::find($ord->department_id)->name;
+                $order = array("o_id" => $ord->o_id,
+                               "price" => $price,
+                               "doctorname" => $docname,
+                               "hospitalname" => $hosname,
+                               "departmentname" => $depname,
+                               "date" => $visit->work_date,
+                               "time" => $ord->time,
+                               "status" => $ord->status);
+
+                return View::make("", array("userinfo" => $user->toArray(),
+                                            "orderinfo" => $order));
+            }
+            else
+            {
+                App::abort(403, "Unauthorized");
+            }
+        }
+
         public function postOrder()
         {
             if (Session::has("id"))

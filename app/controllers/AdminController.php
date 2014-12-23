@@ -11,7 +11,7 @@
     {
         public function getIndex($result = "none")
         {
-            return Response::make($result);
+            return Response::make("admin.index", array("result" => $result));
         }
 
         public function postLogin()
@@ -20,6 +20,7 @@
             $password = Input::get("password");
             $admin = Admin::where("username", "=", $username)
                           ->first();
+            $values = array();
             if ($admin !== null)
             {
                 if ($admin->password == hash("sha256", $password))
@@ -29,17 +30,17 @@
                     {
                         Session::set("type", "manager");
                         Session::set("hos_id", $admin->hospital_id);
-                        $view = "";
+                        $view = "admin.manager";
                     }
                     else if ($admin->auth == 2)
                     {
                         Session::set("type", "admin");
-                        $view = "";
+                        $view = "admin.admin";
                     }
                     Session::set("auth", $admin->auth);
                     Session::set("username", $username);
 
-                    return Redirect::action("AdminController@getIndex", array("result" => "succeed"));
+                    return View::make($view);
                 }
                 else
                 {
