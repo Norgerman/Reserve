@@ -118,7 +118,7 @@
             height: '400px',
 
             // 编辑用地址
-            editurl: "/admin/hospitalmanager",
+            editurl: "/admin/hospitalmanage",
 
             // 标题
             caption: "医院管理表格",
@@ -134,9 +134,9 @@
                     delOptions:{recreateForm: true, beforeShowForm:beforeDeleteCallback}
                 }
                 },
-                {name:'h_id',index:'h_id', width:60,sortable:false, editable: false, key :true},
+                {name:'h_id',index:'h_id', width:60,sortable:true, editable: false, key :true},
                 {name:'name',index:'name',width:210,sortable:false, editable:true},
-                {name:'price',index:'price', width:60, sortable:false,editable: true},
+                {name:'price',index:'price', width:60, sorttype:"int", sortable:true,editable: true},
                 {name:'address',index:'address', width:230,sortable:false,editable: true},
                 {name:'province',index:'province', width:80, sortable:false,editable: true},
                 {name:'rank',index:'rank', width:80,sortable:false, editable: true},
@@ -178,7 +178,7 @@
             height: '400px',
 
             // 编辑用地址
-            editurl: "/admin/adminmanager",
+            editurl: "/admin/adminmanage",
 
             // 标题
             caption: "管理员信息表格",
@@ -194,7 +194,7 @@
                     delOptions:{recreateForm: true, beforeShowForm:beforeDeleteCallback}
                 }
                 },
-                {name:'id',index:'id', width:60,sortable:false, editable: false, key :true},
+                {name:'id',index:'id', width:60,sortable:true, editable: false, key :true},
                 {name:'username',index:'username',width:210,sortable:false, editable:true},
                 {name:'password',index:'password', width:60, sortable:false,editable: true},
                 {name:'auth',index:'auth', width:230,sortable:false,editable: true},
