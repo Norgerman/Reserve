@@ -53,7 +53,7 @@
 
                 $order = array();
 
-                array_merge($order, $result);
+                $order = array_merge($order, $result);
             }
 
             return View::make('personinfo.index', array("logininfo" => parent::getLogininfo(),
