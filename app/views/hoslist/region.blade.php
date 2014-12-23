@@ -61,6 +61,19 @@
                 }
             });
         }
+        vm.clickzan = function (hid,index) {
+            $.ajax('/hoslist/zan',{
+                type: 'post',
+                data: {hospital_id: hid},
+                dataType: 'json',
+                success: function (data) {
+                    $(".media-li:nth-child("+(index+1)+")").children('div').children('.zan-div').text(data.zan);
+                },
+                error: function () {
+                    alert('error');
+                }
+            });
+        }
         vm.gopage = function (num) {
             if(num==vm.pagenum)
                 return;
@@ -96,7 +109,7 @@
         <h4 class="media-title">选择医院 <span class="glyphicon glyphicon-map-marker" style="color: red"></span><a href="#">@{{province}}</a></h4>
         <ul class="media-list">
             {{--@foreach($hosinfo['hosinfo']['list'] as $index => $hospital)--}}
-                <li class="media" ms-repeat-item="hosinfo.hosinfo.list" data-repeat-rendered="rendered">
+                <li class="media media-li" ms-repeat-item="hosinfo.hosinfo.list" data-repeat-rendered="rendered">
                     <div class="media-left">
                         <img src="{{asset('images/hoslist/1.jpg')}}" class="media-object" alt="123"/>
                     </div>
@@ -109,8 +122,8 @@
                         </div>
                     </div>
                     <div class="media-right col-sm-2 zan">
-                        <a href="#"><span class="glyphicon glyphicon-thumbs-up text-primary"></span></a>
-                        <div class="bg-primary col-sm-6 col-sm-offset-3" style="font-size: medium;">@{{item.zan}}</div>
+                        <a href="javascript:void(0);" ms-click="clickzan(item.h_id,$index)"><span class="glyphicon glyphicon-thumbs-up text-primary"></span></a>
+                        <div class="zan-div bg-primary col-sm-6 col-sm-offset-3" style="font-size: medium;">@{{item.zan}}</div>
                     </div>
                 </li>
             {{--@endforeach--}}
