@@ -106,7 +106,7 @@
             $start_num = $pagenum * $this->docnum_perpage - $this->docnum_perpage;
             $isnew = false;
             $startdate = date("Y-m-d", strtotime("+1 day"));
-            $enddate = date("Y-m-d", strtotime("+8 days"));
+            $enddate = date("Y-m-d", strtotime("+7 days"));
             $res = array();
             $result = array();
             $doclist = array();
@@ -154,7 +154,7 @@
                     $work_date = $visit->work_date;
 
                     return $work_date >= $startdate && $work_date <= $enddate;
-                });
+                })->sortBy("work_date");
                 $i = 0;
                 foreach ($visits as $visit)
                 {
