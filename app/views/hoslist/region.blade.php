@@ -111,7 +111,7 @@
             {{--@foreach($hosinfo['hosinfo']['list'] as $index => $hospital)--}}
                 <li class="media media-li" ms-repeat-item="hosinfo.hosinfo.list" data-repeat-rendered="rendered">
                     <div class="media-left">
-                        <img src="{{asset('images/hoslist/1.jpg')}}" class="media-object" alt="123"/>
+                        <img style="width:200px;height: 120px;" ms-src="{{asset('images/hoslist/')}}/@{{item.h_id}}.jpg" class="media-object" alt="123"/>
                     </div>
                     <div class="media-body">
                         <div class="media-heading"><h4 style="margin:0;word-spacing: 10px;"><a ms-href="/detail/index?hospital_id=@{{item.h_id}}">@{{item.name}}</a> <small>@{{item.rank}}</small></h4></div>

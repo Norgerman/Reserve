@@ -50,7 +50,7 @@
             }
         }
 
-        public function postPrint()
+        public function getPrint()
         {
             if (Session::has("id"))
             {
@@ -73,8 +73,8 @@
                                "time" => $ord->time,
                                "status" => $ord->status);
 
-                return View::make("", array("userinfo" => $user->toArray(),
-                                            "orderinfo" => $order));
+                return View::make("personinfo.print", array("userinfo" => $user->toArray(),
+                                                            "orderinfo" => $order));
             }
             else
             {

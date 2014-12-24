@@ -73,7 +73,7 @@
                     </table>
                     <div class="panel-footer clearfix">
                         <div style="float: right;word-spacing: 20px;">
-                            <a class="btn btn-primary">打印</a>
+                            <a class="btn btn-primary btn-print" oid="{{$order['o_id']}}">打印</a>
                             <a class="btn-pay btn btn-primary" money="{{$order['price']}}" oid="{{$order['o_id']}}" @if($order['status']!=2) disabled @endif>付款</a>
                         </div>
                     </div>

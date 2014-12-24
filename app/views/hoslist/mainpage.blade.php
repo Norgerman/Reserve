@@ -12,7 +12,7 @@ $positVar = json_encode(array("positX"=>$hosdetail['hosinfo']['lat'], "positY"=>
     <div class="panel-body">
         <div class="media row">
             <div CLASS="media-left col-sm-2">
-                <img src="{{asset('images/hoslist/1.jpg')}}" class="img-thumbnail">
+                <img  style="width:200px;height: 120px;" src="{{asset('images/hoslist/')}}/{{$hosdetail['hosinfo']['h_id']}}.jpg" class="img-thumbnail">
             </div>
             <div class="media-body col-sm-5">
                 <div class="media-heading"><h4 style="margin:0;word-spacing: 10px;"><a href="#">{{$hosdetail['hosinfo']['name']}}</a> <small>{{$hosdetail['hosinfo']['rank']}}</small></h4></div>

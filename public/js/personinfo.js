@@ -28,6 +28,7 @@ $(function () {
         $("#btn-pay").attr('oid',oid).attr('money',pay);
         $("#pay-modal").modal();
     });
+
     $("#btn-pay").click(function () {
         var oid = $(this).attr('oid');
         $.ajax('/order/pay',{
@@ -45,4 +46,10 @@ $(function () {
             }
         });
     });
+
+    $(".btn-print").click(function () {
+        var oid = $(this).attr('oid');
+        window.location="/order/print?order_id="+oid;
+    });
+
 });
