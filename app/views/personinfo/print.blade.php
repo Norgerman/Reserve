@@ -6,6 +6,11 @@
             .content{
                 margin:10% 30%;
             }
+            @media print{
+                .content{
+                    margin:0;
+                }
+            }
         </style>
     </head>
     <body>
