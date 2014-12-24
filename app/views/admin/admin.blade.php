@@ -323,11 +323,84 @@
                 }
         )
 
+        jQuery(grid_selector2).jqGrid('navGrid',pager_selector2,
+                {   //navbar options
+                    edit: true,
+                    editicon : 'ace-icon fa fa-pencil blue',
+                    add: true,
+                    addicon : 'ace-icon fa fa-plus-circle purple',
+                    del: true,
+                    delicon : 'ace-icon fa fa-trash-o red',
+                    search: true,
+                    searchicon : 'ace-icon fa fa-search orange',
+                    refresh: true,
+                    refreshicon : 'ace-icon fa fa-refresh green',
+                    view: true,
+                    viewicon : 'ace-icon fa fa-search-plus grey'
+                },
+                {
+                    recreateForm: true,
+                    beforeShowForm : function(e) {
+                        var form = $(e[0]);
+                        form.closest('.ui-jqdialog').find('.ui-jqdialog-titlebar').wrapInner('<div class="widget-header" />')
+                        style_edit_form(form);
+                    }
+                },
+                {
+                    closeAfterAdd: true,
+                    recreateForm: true,
+                    viewPagerButtons: false,
+                    beforeShowForm : function(e) {
+                        var form = $(e[0]);
+                        form.closest('.ui-jqdialog').find('.ui-jqdialog-titlebar')
+                                .wrapInner('<div class="widget-header" />')
+                        style_edit_form(form);
+                    }
+                },
+                {
+                    //delete record form
+                    recreateForm: true,
+                    beforeShowForm : function(e) {
+                        var form = $(e[0]);
+                        if(form.data('styled')) return false;
+
+                        form.closest('.ui-jqdialog').find('.ui-jqdialog-titlebar').wrapInner('<div class="widget-header" />')
+                        style_delete_form(form);
+
+                        form.data('styled', true);
+                    },
+                    onClick : function(e) {
+                        alert(1);
+                    }
+                },
+                {
+                    recreateForm: true,
+                    afterShowSearch: function(e){
+                        var form = $(e[0]);
+                        form.closest('.ui-jqdialog').find('.ui-jqdialog-title').wrap('<div class="widget-header" />')
+                        style_search_form(form);
+                    },
+                    afterRedraw: function(){
+                        style_search_filters($(this));
+                    }
+                    ,
+                    multipleSearch: true
+                },
+                {
+                    //view record form
+                    recreateForm: true,
+                    beforeShowForm: function(e){
+                        var form = $(e[0]);
+                        form.closest('.ui-jqdialog').find('.ui-jqdialog-title').wrap('<div class="widget-header" />')
+                    }
+                }
+        )
+
         function style_edit_form(form) {
             //enable datepicker on "sdate" field and switches for "stock" field
-            form.find('input[name=sdate]').datepicker({format:'yyyy-mm-dd' , autoclose:true})
-                    .end().find('input[name=stock]')
-                    .addClass('ace ace-switch ace-switch-5').after('<span class="lbl"></span>');
+//            form.find('input[name=sdate]').datepicker({format:'yyyy-mm-dd' , autoclose:true})
+//                    .end().find('input[name=stock]')
+//                    .addClass('ace ace-switch ace-switch-5').after('<span class="lbl"></span>');
             //update buttons classes
             var buttons = form.next().find('.EditButton .fm-button');
             buttons.addClass('btn btn-sm').find('[class*="-icon"]').hide();//ui-icon, s-icon
