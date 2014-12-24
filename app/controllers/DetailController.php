@@ -26,6 +26,7 @@
             {
                 $result["status"] = "true";
                 $result["hosinfo"] = $hos->toArray();
+                $result["hosinfo"]["description"] = mb_substr($hos->description, 0, 250)."...";
                 $depgs = $hos->departments->groupBy("class_id")
                                           ->toArray();
                 $depgps = array();

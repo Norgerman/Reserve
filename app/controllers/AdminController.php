@@ -236,7 +236,10 @@
                     {
                         $admin->password = hash("sha256", $password);
                     }
-                    $admin->$hospital_id = $hospital_id;
+                    if ($hospital_id != "" && $hospital_id != null)
+                    {
+                        $admin->hospital_id = $hospital_id;
+                    }
                     if ($admin->save())
                     {
                         $status = 1;
@@ -613,6 +616,26 @@
                 if ($visit->save())
                 {
                     $status = 1;
+                }
+                else
+                {
+                    $status = 3;
+                }
+            }
+            else if ($oper == "del")
+            {
+                $v_id = Input::get("id");
+                $visit = Visit::find($v_id);
+                if ($visit)
+                {
+                    if ($visit->delete())
+                    {
+                        $status = 1;
+                    }
+                    else
+                    {
+                        $status = 2;
+                    }
                 }
                 else
                 {
