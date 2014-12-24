@@ -88,4 +88,7 @@ $(function(){
         var d_id = $("#department").val();
         window.location = "/doclist/doctortime?department_id="+d_id;
     });
+    //alert($(".slider"))
+    //$(".qs").height($(".slider-box").height());
+    //$(".user").height($(".slider-box").height());
 });

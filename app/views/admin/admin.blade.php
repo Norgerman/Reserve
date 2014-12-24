@@ -1,12 +1,6 @@
 {{--Created by vvliebe on 2014/12/23.--}}
 <html>
     <head>
-        {{--<link rel="stylesheet" href="js/jqGrid/css/ui.jqgrid.css">--}}
-        {{--<link rel="stylesheet" href="css/ace.min.css">--}}
-        {{--<link rel="stylesheet" href="css/ace-fonts.css">--}}
-        {{--<link rel="stylesheet" href="css/font-awesome.min.css">--}}
-        {{--'jqGrid/jquery.jqGrid.min.js',--}}
-        {{--'jqGrid/js/i18n/grid.locale-cn.js'--}}
         {{HTML::style('lib/jqgrid/ui.jqgrid.css')}}
         {{HTML::style('lib/jqgrid/ace.min.css')}}
         {{HTML::style('lib/jqgrid/ace-fonts.css')}}
