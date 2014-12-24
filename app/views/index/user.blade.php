@@ -20,7 +20,9 @@
                 <img src="{{asset('images/header/1.jpg')}}" class="col-sm-offset-1 col-sm-10 img-circle img-responsive">
             </div>
             <p style="margin-top: 120px;">
-                <a href="/personinfo/index">{{$logininfo['username']}}</a>
+                @if($logininfo['login']=="true")
+                    <a href="/personinfo/index">{{$logininfo['username']}}</a>
+                @endif
             </p>
         </div>
     </div>
