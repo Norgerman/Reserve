@@ -2,15 +2,17 @@
  * Created by vvliebe on 2014/12/14.
  */
 body {
-  background-color: #eeeeee;
+  background-color: #f7f9f9;
 }
 .form-group > div {
   padding: 0;
 }
 .register-div {
-  margin-top: 40px;
-  border: 1px solid #000000;
+  margin-top: 70px;
+  border: 1px solid #e1e1e1;
+  background-color: #fbfbfb;
   padding-top: 5px;
+  box-shadow: 1px 1px 3px #eeeeee;
 }
 .menu {
   width: 100% !important;
