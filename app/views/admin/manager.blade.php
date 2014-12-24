@@ -11,22 +11,25 @@
     {{HTML::script('lib/bootstrap/js/bootstrap.js')}}
     {{HTML::script('lib/jqgrid/jquery.jqGrid.min.js')}}
     {{HTML::script('lib/jqgrid/grid.locale-cn.js')}}
+    <style>
+
+    </style>
 </head>
 <body style="overflow-x:hidden;">
 <div class="row" style="padding: 0;margin:0;">
-    <div class="col-sm-12">
+    <div class="col-sm-6">
         <table id="department-table"></table>
         <div id="department-pager"></div>
     </div>
-    <div class="col-sm-12">
+    <div class="col-sm-6">
         <table id="doctor-table"></table>
         <div id="doctor-pager"></div>
     </div>
-    <div class="col-sm-12">
+    <div class="col-sm-6">
         <table id="visit-table"></table>
         <div id="visit-pager"></div>
     </div>
-    <div class="col-sm-12">
+    <div class="col-sm-6">
         <table id="order-table"></table>
         <div id="order-pager"></div>
     </div>
@@ -57,12 +60,18 @@
         //resize to fit page size
         $(window).on('resize.jqGrid', function () {
             $(grid_selector1).jqGrid( 'setGridWidth', $(".page-content").width() );
+            $(grid_selector2).jqGrid( 'setGridWidth', $(".page-content").width() );
+            $(grid_selector3).jqGrid( 'setGridWidth', $(".page-content").width() );
+            $(grid_selector4).jqGrid( 'setGridWidth', $(".page-content").width() );
         })
         //resize on sidebar collapse/expand
         var parent_column = $(grid_selector1).closest('[class*="col-"]');
         $(document).on('settings.ace.jqGrid' , function(ev, event_name, collapsed) {
             if( event_name === 'sidebar_collapsed' || event_name === 'main_container_fixed' ) {
                 $(grid_selector1).jqGrid( 'setGridWidth', parent_column.width() );
+                $(grid_selector2).jqGrid( 'setGridWidth', parent_column.width() );
+                $(grid_selector3).jqGrid( 'setGridWidth', parent_column.width() );
+                $(grid_selector4).jqGrid( 'setGridWidth', parent_column.width() );
             }
         })
 
