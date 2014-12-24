@@ -20,6 +20,10 @@ $(function(){
                         $(".login-div").toggleClass('hide');
                         $("#login-modal").modal("hide");
                     }
+                    $(".btn-logout").css("display","inline-block");
+                    $(".btn-login").css("display","none");
+                    $(".login-divider").css("display","none");
+                    $(".btn-register").css("display","none");
                 }else{
                     //TODO: 登陆框显示错误
                     alert('meiren');
