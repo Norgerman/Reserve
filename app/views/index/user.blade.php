@@ -16,7 +16,14 @@
         </div>
         <div class="hr"></div>
         <div class="user-body row">
-            <img src="{{asset('images/header/1.jpg')}}" class="col-sm-offset-1 col-sm-10 img-circle img-responsive">
+            <div class="col-sm-12">
+                <img src="{{asset('images/header/1.jpg')}}" class="col-sm-offset-1 col-sm-10 img-circle img-responsive">
+            </div>
+            <p style="margin-top: 120px;">
+                @if($logininfo['login']=="true")
+                    <a href="/personinfo/index">{{$logininfo['username']}}</a>
+                @endif
+            </p>
         </div>
     </div>
 

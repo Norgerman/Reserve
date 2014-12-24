@@ -1,5 +1,8 @@
 <div class="col-sm-9 query-box">
+
     <div class="hotlist-div clearfix">
+        <div>推荐医院</div>
+        <div class="hr"></div>
         @foreach($besthos as $hos)
             <div class="col-sm-3">
                 <div class="thumbnail" style="margin-bottom: 0;">
@@ -31,9 +34,9 @@
 <div class="note col-sm-3">
     <div style="text-indent: 10px">公告</div>
     <div class="hr"></div>
-    <ul style="list-style: none;">
+    <ul style="list-style: none; padding: 0;">
         @foreach($notice as $not)
-            <li><a href="#">{{$not['title'].$not['content'].$not['time']}}</a></li>
+            <li><a href="#" title="{{$not['time']}}">{{$not['title']}}</a></li>
         @endforeach
     </ul>
 </div>
