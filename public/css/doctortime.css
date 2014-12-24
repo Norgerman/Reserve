@@ -67,11 +67,11 @@
   cursor: not-allowed;
 }
 .doclist li {
-  border: 1px solid transparent;
+  border: 3px solid transparent;
   padding: 3px;
 }
 .doclist li.active {
-  border: 1px solid red;
+  border: 3px solid #6197a5;
 }
 .doclist .doctor-info {
   cursor: pointer;

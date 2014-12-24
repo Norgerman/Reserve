@@ -3,6 +3,10 @@
         $.ajax('/index/logout',{
             type: 'post',
             success: function(){
+                if($("#unlogin").hasClass('hide')){
+                    $(".login-div").toggleClass('hide');
+                    $("#login-modal").modal("hide");
+                }
                 $(".btn-logout").css("display","none");
                 $(".btn-login").css("display","inline-block");
                 $(".login-divider").css("display","inline-block");

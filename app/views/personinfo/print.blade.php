@@ -8,7 +8,7 @@
             }
             @media print{
                 .content{
-                    margin:0;
+                    margin:10% 10%;
                 }
             }
         </style>

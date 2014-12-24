@@ -130,7 +130,7 @@
         <div class="panel-heading">
             <span class="media-title">选择医生</span>
         </div>
-        <div class="panel-body" style="padding: 5px">
+        <div class="panel-body" style="padding: 0px">
             <ul class="media-list doclist">
                 <li class="media clearfix" ms-repeat-item="doclist" ms-class="active:docnum==$index">
                     <div class="media-left col-sm-2" style="padding: 0;">
