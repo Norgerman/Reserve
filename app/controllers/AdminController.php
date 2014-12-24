@@ -202,6 +202,12 @@
                           ->orderBy("id", $sord)
                           ->get()
                           ->toArray();
+            foreach ($admin as $index => $a)
+            {
+                $a["password"] = "***";
+                $admin[$index] = $a;
+            }
+
             $result = array();
             $result["total"] = $total;
             $result["page"] = $page;
@@ -219,14 +225,17 @@
             {
                 $id = Input::get("id");
                 //$username = Input::get("username");
-                $password = hash("sha256", trim((string)Input::get("password")));
+                $password = trim((string)Input::get("password"));
                 $auth = Input::get("auth");
                 $hospital_id = Input::get("hospital_id");
                 $admin = Admin::find($id);
                 if ($admin)
                 {
                     $admin->auth = $auth;
-                    $admin->password = $password;
+                    if ($password != "***")
+                    {
+                        $admin->password = hash("sha256", $password);
+                    }
                     $admin->$hospital_id = $hospital_id;
                     if ($admin->save())
                     {
@@ -247,7 +256,7 @@
                 DB::begintransaction();
                 try
                 {
-                    $password = hash("sha256", trim((string)Input::get("password")));
+                    $password = trim((string)Input::get("password"));
                     $auth = Input::get("auth");
                     $username = Input::get("username");
                     $user = new User();
@@ -257,7 +266,7 @@
                         $admin = new Admin();
                         $admin->id = $user->id;
                         $admin->username = $username;
-                        $admin->password = $password;
+                        $admin->password = hash("sha256", $password);
                         $admin->auth = $auth;
                         if (Input::has("hospital_id"))
                         {
@@ -409,13 +418,19 @@
                 $sord = "asc";
             }
             Session::set("dep_id", $department_id);
-            $doctor = Doctor::select(array("id", "username", "password", "name", "description", "auth", "tel"))
+            $doctor = Doctor::select(array("id", "username", "name", "description", "auth", "tel"))
                             ->where("department_id", "=", $department_id)
                             ->skip($startrow)
                             ->take($limit)
                             ->orderBy("id", $sord)
                             ->get()
                             ->toArray();
+            foreach ($doctor as $index => $d)
+            {
+                $d["password"] = "***";
+                $doctor[$index] = $d;
+            }
+
             $result = array();
             $result["total"] = $total;
             $result["page"] = $page;
@@ -431,7 +446,7 @@
             $status = 0;
             if ($oper == "edit")
             {
-                $password = hash("sha256", trim((string)Input::get("password")));
+                $password = trim((string)Input::get("password"));
                 $auth = Input::get("auth");
                 $username = Input::get("username");
                 $name = Input::get("name");
@@ -441,7 +456,10 @@
                 $doctor = Doctor::find($id);
                 if ($doctor)
                 {
-                    $doctor->password = $password;
+                    if ($password != "***")
+                    {
+                        $doctor->password = hash("sha256", $password);
+                    }
                     $doctor->auth = $auth;
                     $doctor->username = $username;
                     $doctor->name = $name;
@@ -466,7 +484,7 @@
                 DB::begintransaction();
                 try
                 {
-                    $password = hash("sha256", trim((string)Input::get("password")));
+                    $password = trim((string)Input::get("password"));
                     $auth = Input::get("auth");
                     $username = Input::get("username");
                     $name = Input::get("name");
@@ -478,7 +496,7 @@
                     {
                         $doctor = new Doctor();
                         $doctor->username = $username;
-                        $doctor->password = $password;
+                        $doctor->password = hash("sha256", $password);
                         $doctor->auth = $auth;
                         $doctor->id = $user->id;
                         $doctor->name = $name;
