@@ -134,7 +134,7 @@
             <ul class="media-list doclist">
                 <li class="media clearfix" ms-repeat-item="doclist" ms-class="active:docnum==$index">
                     <div class="media-left col-sm-2" style="padding: 0;">
-                        <img src="{{asset('images/hoslist/1.jpg')}}" class="media-object" alt="123"/>
+                        <img src="{{asset('images/doclist/1.png')}}" class="media-object" alt="123"/>
                     </div>
                     <div class="media-body doctor-info col-sm-8" ms-click="selectdoctor($index)">
                         <div class="media-heading"><h4 style="margin:0;word-spacing: 10px;"><a href="#">@{{item.name}}</a> <small>主任医师</small></h4></div>
