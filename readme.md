@@ -1,5 +1,5 @@
-## Laravel PHP Framework
-Project Reserve
+## Reserve
+Base on Laravel PHP Framework
 
 ###datebase
 /app/config/database.php-bk至/app/config/database.php  
